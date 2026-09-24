@@ -1,0 +1,40 @@
+count,keys,excerpt
+9,wisckey;hashkv;sepbit;midas;dogi;minos;flashield;kangaroo;ripq,"move
+together; and a promotion policy decides the destination tier.  These choices
+also determine the size and number of recovery transactions.  Flash-oriented
+systems reduce writes through admission, data separation, placement, or
+lifetime grouping \cite{wisckey,hashkv,sepbit,midas,dogi,minos,flashield,
+kangaroo,ripq}.  LSM work tunes merge shapes and scheduling
+\cite{monkey,dostoevsky,pebblesdb,lethe,compactiondesign,silk,spandb,triad}.
+Our question is narrower and complementary: once a finite ordered set of
+segments and retained bytes is declared, what reserve "
+8,monkey;dostoevsky;pebblesdb;lethe;compactiondesign;silk;spandb;triad,"r of recovery transactions.  Flash-oriented
+systems reduce writes through admission, data separation, placement, or
+lifetime grouping \cite{wisckey,hashkv,sepbit,midas,dogi,minos,flashield,
+kangaroo,ripq}.  LSM work tunes merge shapes and scheduling
+\cite{monkey,dostoevsky,pebblesdb,lethe,compactiondesign,silk,spandb,triad}.
+Our question is narrower and complementary: once a finite ordered set of
+segments and retained bytes is declared, what reserve is necessary, which
+legal choices remain safe, and how should recoverable migrations be batched to
+minimize modeled physi"
+9,alice;fscq;ccfs;dfscq;crashmonkey;yggdrasil;chipmunk;squirrelfs;scftl,"t merely produce a different event log.
+
+This abstraction follows the long tradition of write-ahead logging and ordered
+metadata updates \cite{aries,softupdates,featherstitch,nofs}.  Verified and
+tested file systems demonstrate much richer contracts
+\cite{alice,fscq,ccfs,dfscq,crashmonkey,yggdrasil,chipmunk,squirrelfs,scftl}.
+\sys does not model sector atomicity, controller caches, filesystem calls, or
+power failure.  Its contribution is a small executable witness that the costed
+batch boundary can also be a valid recovery boundary.
+
+\subsection{Exact solvers and resuma"
+8,alice;crashmonkey;fscq;dfscq;yggdrasil;scftl;chipmunk;squirrelfs,"es,featherstitch,
+nofs}.  ALICE and CrashMonkey expose application and filesystem ordering bugs;
+FSCQ, DFSCQ, Yggdrasil, and SCFTL provide stronger formal assurance; Chipmunk
+and SquirrelFS advance persistent-memory testing and type-checked ordering
+\cite{alice,crashmonkey,fscq,dfscq,yggdrasil,scftl,chipmunk,squirrelfs}.  Our
+four-event checker is much smaller.  It validates only the copy--flush--commit--
+reclaim invariant assumed by the capacity model.
+
+\paragraph{Allocation and scheduling theory.}
+Cost-oblivious storage reallocation explicitly budgets old/new coe"

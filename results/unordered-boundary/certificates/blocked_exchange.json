@@ -1,0 +1,24 @@
+{
+  "closed_masks": [
+    0
+  ],
+  "instance": {
+    "free": [
+      1,
+      1
+    ],
+    "runs": [
+      {
+        "live": 2,
+        "occupied": 2,
+        "source": 0
+      },
+      {
+        "live": 2,
+        "occupied": 2,
+        "source": 1
+      }
+    ]
+  },
+  "kind": "closed-set"
+}

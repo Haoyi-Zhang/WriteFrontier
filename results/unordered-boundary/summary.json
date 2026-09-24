@@ -1,0 +1,22 @@
+{
+  "any_deadlock": 34422,
+  "cases": 65484,
+  "chunk_states": 1074400,
+  "complete_exhaustive_grid": true,
+  "corpus_definition": "all multisets of 1..4 runs from 12 (source,live,garbage) types; each free coordinate 0..5",
+  "feasible": 31660,
+  "feasible_order_sensitive": 598,
+  "fifo_complete": 31070,
+  "final_fit_infeasible": 1856,
+  "final_fits": 33516,
+  "garbage_complete": 31436,
+  "guard": 28100,
+  "interpretation": "finite descriptive counts, not workload frequencies or independent research reproduction",
+  "large_complete": 31526,
+  "max_chunk_states": 195,
+  "max_subset_states": 8,
+  "permutations_tried": 763765,
+  "safe_but_guard_rejected": 2962,
+  "small_complete": 31070,
+  "subset_states": 151268
+}

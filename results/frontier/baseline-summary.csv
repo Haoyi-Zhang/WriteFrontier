@@ -1,0 +1,5 @@
+policy,frontier_instances,completed,blocked,completion_rate,optimal_among_completed,optimal_fraction_among_completed,median_cost_over_opt,p95_cost_over_opt,max_cost_over_opt
+lru-tiered-proxy,5184,5184,0,1.0,1667,0.32156635802469136,1.1428571428571428,2.0,2.0
+leveled-proxy,5184,5184,0,1.0,4931,0.951195987654321,1.0,1.0,1.8333333333333333
+size-tiered-proxy,5184,5184,0,1.0,4022,0.7758487654320988,1.0,1.5,2.0
+gain-per-write,5184,5184,0,1.0,4623,0.8917824074074074,1.0,1.1,1.3333333333333333

@@ -1,0 +1,37 @@
+{
+  "instance": {
+    "free": [
+      1,
+      1
+    ],
+    "runs": [
+      {
+        "live": 1,
+        "occupied": 1,
+        "source": 0
+      },
+      {
+        "live": 1,
+        "occupied": 1,
+        "source": 1
+      },
+      {
+        "live": 2,
+        "occupied": 2,
+        "source": 0
+      },
+      {
+        "live": 2,
+        "occupied": 2,
+        "source": 1
+      }
+    ]
+  },
+  "kind": "order",
+  "order": [
+    0,
+    3,
+    2,
+    1
+  ]
+}

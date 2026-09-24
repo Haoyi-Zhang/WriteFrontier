@@ -1,0 +1,22 @@
+{
+  "commit_bytes": 1,
+  "formula_disagreements": 0,
+  "instances": 64,
+  "n_values": [
+    16,
+    32,
+    64,
+    128
+  ],
+  "quantum": 32,
+  "reserve_each_range": [
+    1,
+    16
+  ],
+  "runtime": {
+    "cpu_seconds": 3.633249,
+    "max_rss_kib": 98724,
+    "swap_kib": 0,
+    "wall_seconds": 3.633414
+  }
+}

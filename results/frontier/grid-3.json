@@ -1,0 +1,22 @@
+{
+  "brute_cases": 1296,
+  "brute_disagreements": 0,
+  "cases": 63504,
+  "independent_disagreements": 0,
+  "normal_form_violations": 0,
+  "part": 3,
+  "patterns": 1296,
+  "runtime": {
+    "cpu_seconds": 11.957581,
+    "max_rss_kib": 184488,
+    "swap_kib": 0,
+    "wall_seconds": 11.959283
+  },
+  "scan_disagreements": 0,
+  "solver_disagreements": 0,
+  "status_counts": {
+    "feasible": 56563,
+    "infeasible": 2349,
+    "infeasible-final": 4592
+  }
+}

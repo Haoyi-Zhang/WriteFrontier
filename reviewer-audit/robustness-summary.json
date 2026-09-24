@@ -1,0 +1,13 @@
+{
+  "tables_scanned": 20,
+  "normalized_observations": 0,
+  "policies": [],
+  "group_fields": [],
+  "policy_stats": [],
+  "partitions": [],
+  "interpretation": {
+    "fitting": "The exact optimizer and deterministic schedulers contain no learned parameters. The partition is therefore a robustness diagnostic, not a model-selection protocol.",
+    "selection": "All parseable policy observations from the canonical and reproduced outputs are included after content-based deduplication; no best-case filtering is applied.",
+    "scope": "Ratios measure the declared planning-cost model and do not estimate production hit rate, latency, endurance, or device-level write amplification."
+  }
+}

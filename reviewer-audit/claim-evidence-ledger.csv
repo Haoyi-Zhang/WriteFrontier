@@ -1,0 +1,6 @@
+claim,evidence_markers,has_marker
+"We prove that an optimum alternates source tiers, give an exact polynomial dynamic program, characterize the two-epoch lower-bound basin, and derive a closed-form worst-case family: with $n$ all-live unit segments per tier and reserve $r$ per tier, the optimum uses $\lceil n/r\rceil+1$ epochs and costs $(\lceil n/r\rceil+1)(q+\mu)$ when $q\ge2r$.",,False
+"\item We prove legal-step confluence, an alternating optimal normal form, an exact $O(n_0n_1(n_0+n_1))$ dynamic program, a per-source cost lower bound, and its two-epoch attainability condition.",,False
+\item We derive an exact inverse-reserve frontier for symmetric all-live segments.,,False
+"We evaluate four controlled batching rules, not full systems: \begin{description}[leftmargin=.7em,style=nextline,itemsep=.2em,topsep=.25em] \item[LRU-tiered proxy] chooses the source whose oldest segment has the oldest birth index and migrates the smallest legal prefix containing that segment.",,False
+\section{Methodology} \label{sec:method} \subsection{Questions and falsification criteria} We evaluate five questions.,,False

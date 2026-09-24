@@ -1,0 +1,23 @@
+{
+  "adjacent_merge_violations": 0,
+  "cases": 20000,
+  "feasible_cases": 15748,
+  "maximum_generated_tier_lengths": [
+    4,
+    4
+  ],
+  "raw_oracle_disagreements": 0,
+  "raw_oracle_total_states": 144534,
+  "raw_oracle_total_transitions": 328328,
+  "reserve_monotonicity_violations": 0,
+  "runtime": {
+    "cpu_seconds": 5.40914,
+    "max_rss_kib": 96436,
+    "swap_kib": 0,
+    "wall_seconds": 5.415216
+  },
+  "scale_invariance_violations": 0,
+  "seed": 20260916,
+  "tier_swap_symmetry_disagreements": 0,
+  "unrestricted_solver_disagreements": 0
+}

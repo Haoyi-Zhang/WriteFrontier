@@ -1,0 +1,52 @@
+{
+  "budget_result": "pass",
+  "complete_reproduction_gate": {
+    "all_exit_status_zero": true,
+    "all_recorded_swaps_zero": true,
+    "cpu_seconds": 107.32,
+    "max_rss_kib": 585996
+  },
+  "date": "2026-09-16",
+  "external_compute_used": false,
+  "final_archive_validation": {
+    "date": "2026-09-16",
+    "note": "Clean extracted delivery archives passed tests, reference checks, exact result comparison, paper rebuild, and PDF preflight.",
+    "recorded_swaps": 0,
+    "result": "pass"
+  },
+  "gpu_used": false,
+  "input_bytes_packaged": 47264,
+  "intake": {
+    "available_cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "campaign_cpu_ceiling_seconds": 28800,
+    "cgroup_cpu_quota_cores": 4,
+    "cgroup_memory_current_bytes": 398761984,
+    "cgroup_memory_limit_bytes": 4294967296,
+    "external_compute": false,
+    "mem_available_kib": 5033848,
+    "note": "Host/cgroup permit swap at intake; experiments do not configure or request it. A per-process low RSS target and reported VmSwap check enforce no observed experimental swapping.",
+    "per_process_address_space_limit_bytes": 3221225472,
+    "repair_reproduction_reserve_seconds": 7200,
+    "scientific_gpu": false,
+    "swapping_requested": false,
+    "workers": 1,
+    "writable_free_bytes": 32033730560
+  },
+  "interpretation": "Resource observations support bounded reproducibility only; they are not cache-performance measurements.",
+  "network_bytes_during_reproduction": 0,
+  "retained_campaign": {
+    "boundary_cases": 65484,
+    "core_grid_cases": 254016,
+    "max_rss_kib_clean_replay": 585996,
+    "mutation_boundaries": 69320,
+    "normal_recovery_boundaries": 14461,
+    "recorded_swaps": 0,
+    "scientific_cpu_seconds_clean_replay": 90.37
+  }
+}

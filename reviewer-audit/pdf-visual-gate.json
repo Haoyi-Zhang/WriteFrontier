@@ -1,0 +1,522 @@
+{
+  "result": {
+    "main": {
+      "path": "/mnt/data/final_blind_review_work/extracted/write-amplification-frontiers-tiered-log-structured-caches/paper/main.pdf",
+      "sha256": "605f2b985fdf47929dff0790ee517e2d26dbba812fa1f995e4652ee4798b9f49",
+      "pages": 16,
+      "qpdf_returncode": 0,
+      "qpdf_output": "qpdf unavailable",
+      "pdffonts_returncode": 0,
+      "unembedded_fonts": [],
+      "metadata": {
+        "Title": "Subject:",
+        "Subject": "Keywords:",
+        "Keywords": "Author:",
+        "Author": "Creator:         LaTeX with hyperref",
+        "Creator": "LaTeX with hyperref",
+        "Producer": "pdfTeX-1.40.26",
+        "CreationDate": "Mon Sep 21 19:11:50 2026 UTC",
+        "ModDate": "Mon Sep 21 19:11:50 2026 UTC"
+      },
+      "render_returncode": 0,
+      "render_output": "",
+      "rendered_pages": 16,
+      "page_metrics": [
+        {
+          "page": 1,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.09877316877929623,
+          "bbox": [
+            107,
+            260,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 260,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4127,
+          "blank_like": false
+        },
+        {
+          "page": 2,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.12006245048524461,
+          "bbox": [
+            107,
+            149,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 5282,
+          "blank_like": false
+        },
+        {
+          "page": 3,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.10158055225457187,
+          "bbox": [
+            107,
+            163,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 163,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 5004,
+          "blank_like": false
+        },
+        {
+          "page": 4,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.11941050620584934,
+          "bbox": [
+            107,
+            149,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 5496,
+          "blank_like": false
+        },
+        {
+          "page": 5,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.10883601125635439,
+          "bbox": [
+            105,
+            149,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 105,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4855,
+          "blank_like": false
+        },
+        {
+          "page": 6,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.10540969333861491,
+          "bbox": [
+            105,
+            147,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 105,
+            "top_px": 147,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4676,
+          "blank_like": false
+        },
+        {
+          "page": 7,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.11584028603023701,
+          "bbox": [
+            107,
+            149,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4953,
+          "blank_like": false
+        },
+        {
+          "page": 8,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.12331649831649831,
+          "bbox": [
+            107,
+            146,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 146,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 5325,
+          "blank_like": false
+        },
+        {
+          "page": 9,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.09610298243876675,
+          "bbox": [
+            107,
+            163,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 163,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4151,
+          "blank_like": false
+        },
+        {
+          "page": 10,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.1329424762329174,
+          "bbox": [
+            107,
+            149,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 5642,
+          "blank_like": false
+        },
+        {
+          "page": 11,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.11540238991219383,
+          "bbox": [
+            107,
+            163,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 163,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4960,
+          "blank_like": false
+        },
+        {
+          "page": 12,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.12031415049184657,
+          "bbox": [
+            107,
+            149,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 5233,
+          "blank_like": false
+        },
+        {
+          "page": 13,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.11168207813428402,
+          "bbox": [
+            108,
+            146,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 108,
+            "top_px": 146,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4526,
+          "blank_like": false
+        },
+        {
+          "page": 14,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.11394944130850994,
+          "bbox": [
+            109,
+            149,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 109,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4639,
+          "blank_like": false
+        },
+        {
+          "page": 15,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.11638649567571137,
+          "bbox": [
+            109,
+            149,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 109,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4706,
+          "blank_like": false
+        },
+        {
+          "page": 16,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.08120729352346999,
+          "bbox": [
+            109,
+            149,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 109,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 3293,
+          "blank_like": false
+        }
+      ],
+      "blank_pages": [],
+      "edge_clipping_candidates": []
+    },
+    "supplement": {
+      "path": "/mnt/data/final_blind_review_work/extracted/write-amplification-frontiers-tiered-log-structured-caches/paper/supplement.pdf",
+      "sha256": "707bab976cdf4a081dd9314fa3a3e196cd0c854f60cc27f93b59e65dbb6ad8c7",
+      "pages": 6,
+      "qpdf_returncode": 0,
+      "qpdf_output": "qpdf unavailable",
+      "pdffonts_returncode": 0,
+      "unembedded_fonts": [],
+      "metadata": {
+        "Title": "Supplementary Material: Write-Amplification Frontiers in Capacity-Constrained Tiered Log-Structured Caches",
+        "Subject": "Keywords:",
+        "Keywords": "Author:",
+        "Author": "Creator:         LaTeX with hyperref",
+        "Creator": "LaTeX with hyperref",
+        "Producer": "pdfTeX-1.40.26",
+        "CreationDate": "Mon Sep 21 19:11:51 2026 UTC",
+        "ModDate": "Mon Sep 21 19:11:51 2026 UTC"
+      },
+      "render_returncode": 0,
+      "render_output": "",
+      "rendered_pages": 6,
+      "page_metrics": [
+        {
+          "page": 1,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.08021441952201756,
+          "bbox": [
+            107,
+            260,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 260,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 3469,
+          "blank_like": false
+        },
+        {
+          "page": 2,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.09975521142800554,
+          "bbox": [
+            105,
+            149,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 105,
+            "top_px": 149,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4563,
+          "blank_like": false
+        },
+        {
+          "page": 3,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.09839819766290354,
+          "bbox": [
+            107,
+            147,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 147,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4428,
+          "blank_like": false
+        },
+        {
+          "page": 4,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.12231588763451509,
+          "bbox": [
+            107,
+            146,
+            1119,
+            1499
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 146,
+            "right_px": 105,
+            "bottom_px": 85
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 5335,
+          "blank_like": false
+        },
+        {
+          "page": 5,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.08935969168812306,
+          "bbox": [
+            107,
+            163,
+            1119,
+            1500
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 163,
+            "right_px": 105,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 4125,
+          "blank_like": false
+        },
+        {
+          "page": 6,
+          "width": 1224,
+          "height": 1584,
+          "dark_fraction": 0.025152464184326928,
+          "bbox": [
+            107,
+            149,
+            617,
+            1500
+          ],
+          "margins": {
+            "left_px": 107,
+            "top_px": 149,
+            "right_px": 607,
+            "bottom_px": 84
+          },
+          "edge_dark_pixels": 0,
+          "text_chars": 1075,
+          "blank_like": false
+        }
+      ],
+      "blank_pages": [],
+      "edge_clipping_candidates": []
+    }
+  },
+  "fatal": [
+    "main: author metadata",
+    "supplement: author metadata"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "instance": {
+    "free": [
+      0,
+      1
+    ],
+    "runs": [
+      {
+        "live": 3,
+        "occupied": 3,
+        "source": 0
+      },
+      {
+        "live": 2,
+        "occupied": 2,
+        "source": 0
+      }
+    ]
+  },
+  "kind": "final-deficit"
+}

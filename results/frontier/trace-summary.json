@@ -1,0 +1,19 @@
+{
+  "datasets": {
+    "cloudphysics-prefix": 4,
+    "twitter-cluster015-prefix": 4
+  },
+  "policy_blocked_counts": {
+    "gain-per-write": 0,
+    "leveled-proxy": 0,
+    "lru-tiered-proxy": 0,
+    "size-tiered-proxy": 0
+  },
+  "rows": 8,
+  "runtime": {
+    "cpu_seconds": 0.006494,
+    "max_rss_kib": 96172,
+    "swap_kib": 0,
+    "wall_seconds": 0.006358
+  }
+}

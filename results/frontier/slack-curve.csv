@@ -1,0 +1,8 @@
+extra_total_reserve_units,patterns,lower_bound_fraction,median_cost_over_lower_bound,p95_cost_over_lower_bound,max_cost_over_lower_bound,median_physical_over_live,p95_physical_over_live,max_physical_over_live
+0,5184,0.41473765432098764,1.1,2.0,2.0,2.6666666666666665,5.5,6.0
+1,5184,0.8198302469135802,1.0,1.5,2.0,2.142857142857143,5.0,6.0
+2,5184,0.980516975308642,1.0,1.0,1.5,2.0,5.0,6.0
+3,5184,1.0,1.0,1.0,1.0,2.0,5.0,6.0
+4,5184,1.0,1.0,1.0,1.0,2.0,5.0,6.0
+5,5184,1.0,1.0,1.0,1.0,2.0,5.0,6.0
+6,5184,1.0,1.0,1.0,1.0,2.0,5.0,6.0

@@ -1,0 +1,15 @@
+{
+  "cpu_seconds": 0.7985759899999998,
+  "peak_rss_kib": 94628,
+  "result": {
+    "part": 3,
+    "rows": 8192,
+    "start_case": 24576,
+    "suite": "exhaustive"
+  },
+  "suite": "exhaustive-3",
+  "swap": [
+    "VmSwap:\t       0 kB"
+  ],
+  "wall_seconds": 0.8014721879999342
+}

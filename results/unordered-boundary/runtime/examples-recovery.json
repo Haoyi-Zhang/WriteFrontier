@@ -1,0 +1,19 @@
+{
+  "cpu_seconds": 0.12950828700000017,
+  "peak_rss_kib": 95140,
+  "result": {
+    "crash_model": "loss of unflushed payload; atomic run-pointer publication; completed source erase; no torn metadata or device model",
+    "detected_invalid_prefixes": 32680,
+    "feasible_episodes": 1848,
+    "mutation_detection": "all tested variants had at least one invalid retained-value recovery",
+    "mutation_episode_variants": 7104,
+    "mutation_prefixes": 78592,
+    "suite": "examples-recovery",
+    "valid_crash_prefixes": 18364
+  },
+  "suite": "examples-recovery",
+  "swap": [
+    "VmSwap:\t       0 kB"
+  ],
+  "wall_seconds": 0.13136165900004926
+}

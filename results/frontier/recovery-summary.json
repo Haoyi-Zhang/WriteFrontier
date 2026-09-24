@@ -1,0 +1,111 @@
+{
+  "batches": 2883,
+  "example": {
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        0,
+        1
+      ],
+      "label": "recovery-pattern-2560",
+      "quantum": 4,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 1,
+            "name": "p2560-0-0",
+            "occupied": 2
+          },
+          {
+            "birth": 2,
+            "live": 1,
+            "name": "p2560-0-1",
+            "occupied": 2
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 2,
+            "name": "p2560-1-0",
+            "occupied": 2
+          },
+          {
+            "birth": 3,
+            "live": 0,
+            "name": "p2560-1-1",
+            "occupied": 1
+          }
+        ]
+      ]
+    },
+    "mutations": [
+      {
+        "boundaries": 17,
+        "detected": true,
+        "failures": 7,
+        "first_failure": "epoch 0: premature commit",
+        "mutation": "publish-before-flush"
+      },
+      {
+        "boundaries": 17,
+        "detected": true,
+        "failures": 3,
+        "first_failure": "epoch 0: premature reclaim",
+        "mutation": "reclaim-before-commit"
+      },
+      {
+        "boundaries": 14,
+        "detected": true,
+        "failures": 11,
+        "first_failure": "epoch 0: atomic valid commit",
+        "mutation": "omit-last-token"
+      },
+      {
+        "boundaries": 20,
+        "detected": true,
+        "failures": 3,
+        "first_failure": "epoch 0: reclaim after torn commit",
+        "mutation": "torn-commit-reclaim"
+      }
+    ],
+    "normal": {
+      "boundaries": 14,
+      "detected": false,
+      "failures": 0,
+      "first_failure": null,
+      "mutation": null
+    },
+    "schedule": [
+      {
+        "end": 1,
+        "source": 0,
+        "start": 0
+      },
+      {
+        "end": 2,
+        "source": 1,
+        "start": 0
+      },
+      {
+        "end": 2,
+        "source": 0,
+        "start": 1
+      }
+    ]
+  },
+  "mutation_boundaries": 69320,
+  "mutation_failures": 22896,
+  "mutation_runs": 4088,
+  "mutation_runs_detected": 4088,
+  "normal_boundaries": 14461,
+  "normal_failures": 0,
+  "runtime": {
+    "cpu_seconds": 0.211333,
+    "max_rss_kib": 106276,
+    "swap_kib": 0,
+    "wall_seconds": 0.211252
+  },
+  "schedules": 1024
+}

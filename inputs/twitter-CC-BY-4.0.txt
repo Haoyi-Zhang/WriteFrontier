@@ -1,0 +1,10 @@
+Twitter cache trace sample attribution
+
+Source: Twitter, Inc., twitter/cache-trace, samples/2020Mar/cluster015
+URL: https://github.com/twitter/cache-trace/blob/master/samples/2020Mar/cluster015
+Upstream blob SHA: 1e6095ba836de4a79da3cbf58720cd2ee5cd6efa
+Excerpt: first 128 records; a CSV header was added by this artifact.
+Accessed: 2026-09-15
+License: Creative Commons Attribution 4.0 International
+License URL: https://creativecommons.org/licenses/by/4.0/
+No endorsement by Twitter is implied.

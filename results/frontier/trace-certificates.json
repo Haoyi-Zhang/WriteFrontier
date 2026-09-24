@@ -1,0 +1,1732 @@
+[
+  {
+    "dataset": "cloudphysics-prefix",
+    "exact": {
+      "cost": 541,
+      "lower_bound": 530,
+      "ratio_to_lower_bound": 1.0207547169811322,
+      "schedule": [
+        {
+          "end": 1,
+          "source": 0,
+          "start": 0
+        },
+        {
+          "end": 1,
+          "source": 1,
+          "start": 0
+        },
+        {
+          "end": 3,
+          "source": 0,
+          "start": 1
+        },
+        {
+          "end": 3,
+          "source": 1,
+          "start": 1
+        },
+        {
+          "end": 4,
+          "source": 0,
+          "start": 3
+        }
+      ],
+      "states": 12,
+      "status": "feasible",
+      "transitions": 13
+    },
+    "extra_slack_units": 0,
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        92,
+        92
+      ],
+      "label": "cloudphysics-window-0-extra-0",
+      "quantum": 8,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 28,
+            "name": "seg-000",
+            "occupied": 28
+          },
+          {
+            "birth": 2,
+            "live": 65,
+            "name": "seg-002",
+            "occupied": 106
+          },
+          {
+            "birth": 4,
+            "live": 66,
+            "name": "seg-004",
+            "occupied": 94
+          },
+          {
+            "birth": 6,
+            "live": 71,
+            "name": "seg-006",
+            "occupied": 101
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 120,
+            "name": "seg-001",
+            "occupied": 128
+          },
+          {
+            "birth": 3,
+            "live": 48,
+            "name": "seg-003",
+            "occupied": 120
+          },
+          {
+            "birth": 5,
+            "live": 128,
+            "name": "seg-005",
+            "occupied": 128
+          }
+        ]
+      ]
+    },
+    "policies": [
+      {
+        "cost": 551,
+        "lower_bound": 530,
+        "policy": "lru-tiered-proxy",
+        "ratio_to_lower_bound": 1.039622641509434,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 541,
+        "lower_bound": 530,
+        "policy": "leveled-proxy",
+        "ratio_to_lower_bound": 1.0207547169811322,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 541,
+        "lower_bound": 530,
+        "policy": "size-tiered-proxy",
+        "ratio_to_lower_bound": 1.0207547169811322,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 542,
+        "lower_bound": 530,
+        "policy": "gain-per-write",
+        "ratio_to_lower_bound": 1.0226415094339623,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          }
+        ],
+        "status": "complete"
+      }
+    ],
+    "window": 0
+  },
+  {
+    "dataset": "cloudphysics-prefix",
+    "exact": {
+      "cost": 540,
+      "lower_bound": 530,
+      "ratio_to_lower_bound": 1.0188679245283019,
+      "schedule": [
+        {
+          "end": 2,
+          "source": 0,
+          "start": 0
+        },
+        {
+          "end": 2,
+          "source": 1,
+          "start": 0
+        },
+        {
+          "end": 4,
+          "source": 0,
+          "start": 2
+        },
+        {
+          "end": 3,
+          "source": 1,
+          "start": 2
+        }
+      ],
+      "states": 14,
+      "status": "feasible",
+      "transitions": 17
+    },
+    "extra_slack_units": 8,
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        100,
+        100
+      ],
+      "label": "cloudphysics-window-0-extra-8",
+      "quantum": 8,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 28,
+            "name": "seg-000",
+            "occupied": 28
+          },
+          {
+            "birth": 2,
+            "live": 65,
+            "name": "seg-002",
+            "occupied": 106
+          },
+          {
+            "birth": 4,
+            "live": 66,
+            "name": "seg-004",
+            "occupied": 94
+          },
+          {
+            "birth": 6,
+            "live": 71,
+            "name": "seg-006",
+            "occupied": 101
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 120,
+            "name": "seg-001",
+            "occupied": 128
+          },
+          {
+            "birth": 3,
+            "live": 48,
+            "name": "seg-003",
+            "occupied": 120
+          },
+          {
+            "birth": 5,
+            "live": 128,
+            "name": "seg-005",
+            "occupied": 128
+          }
+        ]
+      ]
+    },
+    "policies": [
+      {
+        "cost": 551,
+        "lower_bound": 530,
+        "policy": "lru-tiered-proxy",
+        "ratio_to_lower_bound": 1.039622641509434,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 540,
+        "lower_bound": 530,
+        "policy": "leveled-proxy",
+        "ratio_to_lower_bound": 1.0188679245283019,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 2,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 541,
+        "lower_bound": 530,
+        "policy": "size-tiered-proxy",
+        "ratio_to_lower_bound": 1.0207547169811322,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 540,
+        "lower_bound": 530,
+        "policy": "gain-per-write",
+        "ratio_to_lower_bound": 1.0188679245283019,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 2,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          }
+        ],
+        "status": "complete"
+      }
+    ],
+    "window": 0
+  },
+  {
+    "dataset": "cloudphysics-prefix",
+    "exact": {
+      "cost": 550,
+      "lower_bound": 538,
+      "ratio_to_lower_bound": 1.0223048327137547,
+      "schedule": [
+        {
+          "end": 1,
+          "source": 1,
+          "start": 0
+        },
+        {
+          "end": 1,
+          "source": 0,
+          "start": 0
+        },
+        {
+          "end": 2,
+          "source": 1,
+          "start": 1
+        },
+        {
+          "end": 2,
+          "source": 0,
+          "start": 1
+        },
+        {
+          "end": 3,
+          "source": 1,
+          "start": 2
+        },
+        {
+          "end": 4,
+          "source": 0,
+          "start": 2
+        }
+      ],
+      "states": 8,
+      "status": "feasible",
+      "transitions": 7
+    },
+    "extra_slack_units": 0,
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        58,
+        58
+      ],
+      "label": "cloudphysics-window-1-extra-0",
+      "quantum": 8,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 114,
+            "name": "seg-000",
+            "occupied": 128
+          },
+          {
+            "birth": 2,
+            "live": 113,
+            "name": "seg-002",
+            "occupied": 121
+          },
+          {
+            "birth": 4,
+            "live": 45,
+            "name": "seg-004",
+            "occupied": 101
+          },
+          {
+            "birth": 6,
+            "live": 35,
+            "name": "seg-006",
+            "occupied": 35
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 29,
+            "name": "seg-001",
+            "occupied": 56
+          },
+          {
+            "birth": 3,
+            "live": 102,
+            "name": "seg-003",
+            "occupied": 125
+          },
+          {
+            "birth": 5,
+            "live": 88,
+            "name": "seg-005",
+            "occupied": 128
+          }
+        ]
+      ]
+    },
+    "policies": [
+      {
+        "cost": 559,
+        "lower_bound": 538,
+        "policy": "lru-tiered-proxy",
+        "ratio_to_lower_bound": 1.0390334572490707,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 550,
+        "lower_bound": 538,
+        "policy": "leveled-proxy",
+        "ratio_to_lower_bound": 1.0223048327137547,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 2
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 559,
+        "lower_bound": 538,
+        "policy": "size-tiered-proxy",
+        "ratio_to_lower_bound": 1.0390334572490707,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 559,
+        "lower_bound": 538,
+        "policy": "gain-per-write",
+        "ratio_to_lower_bound": 1.0390334572490707,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      }
+    ],
+    "window": 1
+  },
+  {
+    "dataset": "cloudphysics-prefix",
+    "exact": {
+      "cost": 550,
+      "lower_bound": 538,
+      "ratio_to_lower_bound": 1.0223048327137547,
+      "schedule": [
+        {
+          "end": 1,
+          "source": 1,
+          "start": 0
+        },
+        {
+          "end": 1,
+          "source": 0,
+          "start": 0
+        },
+        {
+          "end": 2,
+          "source": 1,
+          "start": 1
+        },
+        {
+          "end": 2,
+          "source": 0,
+          "start": 1
+        },
+        {
+          "end": 3,
+          "source": 1,
+          "start": 2
+        },
+        {
+          "end": 4,
+          "source": 0,
+          "start": 2
+        }
+      ],
+      "states": 8,
+      "status": "feasible",
+      "transitions": 7
+    },
+    "extra_slack_units": 8,
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        66,
+        66
+      ],
+      "label": "cloudphysics-window-1-extra-8",
+      "quantum": 8,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 114,
+            "name": "seg-000",
+            "occupied": 128
+          },
+          {
+            "birth": 2,
+            "live": 113,
+            "name": "seg-002",
+            "occupied": 121
+          },
+          {
+            "birth": 4,
+            "live": 45,
+            "name": "seg-004",
+            "occupied": 101
+          },
+          {
+            "birth": 6,
+            "live": 35,
+            "name": "seg-006",
+            "occupied": 35
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 29,
+            "name": "seg-001",
+            "occupied": 56
+          },
+          {
+            "birth": 3,
+            "live": 102,
+            "name": "seg-003",
+            "occupied": 125
+          },
+          {
+            "birth": 5,
+            "live": 88,
+            "name": "seg-005",
+            "occupied": 128
+          }
+        ]
+      ]
+    },
+    "policies": [
+      {
+        "cost": 559,
+        "lower_bound": 538,
+        "policy": "lru-tiered-proxy",
+        "ratio_to_lower_bound": 1.0390334572490707,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 550,
+        "lower_bound": 538,
+        "policy": "leveled-proxy",
+        "ratio_to_lower_bound": 1.0223048327137547,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 2
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 559,
+        "lower_bound": 538,
+        "policy": "size-tiered-proxy",
+        "ratio_to_lower_bound": 1.0390334572490707,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 559,
+        "lower_bound": 538,
+        "policy": "gain-per-write",
+        "ratio_to_lower_bound": 1.0390334572490707,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 3,
+            "source": 1,
+            "start": 2
+          },
+          {
+            "end": 3,
+            "source": 0,
+            "start": 2
+          },
+          {
+            "end": 4,
+            "source": 0,
+            "start": 3
+          }
+        ],
+        "status": "complete"
+      }
+    ],
+    "window": 1
+  },
+  {
+    "dataset": "twitter-cluster015-prefix",
+    "exact": {
+      "cost": 260,
+      "lower_bound": 130,
+      "ratio_to_lower_bound": 2.0,
+      "schedule": [
+        {
+          "end": 1,
+          "source": 0,
+          "start": 0
+        },
+        {
+          "end": 1,
+          "source": 1,
+          "start": 0
+        },
+        {
+          "end": 2,
+          "source": 0,
+          "start": 1
+        },
+        {
+          "end": 2,
+          "source": 1,
+          "start": 1
+        }
+      ],
+      "states": 5,
+      "status": "feasible",
+      "transitions": 4
+    },
+    "extra_slack_units": 0,
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        26,
+        31
+      ],
+      "label": "cloudphysics-window-0-extra-0",
+      "quantum": 64,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 31,
+            "name": "seg-000",
+            "occupied": 31
+          },
+          {
+            "birth": 2,
+            "live": 32,
+            "name": "seg-002",
+            "occupied": 32
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 32,
+            "name": "seg-001",
+            "occupied": 32
+          },
+          {
+            "birth": 3,
+            "live": 26,
+            "name": "seg-003",
+            "occupied": 26
+          }
+        ]
+      ]
+    },
+    "policies": [
+      {
+        "cost": 260,
+        "lower_bound": 130,
+        "policy": "lru-tiered-proxy",
+        "ratio_to_lower_bound": 2.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 260,
+        "lower_bound": 130,
+        "policy": "leveled-proxy",
+        "ratio_to_lower_bound": 2.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 260,
+        "lower_bound": 130,
+        "policy": "size-tiered-proxy",
+        "ratio_to_lower_bound": 2.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 260,
+        "lower_bound": 130,
+        "policy": "gain-per-write",
+        "ratio_to_lower_bound": 2.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      }
+    ],
+    "window": 0
+  },
+  {
+    "dataset": "twitter-cluster015-prefix",
+    "exact": {
+      "cost": 130,
+      "lower_bound": 130,
+      "ratio_to_lower_bound": 1.0,
+      "schedule": [
+        {
+          "end": 2,
+          "source": 1,
+          "start": 0
+        },
+        {
+          "end": 2,
+          "source": 0,
+          "start": 0
+        }
+      ],
+      "states": 13,
+      "status": "feasible",
+      "transitions": 16
+    },
+    "extra_slack_units": 64,
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        90,
+        95
+      ],
+      "label": "cloudphysics-window-0-extra-64",
+      "quantum": 64,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 31,
+            "name": "seg-000",
+            "occupied": 31
+          },
+          {
+            "birth": 2,
+            "live": 32,
+            "name": "seg-002",
+            "occupied": 32
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 32,
+            "name": "seg-001",
+            "occupied": 32
+          },
+          {
+            "birth": 3,
+            "live": 26,
+            "name": "seg-003",
+            "occupied": 26
+          }
+        ]
+      ]
+    },
+    "policies": [
+      {
+        "cost": 260,
+        "lower_bound": 130,
+        "policy": "lru-tiered-proxy",
+        "ratio_to_lower_bound": 2.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 130,
+        "lower_bound": 130,
+        "policy": "leveled-proxy",
+        "ratio_to_lower_bound": 1.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 2,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 130,
+        "lower_bound": 130,
+        "policy": "size-tiered-proxy",
+        "ratio_to_lower_bound": 1.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 2,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 130,
+        "lower_bound": 130,
+        "policy": "gain-per-write",
+        "ratio_to_lower_bound": 1.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 2,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          }
+        ],
+        "status": "complete"
+      }
+    ],
+    "window": 0
+  },
+  {
+    "dataset": "twitter-cluster015-prefix",
+    "exact": {
+      "cost": 195,
+      "lower_bound": 130,
+      "ratio_to_lower_bound": 1.5,
+      "schedule": [
+        {
+          "end": 1,
+          "source": 0,
+          "start": 0
+        },
+        {
+          "end": 2,
+          "source": 1,
+          "start": 0
+        },
+        {
+          "end": 2,
+          "source": 0,
+          "start": 1
+        }
+      ],
+      "states": 7,
+      "status": "feasible",
+      "transitions": 6
+    },
+    "extra_slack_units": 0,
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        24,
+        32
+      ],
+      "label": "cloudphysics-window-1-extra-0",
+      "quantum": 64,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 32,
+            "name": "seg-000",
+            "occupied": 32
+          },
+          {
+            "birth": 2,
+            "live": 32,
+            "name": "seg-002",
+            "occupied": 32
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 32,
+            "name": "seg-001",
+            "occupied": 32
+          },
+          {
+            "birth": 3,
+            "live": 24,
+            "name": "seg-003",
+            "occupied": 24
+          }
+        ]
+      ]
+    },
+    "policies": [
+      {
+        "cost": 260,
+        "lower_bound": 130,
+        "policy": "lru-tiered-proxy",
+        "ratio_to_lower_bound": 2.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 195,
+        "lower_bound": 130,
+        "policy": "leveled-proxy",
+        "ratio_to_lower_bound": 1.5,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 195,
+        "lower_bound": 130,
+        "policy": "size-tiered-proxy",
+        "ratio_to_lower_bound": 1.5,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 195,
+        "lower_bound": 130,
+        "policy": "gain-per-write",
+        "ratio_to_lower_bound": 1.5,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      }
+    ],
+    "window": 1
+  },
+  {
+    "dataset": "twitter-cluster015-prefix",
+    "exact": {
+      "cost": 130,
+      "lower_bound": 130,
+      "ratio_to_lower_bound": 1.0,
+      "schedule": [
+        {
+          "end": 2,
+          "source": 1,
+          "start": 0
+        },
+        {
+          "end": 2,
+          "source": 0,
+          "start": 0
+        }
+      ],
+      "states": 13,
+      "status": "feasible",
+      "transitions": 16
+    },
+    "extra_slack_units": 64,
+    "instance": {
+      "commit_bytes": 1,
+      "free": [
+        88,
+        96
+      ],
+      "label": "cloudphysics-window-1-extra-64",
+      "quantum": 64,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 32,
+            "name": "seg-000",
+            "occupied": 32
+          },
+          {
+            "birth": 2,
+            "live": 32,
+            "name": "seg-002",
+            "occupied": 32
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 32,
+            "name": "seg-001",
+            "occupied": 32
+          },
+          {
+            "birth": 3,
+            "live": 24,
+            "name": "seg-003",
+            "occupied": 24
+          }
+        ]
+      ]
+    },
+    "policies": [
+      {
+        "cost": 260,
+        "lower_bound": 130,
+        "policy": "lru-tiered-proxy",
+        "ratio_to_lower_bound": 2.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 1,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 1,
+            "source": 1,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 0,
+            "start": 1
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 1
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 130,
+        "lower_bound": 130,
+        "policy": "leveled-proxy",
+        "ratio_to_lower_bound": 1.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 2,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 130,
+        "lower_bound": 130,
+        "policy": "size-tiered-proxy",
+        "ratio_to_lower_bound": 1.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 2,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          }
+        ],
+        "status": "complete"
+      },
+      {
+        "cost": 130,
+        "lower_bound": 130,
+        "policy": "gain-per-write",
+        "ratio_to_lower_bound": 1.0,
+        "reason": "",
+        "schedule": [
+          {
+            "end": 2,
+            "source": 0,
+            "start": 0
+          },
+          {
+            "end": 2,
+            "source": 1,
+            "start": 0
+          }
+        ],
+        "status": "complete"
+      }
+    ],
+    "window": 1
+  }
+]

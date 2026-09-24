@@ -1,0 +1,16 @@
+{
+  "cpu_seconds": 0.14968691099999987,
+  "peak_rss_kib": 95780,
+  "result": {
+    "boundary_cases": 4096,
+    "reduction_cases": 306,
+    "reduction_negative": 105,
+    "reduction_positive": 201,
+    "suite": "boundary-reduction"
+  },
+  "suite": "boundary-reduction",
+  "swap": [
+    "VmSwap:\t       0 kB"
+  ],
+  "wall_seconds": 0.14991356799998812
+}

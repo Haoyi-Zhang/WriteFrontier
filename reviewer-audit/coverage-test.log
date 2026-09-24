@@ -1,0 +1,53 @@
+test_adjacent_same_source_merge (test_epoch_model.ExactnessTests.test_adjacent_same_source_merge) ... ok
+test_feasible_states_are_closed_under_legal_batches (test_epoch_model.ExactnessTests.test_feasible_states_are_closed_under_legal_batches) ... ok
+test_linear_scan_matches_exact_and_certifies_blocking (test_epoch_model.ExactnessTests.test_linear_scan_matches_exact_and_certifies_blocking) ... ok
+test_one_epoch_basin_hits_lower_bound (test_epoch_model.ExactnessTests.test_one_epoch_basin_hits_lower_bound) ... ok
+test_policy_results_replay_when_complete (test_epoch_model.ExactnessTests.test_policy_results_replay_when_complete) ... ok
+test_reserve_dominance (test_epoch_model.ExactnessTests.test_reserve_dominance) ... ok
+test_three_exact_implementations_agree (test_epoch_model.ExactnessTests.test_three_exact_implementations_agree) ... ok
+test_unequal_legal_costs (test_epoch_model.ExactnessTests.test_unequal_legal_costs) ... ok
+test_corpus_summary (test_epoch_model.RecoveryTests.test_corpus_summary) ... ok
+test_correct_protocol (test_epoch_model.RecoveryTests.test_correct_protocol) ... ok
+test_negative_controls (test_epoch_model.RecoveryTests.test_negative_controls) ... ok
+test_public_excerpt_parsers (test_epoch_model.TraceTests.test_public_excerpt_parsers) ... ok
+test_segmentation_preserves_latest_versions (test_epoch_model.TraceTests.test_segmentation_preserves_latest_versions) ... ok
+test_trace_instances_are_feasible (test_epoch_model.TraceTests.test_trace_instances_are_feasible) ... ok
+test_prefix_identity_and_replay (test_epoch_model.ValidationTests.test_prefix_identity_and_replay) ... ok
+test_rounding (test_epoch_model.ValidationTests.test_rounding) ... ok
+test_segment_validation (test_epoch_model.ValidationTests.test_segment_validation) ... ok
+test_known_objective_witness (test_independent_audit.IndependentRawOracleTests.test_known_objective_witness) ... ok
+test_random_small_agreement (test_independent_audit.IndependentRawOracleTests.test_random_small_agreement) ... ok
+test_validation_is_internal (test_independent_audit.IndependentRawOracleTests.test_validation_is_internal) ... ok
+test_duplicate_locator_is_rejected (test_reference_audit.ReferenceAuditTests.test_duplicate_locator_is_rejected) ... ok
+test_parser_handles_nested_braces (test_reference_audit.ReferenceAuditTests.test_parser_handles_nested_braces) ... ok
+test_standalone_cli (test_reference_audit.ReferenceAuditTests.test_standalone_cli) ... ok
+test_standalone_inventory (test_reference_audit.ReferenceAuditTests.test_standalone_inventory) ... ok
+test_bool_is_not_integer_size (test_unordered_boundary.CoreTests.test_bool_is_not_integer_size) ... ok
+test_bool_mask (test_unordered_boundary.CoreTests.test_bool_mask) ... ok
+test_budget_unknown (test_unordered_boundary.CoreTests.test_budget_unknown) ... ok
+test_bytecount_not_device (test_unordered_boundary.CoreTests.test_bytecount_not_device) ... ok
+test_chunks_do_not_free_original (test_unordered_boundary.CoreTests.test_chunks_do_not_free_original) ... ok
+test_closure_certificate (test_unordered_boundary.CoreTests.test_closure_certificate) ... ok
+test_corrupt_closure (test_unordered_boundary.CoreTests.test_corrupt_closure) ... ok
+test_corrupt_order (test_unordered_boundary.CoreTests.test_corrupt_order) ... ok
+test_duplicate_order (test_unordered_boundary.CoreTests.test_duplicate_order) ... ok
+test_fifo_can_strand (test_unordered_boundary.CoreTests.test_fifo_can_strand) ... ok
+test_final_deficit_certificate (test_unordered_boundary.CoreTests.test_final_deficit_certificate) ... ok
+test_final_is_not_prefix (test_unordered_boundary.CoreTests.test_final_is_not_prefix) ... ok
+test_frontier (test_unordered_boundary.CoreTests.test_frontier) ... ok
+test_goal_in_negative_certificate (test_unordered_boundary.CoreTests.test_goal_in_negative_certificate) ... ok
+test_guard_sufficient_not_necessary (test_unordered_boundary.CoreTests.test_guard_sufficient_not_necessary) ... ok
+test_negative_reserve (test_unordered_boundary.CoreTests.test_negative_reserve) ... ok
+test_nonobject_instance (test_unordered_boundary.CoreTests.test_nonobject_instance) ... ok
+test_one_way_final_implies_enabled (test_unordered_boundary.CoreTests.test_one_way_final_implies_enabled) ... ok
+test_order_certificate (test_unordered_boundary.CoreTests.test_order_certificate) ... ok
+test_recovery (test_unordered_boundary.CoreTests.test_recovery) ... ok
+test_recovery_mutations (test_unordered_boundary.CoreTests.test_recovery_mutations) ... ok
+test_strict_mutation_type (test_unordered_boundary.CoreTests.test_strict_mutation_type) ... ok
+test_unknown_kind (test_unordered_boundary.CoreTests.test_unknown_kind) ... ok
+test_zero_jobs (test_unordered_boundary.CoreTests.test_zero_jobs) ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 1.146s
+
+OK

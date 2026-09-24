@@ -1,0 +1,7 @@
+label,quantum,commit_bytes,instances,at_lower_bound_fraction,median_cost_over_lower_bound,p95_cost_over_lower_bound,max_cost_over_lower_bound,median_cost_units
+exact-byte-only,1,0,1024,1.0,1.0,1.0,1.0,5.0
+rounding-only,4,0,1024,0.609375,1.0,2.0,2.0,8.0
+commit-only,1,1,1024,0.4150390625,1.125,1.2857142857142858,1.4,7.0
+rounding-plus-commit,4,1,1024,0.4150390625,1.1,2.0,2.0,11.0
+larger-quantum,8,1,1024,0.4150390625,1.0555555555555556,2.0,2.0,19.0
+larger-commit,4,2,1024,0.4150390625,1.1666666666666667,2.0,2.0,14.0

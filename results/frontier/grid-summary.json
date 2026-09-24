@@ -1,0 +1,204 @@
+{
+  "baseline_summary": [
+    {
+      "blocked": 0,
+      "completed": 5184,
+      "completion_rate": 1.0,
+      "frontier_instances": 5184,
+      "max_cost_over_opt": 2.0,
+      "median_cost_over_opt": 1.1428571428571428,
+      "optimal_among_completed": 1667,
+      "optimal_fraction_among_completed": 0.32156635802469136,
+      "p95_cost_over_opt": 2.0,
+      "policy": "lru-tiered-proxy"
+    },
+    {
+      "blocked": 0,
+      "completed": 5184,
+      "completion_rate": 1.0,
+      "frontier_instances": 5184,
+      "max_cost_over_opt": 1.8333333333333333,
+      "median_cost_over_opt": 1.0,
+      "optimal_among_completed": 4931,
+      "optimal_fraction_among_completed": 0.951195987654321,
+      "p95_cost_over_opt": 1.0,
+      "policy": "leveled-proxy"
+    },
+    {
+      "blocked": 0,
+      "completed": 5184,
+      "completion_rate": 1.0,
+      "frontier_instances": 5184,
+      "max_cost_over_opt": 2.0,
+      "median_cost_over_opt": 1.0,
+      "optimal_among_completed": 4022,
+      "optimal_fraction_among_completed": 0.7758487654320988,
+      "p95_cost_over_opt": 1.5,
+      "policy": "size-tiered-proxy"
+    },
+    {
+      "blocked": 0,
+      "completed": 5184,
+      "completion_rate": 1.0,
+      "frontier_instances": 5184,
+      "max_cost_over_opt": 1.3333333333333333,
+      "median_cost_over_opt": 1.0,
+      "optimal_among_completed": 4623,
+      "optimal_fraction_among_completed": 0.8917824074074074,
+      "p95_cost_over_opt": 1.1,
+      "policy": "gain-per-write"
+    }
+  ],
+  "confluence_audit": {
+    "legal_edges_from_viable_states": 2953804,
+    "status_disagreements": 0,
+    "viable_states": 1490305,
+    "violations": 0
+  },
+  "domain": {
+    "cases": 254016,
+    "commit_bytes": 1,
+    "free_space_box": [
+      0,
+      6
+    ],
+    "ordered_sequence_lengths": [
+      1,
+      2
+    ],
+    "patterns": 5184,
+    "quantum": 4,
+    "segment_types": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ]
+    ]
+  },
+  "feasible_cases": 231077,
+  "feasible_with_fragmentation_tax": 17851,
+  "final_fit_but_infeasible": 8407,
+  "frontier_optimum_at_lower_bound": 2150,
+  "frontier_patterns": 5184,
+  "independent_raw_disagreements": 0,
+  "infeasible_cases": 22939,
+  "linear_scan_status_disagreements": 0,
+  "objective_variation_witness": {
+    "fragmented_legal_cost": 20,
+    "optimal_cost": 10
+  },
+  "runtime": {
+    "cpu_seconds": 10.252339,
+    "max_rss_kib": 586132,
+    "swap_kib": 0,
+    "wall_seconds": 10.256839
+  },
+  "slack_curve": [
+    {
+      "extra_total_reserve_units": 0,
+      "lower_bound_fraction": 0.41473765432098764,
+      "max_cost_over_lower_bound": 2.0,
+      "max_physical_over_live": 6.0,
+      "median_cost_over_lower_bound": 1.1,
+      "median_physical_over_live": 2.6666666666666665,
+      "p95_cost_over_lower_bound": 2.0,
+      "p95_physical_over_live": 5.5,
+      "patterns": 5184
+    },
+    {
+      "extra_total_reserve_units": 1,
+      "lower_bound_fraction": 0.8198302469135802,
+      "max_cost_over_lower_bound": 2.0,
+      "max_physical_over_live": 6.0,
+      "median_cost_over_lower_bound": 1.0,
+      "median_physical_over_live": 2.142857142857143,
+      "p95_cost_over_lower_bound": 1.5,
+      "p95_physical_over_live": 5.0,
+      "patterns": 5184
+    },
+    {
+      "extra_total_reserve_units": 2,
+      "lower_bound_fraction": 0.980516975308642,
+      "max_cost_over_lower_bound": 1.5,
+      "max_physical_over_live": 6.0,
+      "median_cost_over_lower_bound": 1.0,
+      "median_physical_over_live": 2.0,
+      "p95_cost_over_lower_bound": 1.0,
+      "p95_physical_over_live": 5.0,
+      "patterns": 5184
+    },
+    {
+      "extra_total_reserve_units": 3,
+      "lower_bound_fraction": 1.0,
+      "max_cost_over_lower_bound": 1.0,
+      "max_physical_over_live": 6.0,
+      "median_cost_over_lower_bound": 1.0,
+      "median_physical_over_live": 2.0,
+      "p95_cost_over_lower_bound": 1.0,
+      "p95_physical_over_live": 5.0,
+      "patterns": 5184
+    },
+    {
+      "extra_total_reserve_units": 4,
+      "lower_bound_fraction": 1.0,
+      "max_cost_over_lower_bound": 1.0,
+      "max_physical_over_live": 6.0,
+      "median_cost_over_lower_bound": 1.0,
+      "median_physical_over_live": 2.0,
+      "p95_cost_over_lower_bound": 1.0,
+      "p95_physical_over_live": 5.0,
+      "patterns": 5184
+    },
+    {
+      "extra_total_reserve_units": 5,
+      "lower_bound_fraction": 1.0,
+      "max_cost_over_lower_bound": 1.0,
+      "max_physical_over_live": 6.0,
+      "median_cost_over_lower_bound": 1.0,
+      "median_physical_over_live": 2.0,
+      "p95_cost_over_lower_bound": 1.0,
+      "p95_physical_over_live": 5.0,
+      "patterns": 5184
+    },
+    {
+      "extra_total_reserve_units": 6,
+      "lower_bound_fraction": 1.0,
+      "max_cost_over_lower_bound": 1.0,
+      "max_physical_over_live": 6.0,
+      "median_cost_over_lower_bound": 1.0,
+      "median_physical_over_live": 2.0,
+      "p95_cost_over_lower_bound": 1.0,
+      "p95_physical_over_live": 5.0,
+      "patterns": 5184
+    }
+  ],
+  "solver_oracle_disagreements": 0
+}
