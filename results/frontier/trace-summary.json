@@ -11,9 +11,9 @@
   },
   "rows": 8,
   "runtime": {
-    "cpu_seconds": 0.006494,
-    "max_rss_kib": 96172,
+    "cpu_seconds": 0.00559,
+    "max_rss_kib": 96180,
     "swap_kib": 0,
-    "wall_seconds": 0.006358
+    "wall_seconds": 0.005483
   }
 }

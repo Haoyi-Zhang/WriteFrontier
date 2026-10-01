@@ -7,10 +7,10 @@
   "part": 3,
   "patterns": 1296,
   "runtime": {
-    "cpu_seconds": 11.957581,
-    "max_rss_kib": 184488,
+    "cpu_seconds": 11.684143,
+    "max_rss_kib": 184624,
     "swap_kib": 0,
-    "wall_seconds": 11.959283
+    "wall_seconds": 11.692129
   },
   "scan_disagreements": 0,
   "solver_disagreements": 0,

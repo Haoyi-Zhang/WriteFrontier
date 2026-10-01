@@ -1,0 +1,43 @@
+{
+  "free": [
+    0,
+    0
+  ],
+  "instance": {
+    "commit_bytes": 1,
+    "free": [
+      0,
+      0
+    ],
+    "label": "ordered-prefix-blocking-witness",
+    "quantum": 4,
+    "tiers": [
+      [
+        {
+          "birth": 0,
+          "live": 1,
+          "name": "p73-0-0",
+          "occupied": 1
+        }
+      ],
+      [
+        {
+          "birth": 1,
+          "live": 1,
+          "name": "p73-1-0",
+          "occupied": 1
+        }
+      ]
+    ]
+  },
+  "kind": "ordered-prefix-block",
+  "next_live": [
+    1,
+    1
+  ],
+  "partial_schedule": [],
+  "reached_state": [
+    0,
+    0
+  ]
+}

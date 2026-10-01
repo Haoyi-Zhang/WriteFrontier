@@ -111,15 +111,25 @@
   "independent_raw_disagreements": 0,
   "infeasible_cases": 22939,
   "linear_scan_status_disagreements": 0,
+  "no_memo_audit": {
+    "cases": 5184,
+    "description": "one no-memory exhaustive search per ordered pattern at the maximal declared reserve corner; these are not minimal-reserve frontier points",
+    "feasible_cases": 5184,
+    "free": [
+      6,
+      6
+    ],
+    "optimum_at_lower_bound": 5184
+  },
   "objective_variation_witness": {
     "fragmented_legal_cost": 20,
     "optimal_cost": 10
   },
   "runtime": {
-    "cpu_seconds": 10.252339,
-    "max_rss_kib": 586132,
+    "cpu_seconds": 9.0542,
+    "max_rss_kib": 585016,
     "swap_kib": 0,
-    "wall_seconds": 10.256839
+    "wall_seconds": 9.061395
   },
   "slack_curve": [
     {

@@ -11,10 +11,39 @@
   "raw_oracle_total_transitions": 328328,
   "reserve_monotonicity_violations": 0,
   "runtime": {
-    "cpu_seconds": 5.40914,
-    "max_rss_kib": 96436,
+    "cpu_seconds": 5.198226,
+    "max_rss_kib": 96688,
     "swap_kib": 0,
-    "wall_seconds": 5.415216
+    "wall_seconds": 5.201761
+  },
+  "sampling_schema": {
+    "birth_assignment": "sequential across source 0 then source 1",
+    "commit_bytes": [
+      0,
+      5
+    ],
+    "free_each": [
+      0,
+      12
+    ],
+    "live_each": [
+      0,
+      "occupied"
+    ],
+    "occupied_each": [
+      1,
+      7
+    ],
+    "quantum": [
+      1,
+      12
+    ],
+    "sampling": "independent uniform integer draws under the listed bounds",
+    "tier_length_each": [
+      0,
+      4
+    ],
+    "tiers": 2
   },
   "scale_invariance_violations": 0,
   "seed": 20260916,

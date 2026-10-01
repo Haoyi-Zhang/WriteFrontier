@@ -21,6 +21,8 @@ class RecoverySummary:
     mutation_boundaries: int
     mutation_runs_detected: int
     mutation_failures: int
+    all_dead_schedules: int
+    mutation_classes: dict[str, dict[str, int]]
 
     def as_dict(self) -> dict:
         return {
@@ -32,6 +34,8 @@ class RecoverySummary:
             "mutation_boundaries": self.mutation_boundaries,
             "mutation_runs_detected": self.mutation_runs_detected,
             "mutation_failures": self.mutation_failures,
+            "all_dead_schedules": self.all_dead_schedules,
+            "mutation_classes": self.mutation_classes,
         }
 
 
@@ -107,7 +111,7 @@ def check_schedule(
                 copied += 1
                 checkpoint(f"epoch {epoch}: volatile copy {copied}")
         persisted = {key: tuple(values) for key, values in volatile.items()}
-        if mutation == "omit-last-token":
+        if mutation == "truncate-persisted-payload":
             for key in reversed(keys):
                 if persisted[key]:
                     persisted[key] = persisted[key][:-1]
@@ -152,27 +156,46 @@ def check_corpus(corpus: Iterable[tuple[EpochInstance, tuple[Batch, ...]]]) -> R
     batches = 0
     normal_boundaries = normal_failures = 0
     mutation_runs = mutation_boundaries = mutation_runs_detected = mutation_failures = 0
+    all_dead_schedules = 0
     mutations = (
         "publish-before-flush",
         "reclaim-before-commit",
-        "omit-last-token",
+        "truncate-persisted-payload",
         "torn-commit-reclaim",
     )
+    mutation_classes = {
+        mutation: {
+            "runs": 0,
+            "boundaries": 0,
+            "detected_runs": 0,
+            "failures": 0,
+            "skipped": 0,
+        }
+        for mutation in mutations
+    }
     for instance, schedule in corpus:
         schedules += 1
         batches += len(schedule)
+        all_dead_schedules += int(instance.total_live == 0)
         normal = check_schedule(instance, schedule)
         normal_boundaries += normal["boundaries"]
         normal_failures += normal["failures"]
         for mutation in mutations:
-            # omit-last-token is meaningful only when the schedule copies data.
-            if mutation == "omit-last-token" and instance.total_live == 0:
+            # Payload truncation is a retained-token loss mutation.  It has no
+            # payload to truncate on an all-dead schedule, so those cases are
+            # recorded as skipped rather than reclassified as metadata errors.
+            if mutation == "truncate-persisted-payload" and instance.total_live == 0:
+                mutation_classes[mutation]["skipped"] += 1
                 continue
             out = check_schedule(instance, schedule, mutation)
             mutation_runs += 1
             mutation_boundaries += out["boundaries"]
             mutation_failures += out["failures"]
             mutation_runs_detected += int(out["detected"])
+            mutation_classes[mutation]["runs"] += 1
+            mutation_classes[mutation]["boundaries"] += out["boundaries"]
+            mutation_classes[mutation]["failures"] += out["failures"]
+            mutation_classes[mutation]["detected_runs"] += int(out["detected"])
     return RecoverySummary(
         schedules,
         batches,
@@ -182,4 +205,6 @@ def check_corpus(corpus: Iterable[tuple[EpochInstance, tuple[Batch, ...]]]) -> R
         mutation_boundaries,
         mutation_runs_detected,
         mutation_failures,
+        all_dead_schedules,
+        mutation_classes,
     )

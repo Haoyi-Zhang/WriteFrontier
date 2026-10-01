@@ -47,3 +47,17 @@ hiding them behind the final positive result.
    scholarly bibliography, and retain a 71-row machine-checkable reference
    audit.  The audit checks metadata and citation closure; it does not establish
    novelty by itself.
+8. **Deserializer and result-contract gaps.**  Concrete pre-repair checks showed
+   that a third tier was ignored and that Boolean or fractional numeric fields
+   could be accepted through `int(...)`; extra top-level CSV/JSON outputs were
+   also not rejected.  Repair: validate an exactly-two-tier integer schema
+   before conversion, add round-trip and rejection tests, and enforce an exact
+   24-file scientific output set with only documented runtime/log auxiliaries.
+9. **Reporting drift in trace and recovery summaries.**  The trace table mixed
+   raw retained payload with per-segment allocation-rounded bytes and described
+   common slack above final fit as equal initial reserve.  The recovery table
+   also obscured the eight all-dead skips by averaging 4,088 mutation runs.
+   Repair: retain and verify both byte fields, generate asymmetric free vectors
+   from the final-fit base plus common slack, and generate per-mutation counts
+   directly from the recovery result.
+

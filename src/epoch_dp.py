@@ -12,6 +12,8 @@ from epoch_model import (
     batch_totals,
     lower_bound,
     replay,
+    serialize_instance,
+    serialize_schedule,
 )
 
 
@@ -92,6 +94,35 @@ def scan_feasibility(instance: EpochInstance) -> FeasibilityScan:
         raise AssertionError("linear scan and prefix identity disagree")
     replay(instance, schedule)
     return FeasibilityScan("feasible", tuple(schedule), len(schedule))
+
+
+def make_blocking_certificate(
+    instance: EpochInstance, scan: FeasibilityScan | None = None
+) -> dict:
+    """Encode an independently checkable negative certificate.
+
+    The certificate embeds the original ordered instance, the exact partial
+    path taken by the linear scan, and the claimed reached state.  The separate
+    checker recomputes legality and all accounting from primitive JSON fields.
+    """
+
+    result = scan_feasibility(instance) if scan is None else scan
+    if result.feasible:
+        raise ValueError("a feasible scan has no blocking certificate")
+    if (
+        result.blocking_state is None
+        or result.blocking_free is None
+        or result.next_live is None
+    ):
+        raise ValueError("infeasible scan is missing blocking fields")
+    return {
+        "kind": "ordered-prefix-block",
+        "instance": serialize_instance(instance),
+        "partial_schedule": serialize_schedule(result.schedule),
+        "reached_state": list(result.blocking_state),
+        "free": list(result.blocking_free),
+        "next_live": list(result.next_live),
+    }
 
 
 @dataclass(frozen=True, slots=True)
@@ -396,16 +427,30 @@ def best_split_at_budget(
     return winner[1], winner[2]
 
 
-def find_min_balanced_slack(
+def final_fit_free_lower_bound(tiers: tuple[tuple, tuple]) -> tuple[int, int]:
+    """Componentwise initial-free lower bound implied by the final layout."""
+
+    occupied = [sum(seg.occupied for seg in tier) for tier in tiers]
+    live = [sum(seg.live for seg in tier) for tier in tiers]
+    return (max(0, live[1] - occupied[0]), max(0, live[0] - occupied[1]))
+
+
+def find_min_common_slack(
     tiers: tuple[tuple, tuple],
     quantum: int = 4,
     commit_bytes: int = 1,
     max_slack: int | None = None,
 ) -> tuple[int, EpochInstance, Solution]:
-    """Find minimal equal slack above the componentwise final-fit reserve."""
+    """Find minimal common slack above the asymmetric final-fit lower bound.
+
+    The tested reserve vectors are ``(base[0] + s, base[1] + s)``.  The two
+    initial free-space values need not be equal; only the added slack ``s`` is
+    common to both components.
+    """
+
+    base = final_fit_free_lower_bound(tiers)
     occupied = [sum(seg.occupied for seg in tier) for tier in tiers]
     live = [sum(seg.live for seg in tier) for tier in tiers]
-    base = (max(0, live[1] - occupied[0]), max(0, live[0] - occupied[1]))
     if max_slack is None:
         max_slack = max(live + occupied + [1]) + quantum
     for slack in range(max_slack + 1):

@@ -1,29 +1,15 @@
 {
   "allocation": "integer units; ideal packing; disjoint retained payload identities",
-  "tiers": 2,
-  "directions": "destination=1-source",
-  "copy_rule": "whole output before whole original release",
-  "types": {
-    "source": [
-      0,
-      1
-    ],
-    "live": [
-      1,
-      2,
-      3
-    ],
-    "garbage": [
-      0,
-      1
-    ]
-  },
-  "multiset_run_counts": [
+  "boundary_max_incoming_payload_each": [
     1,
-    2,
-    3,
-    4
+    64
   ],
+  "boundary_pairs": 4096,
+  "chunk_states_limit": 200000,
+  "copy_rule": "whole output before whole original release",
+  "crash_population": "all feasible grid episodes with 1 or 2 runs",
+  "directions": "destination=1-source",
+  "expected_grid_instances": 65484,
   "initial_free_each": [
     0,
     1,
@@ -32,38 +18,52 @@
     4,
     5
   ],
-  "expected_grid_instances": 65484,
-  "part_rows": 8192,
-  "parts": 8,
-  "boundary_max_incoming_payload_each": [
+  "multiset_run_counts": [
     1,
-    64
+    2,
+    3,
+    4
   ],
-  "boundary_pairs": 4096,
-  "partition_B_inclusive": [
-    12,
-    24
-  ],
-  "partition_item_counts": [
-    6,
-    9
-  ],
-  "partition_inclusion": "nondecreasing integer tuples; B/4<a<B/2; sum(a)=B*n/3",
-  "crash_population": "all feasible grid episodes with 1 or 2 runs",
   "mutations": [
     "early-reclaim",
     "publish-before-flush",
     "truncated-output",
     "wrong-owner (n>=2)"
   ],
-  "workers": 1,
-  "randomness": "none",
   "network": "none",
-  "python_optimized_mode": "rejected",
-  "oracle_states_limit": 1048576,
+  "observations": "finite counts; not real workload frequencies",
   "oracle_jobs_limit": 22,
-  "chunk_states_limit": 200000,
+  "oracle_states_limit": 1048576,
+  "part_rows": 8192,
+  "partition_B_inclusive": [
+    12,
+    24
+  ],
+  "partition_inclusion": "nondecreasing integer tuples; B/4<a<B/2; sum(a)=B*n/3",
+  "partition_item_counts": [
+    6,
+    9
+  ],
+  "parts": 8,
   "permutation_jobs_limit": 8,
+  "python_optimized_mode": "rejected",
+  "randomness": "none",
+  "tiers": 2,
+  "types": {
+    "garbage": [
+      0,
+      1
+    ],
+    "live": [
+      1,
+      2,
+      3
+    ],
+    "source": [
+      0,
+      1
+    ]
+  },
   "unknown_on_budget": true,
-  "observations": "finite counts; not real workload frequencies"
+  "workers": 1
 }

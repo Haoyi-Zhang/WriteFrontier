@@ -217,7 +217,7 @@ class RecoveryTests(unittest.TestCase):
         for mutation in (
             "publish-before-flush",
             "reclaim-before-commit",
-            "omit-last-token",
+            "truncate-persisted-payload",
             "torn-commit-reclaim",
         ):
             with self.subTest(mutation=mutation):
@@ -227,6 +227,10 @@ class RecoveryTests(unittest.TestCase):
         summary = check_corpus([(self.instance, self.solution.schedule)])
         self.assertEqual(summary.normal_failures, 0)
         self.assertEqual(summary.mutation_runs, summary.mutation_runs_detected)
+        self.assertEqual(summary.all_dead_schedules, 0)
+        self.assertEqual(
+            summary.mutation_classes["truncate-persisted-payload"]["runs"], 1
+        )
 
 
 class TraceTests(unittest.TestCase):

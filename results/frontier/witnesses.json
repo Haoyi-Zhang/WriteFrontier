@@ -71,6 +71,10 @@
       "transitions": 4
     }
   },
+  "ordered_blocking_certificate": {
+    "case_id": 3577,
+    "file": "ordered-blocking-certificate.json"
+  },
   "unequal_legal_costs": {
     "instance": {
       "commit_bytes": 1,

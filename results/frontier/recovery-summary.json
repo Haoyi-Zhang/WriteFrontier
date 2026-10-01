@@ -1,4 +1,5 @@
 {
+  "all_dead_schedules": 8,
   "batches": 2883,
   "example": {
     "instance": {
@@ -60,7 +61,7 @@
         "detected": true,
         "failures": 11,
         "first_failure": "epoch 0: atomic valid commit",
-        "mutation": "omit-last-token"
+        "mutation": "truncate-persisted-payload"
       },
       {
         "boundaries": 20,
@@ -96,16 +97,46 @@
     ]
   },
   "mutation_boundaries": 69320,
+  "mutation_classes": {
+    "publish-before-flush": {
+      "boundaries": 17344,
+      "detected_runs": 1024,
+      "failures": 7671,
+      "runs": 1024,
+      "skipped": 0
+    },
+    "reclaim-before-commit": {
+      "boundaries": 17344,
+      "detected_runs": 1024,
+      "failures": 2883,
+      "runs": 1024,
+      "skipped": 0
+    },
+    "torn-commit-reclaim": {
+      "boundaries": 20227,
+      "detected_runs": 1024,
+      "failures": 2883,
+      "runs": 1024,
+      "skipped": 0
+    },
+    "truncate-persisted-payload": {
+      "boundaries": 14405,
+      "detected_runs": 1016,
+      "failures": 9459,
+      "runs": 1016,
+      "skipped": 8
+    }
+  },
   "mutation_failures": 22896,
   "mutation_runs": 4088,
   "mutation_runs_detected": 4088,
   "normal_boundaries": 14461,
   "normal_failures": 0,
   "runtime": {
-    "cpu_seconds": 0.211333,
-    "max_rss_kib": 106276,
+    "cpu_seconds": 0.209278,
+    "max_rss_kib": 106292,
     "swap_kib": 0,
-    "wall_seconds": 0.211252
+    "wall_seconds": 0.209433
   },
   "schedules": 1024
 }

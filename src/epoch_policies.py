@@ -75,11 +75,16 @@ def _run_policy(instance: EpochInstance, policy: str, fanin: int = 4) -> PolicyR
                 end, live, occupied = options[0]
                 key = (head.birth, source)
             elif policy == "leveled-proxy":
-                # Consume the largest currently feasible contiguous prefix.
+                # For each source, consume its largest currently feasible
+                # contiguous prefix.  Across sources, prefer reclaimed
+                # occupied bytes, then copied live bytes, then birth/source.
                 end, live, occupied = options[-1]
-                # Prefer the batch reclaiming most bytes, then oldest head.
                 key = (-occupied, -live, head.birth, source)
             elif policy == "size-tiered-proxy":
+                # Admit at most ``fanin`` consecutive runs whose occupied
+                # sizes are within a factor of two.  Use the largest admitted
+                # prefix (or one segment if none larger is admitted), then
+                # compare sources by oldest head, larger fan-in, and source.
                 admitted = []
                 for option in options:
                     end, live, occupied = option
@@ -93,7 +98,9 @@ def _run_policy(instance: EpochInstance, policy: str, fanin: int = 4) -> PolicyR
                 key = (head.birth, -(end - start), source)
             elif policy == "gain-per-write":
                 # Our scalable comparator: maximize immediately reclaimed bytes
-                # per physical write, then prefer an older head.
+                # per physical write.  Within one source, ties prefer greater
+                # occupied gain and then the shorter prefix; across sources,
+                # ties prefer the older head and then source 0.
                 end, live, occupied = max(
                     options,
                     key=lambda item: (

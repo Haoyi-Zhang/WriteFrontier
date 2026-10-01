@@ -68,10 +68,10 @@
     }
   ],
   "runtime": {
-    "cpu_seconds": 0.255067,
-    "max_rss_kib": 105128,
+    "cpu_seconds": 0.216389,
+    "max_rss_kib": 105132,
     "swap_kib": 0,
-    "wall_seconds": 0.254979
+    "wall_seconds": 0.216463
   },
   "sample_instances": 1024
 }

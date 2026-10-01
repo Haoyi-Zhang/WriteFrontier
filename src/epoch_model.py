@@ -82,6 +82,8 @@ class EpochInstance:
             raise ValueError("quantum must be a positive integer")
         if type(self.commit_bytes) is not int or self.commit_bytes < 0:
             raise ValueError("commit_bytes must be a non-negative integer")
+        if type(self.label) is not str:
+            raise TypeError("label must be a string")
 
     @property
     def lengths(self) -> tuple[int, int]:
@@ -268,17 +270,97 @@ def serialize_instance(instance: EpochInstance) -> dict:
     }
 
 
+def _check_mapping_keys(
+    payload: object,
+    *,
+    required: set[str],
+    optional: set[str] = frozenset(),
+    context: str,
+) -> dict:
+    """Validate a JSON-like mapping before performing any conversion.
+
+    In particular, this avoids Python's permissive ``int(...)`` behavior,
+    which would otherwise accept booleans and truncate non-integral floats.
+    """
+
+    if type(payload) is not dict:
+        raise TypeError(f"{context} must be an object")
+    keys = set(payload)
+    missing = sorted(required - keys)
+    extra = sorted(keys - required - optional)
+    if missing:
+        raise ValueError(f"{context} is missing fields: {missing}")
+    if extra:
+        raise ValueError(f"{context} has unknown fields: {extra}")
+    return payload
+
+
+def _check_integer(value: object, *, context: str, minimum: int | None = None) -> int:
+    if type(value) is not int:  # rejects bool and every floating-point value
+        raise TypeError(f"{context} must be an integer")
+    if minimum is not None and value < minimum:
+        raise ValueError(f"{context} must be at least {minimum}")
+    return value
+
+
 def deserialize_instance(payload: dict) -> EpochInstance:
-    tiers: list[tuple[Segment, ...]] = []
-    for tier in payload["tiers"]:
-        tiers.append(tuple(Segment(**item) for item in tier))
-    return EpochInstance(
-        (tiers[0], tiers[1]),
-        tuple(payload["free"]),
-        int(payload["quantum"]),
-        int(payload["commit_bytes"]),
-        str(payload.get("label", "")),
+    data = _check_mapping_keys(
+        payload,
+        required={"tiers", "free", "quantum", "commit_bytes"},
+        optional={"label"},
+        context="instance",
     )
+    raw_tiers = data["tiers"]
+    if type(raw_tiers) not in (list, tuple) or len(raw_tiers) != 2:
+        raise ValueError("instance.tiers must contain exactly two tiers")
+    tiers: list[tuple[Segment, ...]] = []
+    for source, raw_tier in enumerate(raw_tiers):
+        if type(raw_tier) not in (list, tuple):
+            raise TypeError(f"instance.tiers[{source}] must be an array")
+        segments: list[Segment] = []
+        for index, raw_segment in enumerate(raw_tier):
+            segment = _check_mapping_keys(
+                raw_segment,
+                required={"occupied", "live"},
+                optional={"birth", "name"},
+                context=f"instance.tiers[{source}][{index}]",
+            )
+            occupied = _check_integer(
+                segment["occupied"],
+                context=f"instance.tiers[{source}][{index}].occupied",
+                minimum=1,
+            )
+            live = _check_integer(
+                segment["live"],
+                context=f"instance.tiers[{source}][{index}].live",
+                minimum=0,
+            )
+            birth = _check_integer(
+                segment.get("birth", 0),
+                context=f"instance.tiers[{source}][{index}].birth",
+                minimum=0,
+            )
+            name = segment.get("name", "")
+            if type(name) is not str:
+                raise TypeError(f"instance.tiers[{source}][{index}].name must be a string")
+            segments.append(Segment(occupied, live, birth, name))
+        tiers.append(tuple(segments))
+
+    raw_free = data["free"]
+    if type(raw_free) not in (list, tuple) or len(raw_free) != 2:
+        raise ValueError("instance.free must contain exactly two entries")
+    free = (
+        _check_integer(raw_free[0], context="instance.free[0]", minimum=0),
+        _check_integer(raw_free[1], context="instance.free[1]", minimum=0),
+    )
+    quantum = _check_integer(data["quantum"], context="instance.quantum", minimum=1)
+    commit_bytes = _check_integer(
+        data["commit_bytes"], context="instance.commit_bytes", minimum=0
+    )
+    label = data.get("label", "")
+    if type(label) is not str:
+        raise TypeError("instance.label must be a string")
+    return EpochInstance((tiers[0], tiers[1]), free, quantum, commit_bytes, label)
 
 
 def serialize_schedule(schedule: Sequence[Batch]) -> list[dict]:
@@ -289,4 +371,17 @@ def serialize_schedule(schedule: Sequence[Batch]) -> list[dict]:
 
 
 def deserialize_schedule(payload: Sequence[dict]) -> tuple[Batch, ...]:
-    return tuple(Batch(int(x["source"]), int(x["start"]), int(x["end"])) for x in payload)
+    if type(payload) not in (list, tuple):
+        raise TypeError("schedule must be an array")
+    batches: list[Batch] = []
+    for index, raw_batch in enumerate(payload):
+        batch = _check_mapping_keys(
+            raw_batch,
+            required={"source", "start", "end"},
+            context=f"schedule[{index}]",
+        )
+        source = _check_integer(batch["source"], context=f"schedule[{index}].source")
+        start = _check_integer(batch["start"], context=f"schedule[{index}].start", minimum=0)
+        end = _check_integer(batch["end"], context=f"schedule[{index}].end", minimum=0)
+        batches.append(Batch(source, start, end))
+    return tuple(batches)

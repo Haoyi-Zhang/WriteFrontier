@@ -1,265 +1,53 @@
 {
-  "all_exit_status_zero": true,
-  "all_recorded_swaps_zero": true,
-  "boundary_verification": {
-    "grid_instances": 65484,
-    "runtime_compared": false,
-    "scientific_files_identical": 20
-  },
-  "commands": [
-    {
-      "command": "python run.py --aggregate --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 585996,
-      "stage": "aggregate",
-      "swaps": 0,
-      "system_seconds": 1.32,
-      "user_seconds": 10.36,
-      "wall_seconds": 11.3
-    },
-    {
-      "command": "python verify_unordered_boundary.py results/unordered-boundary reproduced-boundary",
-      "exit_status": 0,
-      "max_rss_kib": 97832,
-      "stage": "boundary-verify",
-      "swaps": 0,
-      "system_seconds": 0.24,
-      "user_seconds": 2.09,
-      "wall_seconds": 1.91
-    },
-    {
-      "command": "python run_unordered_boundary.py --all --out reproduced-boundary",
-      "exit_status": 0,
-      "max_rss_kib": 104236,
-      "stage": "boundary",
-      "swaps": 0,
-      "system_seconds": 0.14,
-      "user_seconds": 8.31,
-      "wall_seconds": 8.07
-    },
-    {
-      "command": "python run.py --finalize --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 96044,
-      "stage": "finalize",
-      "swaps": 0,
-      "system_seconds": 0.07,
-      "user_seconds": 1.05,
-      "wall_seconds": 0.79
-    },
-    {
-      "command": "python run.py --grid-part 0 --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 184492,
-      "stage": "grid-0",
-      "swaps": 0,
-      "system_seconds": 0.28,
-      "user_seconds": 12.89,
-      "wall_seconds": 12.81
-    },
-    {
-      "command": "python run.py --grid-part 1 --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 184620,
-      "stage": "grid-1",
-      "swaps": 0,
-      "system_seconds": 0.11,
-      "user_seconds": 13.07,
-      "wall_seconds": 12.85
-    },
-    {
-      "command": "python run.py --grid-part 2 --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 184496,
-      "stage": "grid-2",
-      "swaps": 0,
-      "system_seconds": 0.13,
-      "user_seconds": 13.96,
-      "wall_seconds": 13.71
-    },
-    {
-      "command": "python run.py --grid-part 3 --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 184492,
-      "stage": "grid-3",
-      "swaps": 0,
-      "system_seconds": 0.19,
-      "user_seconds": 13.36,
-      "wall_seconds": 13.17
-    },
-    {
-      "command": "python run.py --independent-audit --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 96300,
-      "stage": "independent",
-      "swaps": 0,
-      "system_seconds": 0.08,
-      "user_seconds": 6.55,
-      "wall_seconds": 6.26
-    },
-    {
-      "command": "python run.py --recovery --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 106280,
-      "stage": "recovery",
-      "swaps": 0,
-      "system_seconds": 0.07,
-      "user_seconds": 1.22,
-      "wall_seconds": 0.95
-    },
-    {
-      "command": "python validate_reference_audit.py",
-      "exit_status": 0,
-      "max_rss_kib": 93608,
-      "stage": "reference-audit",
-      "swaps": 0,
-      "system_seconds": 0.03,
-      "user_seconds": 1.02,
-      "wall_seconds": 0.68
-    },
-    {
-      "command": "python run.py --sensitivity --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 105132,
-      "stage": "sensitivity",
-      "swaps": 0,
-      "system_seconds": 0.07,
-      "user_seconds": 1.23,
-      "wall_seconds": 0.91
-    },
-    {
-      "command": "python -m unittest discover -s tests -v",
-      "exit_status": 0,
-      "max_rss_kib": 94380,
-      "stage": "tests",
-      "swaps": 0,
-      "system_seconds": 0.15,
-      "user_seconds": 2.09,
-      "wall_seconds": 1.49
-    },
-    {
-      "command": "python run.py --trace --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 96296,
-      "stage": "trace",
-      "swaps": 0,
-      "system_seconds": 0.07,
-      "user_seconds": 0.95,
-      "wall_seconds": 0.61
-    },
-    {
-      "command": "python run.py --unit-exchange --out reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 98600,
-      "stage": "unit",
-      "swaps": 0,
-      "system_seconds": 0.06,
-      "user_seconds": 4.83,
-      "wall_seconds": 4.48
-    },
-    {
-      "command": "python verify_results.py results/frontier reproduced",
-      "exit_status": 0,
-      "max_rss_kib": 584212,
-      "stage": "verify",
-      "swaps": 0,
-      "system_seconds": 1.4,
-      "user_seconds": 3.17,
-      "wall_seconds": 4.16
-    },
-    {
-      "command": "cd paper && python build.py",
-      "exit_status": 0,
-      "max_rss_kib": 92840,
-      "stage": "paper-build",
-      "swaps": 0,
-      "system_seconds": 0.28,
-      "user_seconds": 5.46,
-      "wall_seconds": 5.45
-    },
-    {
-      "command": "python artifact/validate_reference_audit.py --bib paper/references.bib --tex paper/main.tex paper/supplement.tex",
-      "exit_status": 0,
-      "max_rss_kib": 93744,
-      "stage": "reference-closure",
-      "swaps": 0,
-      "system_seconds": 0.08,
-      "user_seconds": 0.94,
-      "wall_seconds": 0.61
-    }
-  ],
+  "date": "2026-09-26",
+  "mode": "full four-shard core regeneration in scratch plus targeted package gate",
+  "scientific_result": "pass",
   "core_verification": {
     "grid_cases": 254016,
     "reproduced_grid_cases": 254016,
+    "scientific_files_identical": 24,
     "runtime_compared": false,
-    "scientific_files_identical": 23
+    "note": "Canonical scientific CSV/JSON fields compared; runtime and logs are documented auxiliaries."
   },
-  "date": "2026-09-16",
-  "final_archive_validation": {
-    "boundary_comparison": {
-      "grid_instances": 65484,
-      "runtime_compared": false,
-      "scientific_files_identical": 20
-    },
-    "core_comparison": {
-      "grid_cases": 254016,
-      "runtime_compared": false,
-      "scientific_files_identical": 23
-    },
-    "date": "2026-09-16",
-    "full_project_root_entries": [
-      "CURRENT-STATE.md",
-      "artifact",
-      "paper",
-      "research-plan.md"
-    ],
-    "full_project_zip_single_root": true,
-    "paper_build": {
-      "author_metadata_empty": true,
-      "bibliography_entries": 71,
-      "hard_latex_warnings": 0,
-      "main_body_pages": 12,
-      "main_pages": 16,
-      "pdf_preflight": "pass",
-      "references_start_page": 13,
-      "supplement_pages": 6
-    },
-    "reference_audit": {
-      "manuscript_closure": "pass",
-      "records": 71,
-      "standalone": "pass"
-    },
-    "result": "pass",
-    "standalone_zip_single_root": true,
-    "unit_tests": {
-      "count": 48,
-      "errors": 0,
-      "failures": 0
-    }
+  "boundary_verification": {
+    "grid_instances": 65484,
+    "scientific_files_identical": 20,
+    "runtime_compared": false,
+    "note": "Retained unchanged boundary result from the prior clean replay; boundary code was not changed by this repair."
   },
-  "independence_limit": "same-environment clean replay; not an independent replication, proof review, or novelty review",
-  "mode": "clean standalone-artifact copy plus clean full-project paper build; sequential resumable core route",
-  "paper_build": {
-    "author_metadata_empty": true,
-    "bibliography_entries": 71,
-    "hard_latex_warnings": 0,
-    "main_body_pages": 12,
-    "main_pages": 16,
-    "pdf_preflight": "pass",
-    "references_start_page": 13,
-    "supplement_pages": 6
+  "tests": {
+    "count": 63,
+    "failures": 0,
+    "errors": 0,
+    "result": "pass"
   },
   "reference_audit": {
-    "manuscript_closure": "pass",
     "records": 71,
-    "scope": "metadata/provenance and citation closure; not a systematic-review or novelty certificate",
-    "standalone": "pass"
+    "standalone": "pass",
+    "manuscript_closure": "pass"
   },
-  "scientific_result": "pass",
-  "tests": {
-    "count": 48,
-    "errors": 0,
-    "failures": 0,
-    "result": "pass"
-  }
+  "ordered_certificate": {
+    "independent_checker": "pass",
+    "tamper_terminal_and_single-source_tests": "pass"
+  },
+  "result_directory_contract": {
+    "scientific_files": 24,
+    "extra_csv_json_rejected": true,
+    "missing_file_rejected": true,
+    "runtime_and_log_exceptions_documented": true
+  },
+  "paper_build": {
+    "main_pages": 16,
+    "main_body_pages": 12,
+    "references_start_page": 13,
+    "supplement_pages": 6,
+    "bibliography_entries": 71,
+    "author_metadata_empty": true,
+    "all_fonts_embedded": true,
+    "hard_latex_warnings": 0,
+    "full_page_render": "pass",
+    "figure_1_final_size_and_2x": "pass"
+  },
+  "resource_accounting_provenance": "Detailed full-campaign timing/RSS remains in resource-accounting.json from 2026-09-16; this record does not invent per-stage timings for the 2026-09-26 repair run.",
+  "independence_limit": "same-environment replay and internal checks; not independent replication, human proof review, novelty review, or device validation"
 }

@@ -113,15 +113,25 @@
     "independent_raw_disagreements": 0,
     "infeasible_cases": 22939,
     "linear_scan_status_disagreements": 0,
+    "no_memo_audit": {
+      "cases": 5184,
+      "description": "one no-memory exhaustive search per ordered pattern at the maximal declared reserve corner; these are not minimal-reserve frontier points",
+      "feasible_cases": 5184,
+      "free": [
+        6,
+        6
+      ],
+      "optimum_at_lower_bound": 5184
+    },
     "objective_variation_witness": {
       "fragmented_legal_cost": 20,
       "optimal_cost": 10
     },
     "runtime": {
-      "cpu_seconds": 10.252339,
-      "max_rss_kib": 586132,
+      "cpu_seconds": 9.0542,
+      "max_rss_kib": 585016,
       "swap_kib": 0,
-      "wall_seconds": 10.256839
+      "wall_seconds": 9.061395
     },
     "slack_curve": [
       {
@@ -205,10 +215,10 @@
     "solver_oracle_disagreements": 0
   },
   "finalize_runtime": {
-    "cpu_seconds": 0.000494,
-    "max_rss_kib": 96164,
+    "cpu_seconds": 0.000482,
+    "max_rss_kib": 96172,
     "swap_kib": 0,
-    "wall_seconds": 0.000363
+    "wall_seconds": 0.000362
   },
   "independent_audit": {
     "adjacent_merge_violations": 0,
@@ -223,10 +233,39 @@
     "raw_oracle_total_transitions": 328328,
     "reserve_monotonicity_violations": 0,
     "runtime": {
-      "cpu_seconds": 5.40914,
-      "max_rss_kib": 96436,
+      "cpu_seconds": 5.198226,
+      "max_rss_kib": 96688,
       "swap_kib": 0,
-      "wall_seconds": 5.415216
+      "wall_seconds": 5.201761
+    },
+    "sampling_schema": {
+      "birth_assignment": "sequential across source 0 then source 1",
+      "commit_bytes": [
+        0,
+        5
+      ],
+      "free_each": [
+        0,
+        12
+      ],
+      "live_each": [
+        0,
+        "occupied"
+      ],
+      "occupied_each": [
+        1,
+        7
+      ],
+      "quantum": [
+        1,
+        12
+      ],
+      "sampling": "independent uniform integer draws under the listed bounds",
+      "tier_length_each": [
+        0,
+        4
+      ],
+      "tiers": 2
     },
     "scale_invariance_violations": 0,
     "seed": 20260916,
@@ -246,37 +285,68 @@
     },
     "rows": 8,
     "runtime": {
-      "cpu_seconds": 0.006494,
-      "max_rss_kib": 96172,
+      "cpu_seconds": 0.00559,
+      "max_rss_kib": 96180,
       "swap_kib": 0,
-      "wall_seconds": 0.006358
+      "wall_seconds": 0.005483
     }
   },
   "recovery": {
+    "all_dead_schedules": 8,
     "batches": 2883,
     "mutation_boundaries": 69320,
+    "mutation_classes": {
+      "publish-before-flush": {
+        "boundaries": 17344,
+        "detected_runs": 1024,
+        "failures": 7671,
+        "runs": 1024,
+        "skipped": 0
+      },
+      "reclaim-before-commit": {
+        "boundaries": 17344,
+        "detected_runs": 1024,
+        "failures": 2883,
+        "runs": 1024,
+        "skipped": 0
+      },
+      "torn-commit-reclaim": {
+        "boundaries": 20227,
+        "detected_runs": 1024,
+        "failures": 2883,
+        "runs": 1024,
+        "skipped": 0
+      },
+      "truncate-persisted-payload": {
+        "boundaries": 14405,
+        "detected_runs": 1016,
+        "failures": 9459,
+        "runs": 1016,
+        "skipped": 8
+      }
+    },
     "mutation_failures": 22896,
     "mutation_runs": 4088,
     "mutation_runs_detected": 4088,
     "normal_boundaries": 14461,
     "normal_failures": 0,
     "runtime": {
-      "cpu_seconds": 0.211333,
-      "max_rss_kib": 106276,
+      "cpu_seconds": 0.209278,
+      "max_rss_kib": 106292,
       "swap_kib": 0,
-      "wall_seconds": 0.211252
+      "wall_seconds": 0.209433
     },
     "schedules": 1024
   },
   "runtime_subtotal": {
-    "aggregate_cpu_seconds": 10.252339,
-    "grid_parts_cpu_seconds": 49.574354,
-    "independent_audit_cpu_seconds": 5.40914,
-    "recovery_cpu_seconds": 0.211333,
-    "sensitivity_cpu_seconds": 0.255067,
-    "total_cpu_seconds": 69.341976,
-    "trace_cpu_seconds": 0.006494,
-    "unit_exchange_cpu_seconds": 3.633249
+    "aggregate_cpu_seconds": 9.0542,
+    "grid_parts_cpu_seconds": 47.180332,
+    "independent_audit_cpu_seconds": 5.198226,
+    "recovery_cpu_seconds": 0.209278,
+    "sensitivity_cpu_seconds": 0.216389,
+    "total_cpu_seconds": 65.440551,
+    "trace_cpu_seconds": 0.00559,
+    "unit_exchange_cpu_seconds": 3.576536
   },
   "sensitivity": {
     "configurations": [
@@ -348,10 +418,10 @@
       }
     ],
     "runtime": {
-      "cpu_seconds": 0.255067,
-      "max_rss_kib": 105128,
+      "cpu_seconds": 0.216389,
+      "max_rss_kib": 105132,
       "swap_kib": 0,
-      "wall_seconds": 0.254979
+      "wall_seconds": 0.216463
     },
     "sample_instances": 1024
   },
@@ -371,10 +441,10 @@
       16
     ],
     "runtime": {
-      "cpu_seconds": 3.633249,
-      "max_rss_kib": 98724,
+      "cpu_seconds": 3.576536,
+      "max_rss_kib": 98864,
       "swap_kib": 0,
-      "wall_seconds": 3.633414
+      "wall_seconds": 3.580876
     }
   }
 }

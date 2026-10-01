@@ -51,14 +51,18 @@ python -m unittest discover -s tests -v
 python validate_reference_audit.py
 python run.py --all --out reproduced
 python verify_results.py results/frontier reproduced
+python verify_ordered_certificate.py results/frontier/ordered-blocking-certificate.json
 python run_unordered_boundary.py --all --out reproduced-boundary
 python verify_unordered_boundary.py results/unordered-boundary reproduced-boundary
 ```
 
-The unit suite contains 48 tests. The core verifier checks 23 deterministic
-scientific files, all 254,016 case identifiers, exact status/cost agreement,
-linear-scan agreement, confluence closure, the unit-exchange formula, and the
-recovery controls. The boundary verifier checks the retained 65,484-instance
+The unit suite contains 63 tests. The core verifier checks 24 deterministic
+top-level scientific CSV/JSON files, all 254,016 case identifiers, exact
+status/cost agreement, linear-scan agreement, the independent ordered blocking
+certificate, confluence closure, the trace metric contract, the unit-exchange
+formula, and the recovery controls. It rejects unexpected top-level scientific
+files; only declared log/text files and the runtime/logs directories are
+auxiliary exceptions. The boundary verifier checks the retained 65,484-instance
 arbitrary-selection corpus. Same-environment clean extraction is reproducibility
 evidence, not an independent research replication.
 
@@ -94,7 +98,10 @@ rather than appending rows.
 - `src/epoch_model.py` - immutable segments, capacity identity, batch cost,
   replay, and serialization.
 - `src/epoch_dp.py` - linear scan, alternating exact DP, unrestricted shortest
-  path, project-local no-memo oracle, and confluence audit.
+  path, project-local no-memo oracle, ordered blocking-certificate construction,
+  and confluence audit.
+- `src/check_ordered_certificate.py` and `verify_ordered_certificate.py` -
+  independent ordered-model blocker reconstruction and CLI verification.
 - `src/independent_audit.py` - separately implemented raw-tuple state search; it
   imports no project model, capacity, cost, replay, or solver module.
 - `src/epoch_policies.py` - four deterministic legal-prefix batching proxies.
@@ -140,9 +147,12 @@ Retained outcomes include:
 - 17,851 feasible instances whose optimum exceeds the per-source lower bound;
 - zero normal-form/unrestricted/raw-oracle disagreements across the full grid;
 - zero linear-scan/exact status disagreements;
-- zero disagreements in 5,184 project-local no-memo checks;
+- zero disagreements in 5,184 project-local no-memo checks, one for every
+  pattern at the maximal reserve corner `(6,6)`; all 5,184 are feasible with
+  `OPT=LB`, and these checks are not the minimal-reserve frontier;
 - zero solver disagreements and zero violations of four metamorphic relations
-  in 20,000 fixed-seed cases searched by the separate raw-tuple oracle;
+  in 20,000 fixed-seed cases searched by the separate raw-tuple oracle, using
+  seed `20260916` and reserve components sampled in `[0,12]`;
 - zero violations among 2,953,804 legal edges from 1,490,305 viable states;
 - zero disagreements at 64 closed-form unit-exchange points; and
 - a legal objective witness with costs 10 and 20 for the same instance.
@@ -154,9 +164,12 @@ of production workload frequency.
 
 The reference protocol is copy, flush, atomic pointer-set commit, then source
 reclaim. The retained corpus contains 1,024 schedules, 2,883 epochs, and 14,461
-normal crash boundaries with zero retained-token failures. Four negative
-controls produce 4,088 mutation runs and 69,320 mutation boundaries; every
-mutated run has at least one detected failure.
+normal crash boundaries with zero retained-token failures. Three negative controls run on all 1,024 schedules. Persisted-payload
+truncation runs on 1,016 schedules and records eight skips for all-dead inputs;
+there is no retained token to truncate in those samples. The 4,088 executed
+mutation runs cover 69,320 boundaries and every executed run has at least one
+detected failure. Payload truncation is retained-token loss, not a synthetic
+pointer-set omission.
 
 The checker does not model torn sectors, controller caches, filesystem or FTL
 reordering below the declared flush interface, physical power loss, checksums,
@@ -170,6 +183,12 @@ libCacheSim's `data/cloudPhysicsIO.csv`, retained with its GPLv3 license text.
 `cluster015` sample with a local header, retained with CC BY 4.0 attribution and
 license text. `inputs/README.md` records URLs, Git blob identifiers, exact
 selection rules, and access date.
+
+The harness retains both raw live payload bytes and the sum of live payload
+rounded separately for each segment to the allocation unit.  Trace reserve is
+the asymmetric final-fit lower-bound vector plus the least common feasible
+slack; it is not an equal initial reserve.  The result CSV labels both byte
+fields and reports separate physical/raw and physical/allocation ratios.
 
 The harness uses these excerpts only to check parsers, latest-version liveness,
 segment sealing, capacity conversion, planner/checker composition, and policy

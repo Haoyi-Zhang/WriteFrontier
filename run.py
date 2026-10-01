@@ -30,6 +30,7 @@ from epoch_dp import (  # noqa: E402
     SearchBudgetExceeded,
     brute_force_oracle,
     confluence_audit,
+    make_blocking_certificate,
     scan_feasibility,
     solve_normal_form,
     solve_unrestricted,
@@ -523,6 +524,27 @@ def aggregate_grid(out: Path) -> dict:
         },
         "blocked_policy": None,
     }
+
+    # Preserve one independently checkable ordered-model obstruction.  This is
+    # distinct from the arbitrary-selection closed-set certificates.
+    blocking_row = min(final_fit_infeasible, key=lambda row: int(row["case_id"]))
+    blocking_pattern = int(blocking_row["pattern_id"])
+    blocking_instance = EpochInstance(
+        pattern_tiers(blocking_pattern),
+        (int(blocking_row["f0"]), int(blocking_row["f1"])),
+        QUANTUM,
+        COMMIT,
+        "ordered-prefix-blocking-witness",
+    )
+    blocking_scan = scan_feasibility(blocking_instance)
+    if blocking_scan.feasible:
+        raise AssertionError("selected blocking witness became feasible")
+    ordered_certificate = make_blocking_certificate(blocking_instance, blocking_scan)
+    _json(out / "ordered-blocking-certificate.json", ordered_certificate)
+    witness_payload["ordered_blocking_certificate"] = {
+        "case_id": int(blocking_row["case_id"]),
+        "file": "ordered-blocking-certificate.json",
+    }
     if blocked_witness:
         row, policy = blocked_witness
         pid = int(row["pattern_id"])
@@ -542,6 +564,13 @@ def aggregate_grid(out: Path) -> dict:
         }
     _json(out / "witnesses.json", witness_payload)
 
+    corner_rows = [
+        row for row in rows
+        if int(row["f0"]) == MAX_FREE and int(row["f1"]) == MAX_FREE
+    ]
+    if len(corner_rows) != PATTERN_COUNT:
+        raise AssertionError("maximal reserve corner is incomplete")
+
     summary = {
         "domain": {
             "segment_types": [list(item) for item in SEGMENT_TYPES],
@@ -551,6 +580,20 @@ def aggregate_grid(out: Path) -> dict:
             "cases": TOTAL_CASES,
             "quantum": QUANTUM,
             "commit_bytes": COMMIT,
+        },
+        "no_memo_audit": {
+            "free": [MAX_FREE, MAX_FREE],
+            "cases": len(corner_rows),
+            "feasible_cases": sum(row["status"] == "feasible" for row in corner_rows),
+            "optimum_at_lower_bound": sum(
+                row["status"] == "feasible" and row["cost"] == row["lower_bound"]
+                for row in corner_rows
+            ),
+            "description": (
+                "one no-memory exhaustive search per ordered pattern at the "
+                "maximal declared reserve corner; these are not minimal-reserve "
+                "frontier points"
+            ),
         },
         "feasible_cases": len(feasible),
         "infeasible_cases": TOTAL_CASES - len(feasible),
@@ -635,6 +678,9 @@ def run_trace(out: Path) -> dict:
             if not exact.feasible:
                 raise AssertionError("trace instance constructed from a feasible reserve became infeasible")
             policy_results = {result.policy: result for result in all_policies(instance)}
+            exact_cost_bytes = exact.cost * int(dataset["allocation_unit"])
+            raw_live_bytes = int(item["raw_live_bytes"])
+            retained_allocation_bytes = int(item["retained_allocation_bytes"])
             row: dict[str, object] = {
                 "dataset": dataset["name"],
                 **item,
@@ -644,12 +690,17 @@ def run_trace(out: Path) -> dict:
                 "page_bytes": dataset["page_bytes"],
                 "commit_bytes": dataset["commit_bytes"],
                 "exact_cost_units": exact.cost,
-                "exact_cost_bytes": exact.cost * int(dataset["allocation_unit"]),
+                "exact_cost_bytes": exact_cost_bytes,
                 "exact_batches": exact.batches,
                 "lower_bound_units": exact.lower_bound,
                 "exact_over_lower_bound": exact.cost / exact.lower_bound if exact.lower_bound else 1.0,
-                "exact_physical_over_live": (
-                    None if instance.total_live == 0 else exact.cost / instance.total_live
+                "exact_physical_over_raw_live": (
+                    None if raw_live_bytes == 0 else exact_cost_bytes / raw_live_bytes
+                ),
+                "exact_physical_over_retained_allocation": (
+                    None
+                    if retained_allocation_bytes == 0
+                    else exact_cost_bytes / retained_allocation_bytes
                 ),
             }
             for policy in POLICIES:
@@ -732,10 +783,10 @@ def run_recovery(out: Path) -> dict:
             for mutation in (
                 "publish-before-flush",
                 "reclaim-before-commit",
-                "omit-last-token",
+                "truncate-persisted-payload",
                 "torn-commit-reclaim",
             )
-            if mutation != "omit-last-token" or example_instance.total_live > 0
+            if mutation != "truncate-persisted-payload" or example_instance.total_live > 0
         ],
     }
     payload = summary.as_dict()
@@ -996,6 +1047,17 @@ def run_independent_audit(out: Path, cases: int = 20_000) -> dict:
         "seed": seed,
         "cases": cases,
         "feasible_cases": feasible_cases,
+        "sampling_schema": {
+            "tiers": 2,
+            "tier_length_each": [0, 4],
+            "occupied_each": [1, 7],
+            "live_each": [0, "occupied"],
+            "free_each": [0, 12],
+            "quantum": [1, 12],
+            "commit_bytes": [0, 5],
+            "birth_assignment": "sequential across source 0 then source 1",
+            "sampling": "independent uniform integer draws under the listed bounds",
+        },
         "maximum_generated_tier_lengths": max_lengths,
         "raw_oracle_total_states": raw_states,
         "raw_oracle_total_transitions": raw_transitions,

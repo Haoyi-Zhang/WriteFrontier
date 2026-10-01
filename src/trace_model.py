@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Iterable, Sequence
 
 from epoch_model import EpochInstance, Segment
-from epoch_dp import find_min_balanced_slack
+from epoch_dp import final_fit_free_lower_bound, find_min_common_slack
 
 
 @dataclass(frozen=True, slots=True)
@@ -25,6 +25,7 @@ class RawSegment:
     records: tuple[Request, ...]
     occupied_bytes: int
     live_bytes: int
+    retained_allocation_bytes: int
 
 
 def read_cloudphysics(path: str | Path, limit: int | None = None) -> list[Request]:
@@ -137,16 +138,17 @@ def segment_window(
         live_bytes = sum(
             r.size_bytes for r in records if latest[r.object_id] == r.ordinal
         )
+        occupied_units = (occupied_bytes + allocation_unit - 1) // allocation_unit
+        live_units = (live_bytes + allocation_unit - 1) // allocation_unit if live_bytes else 0
         raw.append(
             RawSegment(
                 birth=birth,
                 records=tuple(records),
                 occupied_bytes=occupied_bytes,
                 live_bytes=live_bytes,
+                retained_allocation_bytes=live_units * allocation_unit,
             )
         )
-        occupied_units = (occupied_bytes + allocation_unit - 1) // allocation_unit
-        live_units = (live_bytes + allocation_unit - 1) // allocation_unit if live_bytes else 0
         source = birth % 2
         tiers[source].append(
             Segment(
@@ -180,7 +182,8 @@ def make_trace_instances(
         if len(window) < max(10, window_rows // 2):
             break
         tiers0, tiers1, raw = segment_window(window, target_bytes, allocation_unit)
-        slack, base_instance, base_solution = find_min_balanced_slack(
+        final_fit_free = final_fit_free_lower_bound((tiers0, tiers1))
+        slack, base_instance, base_solution = find_min_common_slack(
             (tiers0, tiers1), quantum=quantum, commit_bytes=commit_units
         )
         for extra in extra_slacks:
@@ -202,8 +205,13 @@ def make_trace_instances(
                     "tier0_segments": len(tiers0),
                     "tier1_segments": len(tiers1),
                     "occupied_bytes": sum(r.occupied_bytes for r in raw),
-                    "live_bytes": sum(r.live_bytes for r in raw),
-                    "minimal_balanced_slack_units": slack,
+                    "raw_live_bytes": sum(r.live_bytes for r in raw),
+                    "retained_allocation_bytes": sum(
+                        r.retained_allocation_bytes for r in raw
+                    ),
+                    "final_fit_free0_units": final_fit_free[0],
+                    "final_fit_free1_units": final_fit_free[1],
+                    "minimum_common_slack_units": slack,
                     "extra_slack_units": extra,
                     "instance": instance,
                 }
