@@ -162,14 +162,15 @@ D_1(i,j') = min_{j<j', L_1(j')-L_1(j) <= F_0(i,j)}
 The optimum is `min_s D_s(n_0,n_1)`.
 
 **Theorem 8 (exact optimizer).** Recurrence (2) computes minimum modeled
-physical migration cost in `O(n_0 n_1 (n_0+n_1))` time and `O(n_0 n_1)` space.
+physical migration cost in `O((n_0+1)(n_1+1)(n_0+n_1+1))` arithmetic
+operations and `O((n_0+1)(n_1+1))` words, including empty tiers.
 
 **Proof.** Corollary 7 guarantees that an optimum appears in the alternating
 transition graph. Every graph path is a legal schedule because each edge tests
 the destination guard, and its additive edge cost equals replay cost. The graph
 is acyclic because each edge increases `i+j`; shortest-path optimality gives the
 minimum. There are a constant number of last-source states at each of
-`O(n_0n_1)` prefix pairs and at most `n_0+n_1` candidate endpoints. QED.
+`(n_0+1)(n_1+1)` prefix pairs and at most `n_0+n_1` candidate endpoints. QED.
 
 The implementation keeps predecessor pointers and deterministic tie-breaking,
 then replays every returned schedule. An unrestricted shortest path permits
@@ -287,8 +288,9 @@ that every retained token resolves at every modeled crash prefix.
 
 `src/epoch_recovery.py` enumerates payload-write, flush, commit, and reclaim
 events and crashes after each. Four negative controls violate distinct
-premises: publish before flush, reclaim before commit, omit one token from an
-otherwise atomic commit, and torn commit followed by reclaim. Detection means
+premises: publish before flush, reclaim before commit, omit one retained token
+from the persisted payload before an otherwise atomic pointer commit, and torn
+commit followed by reclaim. Detection means
 at least one crash prefix in each mutated run loses or misresolves a retained
 token. This is not a device model: it excludes torn sectors, controller caches,
 filesystem reorderings below the flush interface, checksums, allocator replay,
