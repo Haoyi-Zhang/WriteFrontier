@@ -29,8 +29,9 @@ An epoch with retained payload `z` is legal iff the destination has at least
 c(z) = q ceil(z/q) + mu,
 ```
 
-where the rounded term is zero when `z=0`, `q>=1` is a write/allocation
-quantum, and `mu>=0` is the durable commit cost. Metadata storage capacity is
+where the rounded term is zero when `z=0`, `q>=1` is a write-traffic
+quantum, and `mu>=0` is the durable commit cost. Payload occupancy is `z`,
+not the rounded traffic `q ceil(z/q)`. Metadata storage capacity is
 provisioned separately; `mu` charges traffic, not payload arena occupancy.
 
 A state `(i,j)` records processed prefix lengths. Define occupied and live
