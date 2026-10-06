@@ -116,6 +116,48 @@ class PolicyScoringTests(unittest.TestCase):
         self.assertEqual((result.schedule[0].start, result.schedule[0].end), (0, 2))
 
 
+    def test_gain_per_write_distinguishes_close_cross_source_ratios(self):
+        n = 2**54
+        instance = EpochInstance(
+            ((Segment(n, 1, 0),), (Segment(n + 1, 1, 1),)), (1, 1), 1, 0
+        )
+        self.assertEqual(gain_per_write(instance).schedule[0].source, 1)
+
+    def test_gain_per_write_distinguishes_close_prefix_ratios(self):
+        n = 2**54
+        instance = EpochInstance(
+            ((Segment(n + 1, 1), Segment(n - 1, 1)), ()), (0, 2), 1, 0
+        )
+        self.assertEqual(gain_per_write(instance).schedule[0].end, 1)
+
+    def test_gain_per_write_handles_finite_large_integer_gain(self):
+        instance = EpochInstance(
+            ((Segment(10**400, 1),), (Segment(1, 1),)), (1, 1), 1, 0
+        )
+        self.assertEqual(gain_per_write(instance).schedule[0].source, 0)
+
+    def test_gain_per_write_prioritizes_zero_cost_across_sources(self):
+        instance = EpochInstance(
+            ((Segment(1, 0, 1),), (Segment(100, 1, 0),)), (1, 1), 1, 0
+        )
+        self.assertEqual(gain_per_write(instance).schedule[0].source, 0)
+
+    def test_gain_per_write_does_not_merge_zero_cost_with_paid_prefix(self):
+        instance = EpochInstance(
+            ((Segment(1, 0), Segment(100, 1)), ()), (0, 1), 1, 0
+        )
+        self.assertEqual(gain_per_write(instance).schedule[0].end, 1)
+
+    def test_gain_per_write_zero_cost_ties_use_documented_order(self):
+        instance = EpochInstance(
+            ((Segment(1, 0, 2), Segment(2, 0, 3)), (Segment(1, 0, 1),)),
+            (0, 0), 1, 0,
+        )
+        result = gain_per_write(instance)
+        self.assertEqual(result.schedule[0].source, 1)
+        self.assertEqual(result.schedule[1], Batch(0, 0, 2))
+
+
 class OrderedCertificateTests(unittest.TestCase):
     def test_blocking_certificate_replays_and_checks(self):
         instance = EpochInstance(

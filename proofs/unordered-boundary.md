@@ -156,7 +156,11 @@ problem; it is not offered as a new complexity result for resource scheduling.
 An order is checked in polynomial time in the input bit length. The executable
 306-instance comparison is a finite check of the reduction implementation, not
 a substitute for this general equivalence proof. The stock-size discussion in
-Newman, Roeglin and Seif, Section 1 and Appendix A, is a direct novelty adversary.
+Newman, Roeglin and Seif is a direct novelty adversary: Section 1 of the
+ESA 2016 paper defines stock-size prefix feasibility, while Appendix A of
+the [full version](https://arxiv.org/abs/1511.09259) gives the alternating
+stock-size hardness reduction. That appendix is not in the 16-page
+conference version.
 
 ## 6. Finite certificate soundness
 

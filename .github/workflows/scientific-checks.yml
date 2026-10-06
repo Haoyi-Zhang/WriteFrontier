@@ -1,0 +1,51 @@
+name: Scientific checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-models:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 55
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Complete bounded scientific run and retained fail gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p scientific-output
+          cpu=$(python -B -c 'import os; print(min(os.sched_getaffinity(0)))')
+          (
+            ulimit -v 3145728
+            ulimit -t 2700
+            taskset -c "$cpu" timeout --kill-after=30s 45m bash -euo pipefail <<'CHECKS'
+          python -B -m unittest discover -s tests -v 2>&1 | tee scientific-output/unit-tests.log
+          python -B validate_reference_audit.py 2>&1 | tee scientific-output/reference-inventory.log
+          python -B run.py --all --out scientific-output/frontier 2>&1 | tee scientific-output/core.log
+          python -B verify_results.py results/frontier scientific-output/frontier 2>&1 | tee scientific-output/core-verification.log
+          python -B verify_ordered_certificate.py scientific-output/frontier/ordered-blocking-certificate.json 2>&1 | tee scientific-output/ordered-certificate.log
+          python -B run_unordered_boundary.py --all --out scientific-output/unordered-boundary 2>&1 | tee scientific-output/boundary.log
+          python -B verify_unordered_boundary.py results/unordered-boundary scientific-output/unordered-boundary 2>&1 | tee scientific-output/boundary-verification.log
+          CHECKS
+          ) 2>&1 | tee scientific-output/whole-run.log
+      - name: Upload raw outputs and logs, including incomplete runs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: scientific-outputs
+          path: scientific-output/
+          if-no-files-found: error
+          retention-days: 14

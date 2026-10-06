@@ -56,7 +56,10 @@ python run_unordered_boundary.py --all --out reproduced-boundary
 python verify_unordered_boundary.py results/unordered-boundary reproduced-boundary
 ```
 
-The unit suite contains 63 tests. The core verifier checks 24 deterministic
+The unit suite contains 69 tests, including six exact gain/write scoring
+regressions. Gain/write compares rational scores exactly; positive occupied
+gain at zero cost ranks first, with the documented tie rules unchanged.
+The core verifier checks 24 deterministic
 top-level scientific CSV/JSON files, all 254,016 case identifiers, exact
 status/cost agreement, linear-scan agreement, the independent ordered blocking
 certificate, confluence closure, the trace metric contract, the unit-exchange
@@ -66,8 +69,16 @@ auxiliary exceptions. The boundary verifier checks the retained 65,484-instance
 arbitrary-selection corpus. Same-environment clean extraction is reproducibility
 evidence, not an independent research replication.
 
-Delete the two reproduced directories after comparison; the commands do not
-modify `results/`.
+Keep the reproduced outputs for inspection; the commands do not modify
+`results/`. Retained runtime records describe the historical host, not the
+timing or memory use of a new run.
+
+The `scientific-checks.yml` workflow runs the same unit tests, reference-inventory
+check, complete core and arbitrary-selection campaigns, and result verifiers
+from this flat repository root. It uses Ubuntu 24.04, one available CPU, a
+3 GiB process address-space limit, and a 45-minute whole-run timeout. Its raw
+outputs and logs are uploaded even after a failed scientific gate. Workflow
+results are separate from local checks.
 
 ## Sequential and resumable core route
 

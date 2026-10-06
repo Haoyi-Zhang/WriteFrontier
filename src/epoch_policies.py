@@ -7,6 +7,7 @@ they are not drop-in implementations of production caches or LSM engines.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from fractions import Fraction
 
 from epoch_model import Batch, EpochInstance, batch_cost, batch_totals, lower_bound, replay
 
@@ -58,6 +59,12 @@ def _legal_prefixes(instance: EpochInstance, indices: tuple[int, int]) -> dict[i
     return legal
 
 
+def _gain_score(instance: EpochInstance, live: int, occupied: int) -> tuple[bool, Fraction]:
+    """Exact gain/write order, with positive gain at zero cost ranked first."""
+    cost = batch_cost(live, instance.quantum, instance.commit_bytes)
+    return cost == 0, Fraction(occupied, cost) if cost else Fraction(0)
+
+
 def _run_policy(instance: EpochInstance, policy: str, fanin: int = 4) -> PolicyResult:
     indices = [0, 0]
     schedule: list[Batch] = []
@@ -104,15 +111,13 @@ def _run_policy(instance: EpochInstance, policy: str, fanin: int = 4) -> PolicyR
                 end, live, occupied = max(
                     options,
                     key=lambda item: (
-                        item[2] / max(1, batch_cost(item[1], instance.quantum, instance.commit_bytes)),
+                        *_gain_score(instance, item[1], item[2]),
                         item[2],
                         -item[0],
                     ),
                 )
-                ratio = occupied / max(
-                    1, batch_cost(live, instance.quantum, instance.commit_bytes)
-                )
-                key = (-ratio, head.birth, source)
+                zero_cost, ratio = _gain_score(instance, live, occupied)
+                key = (-zero_cost, -ratio, head.birth, source)
             else:
                 raise ValueError(f"unknown policy: {policy}")
             candidates.append((key, Batch(source, start, end)))

@@ -24,15 +24,16 @@ claim production workload breadth.
 - Public URL: <https://github.com/twitter/cache-trace/blob/master/samples/2020Mar/cluster015>
 - Upstream Git blob SHA: `1e6095ba836de4a79da3cbf58720cd2ee5cd6efa`
 - Selection rule: the first 128 rows.  The upstream sample has no header; this
-  artifact adds `timestamp,key,key_size,value_size,client_id,operation,ttl`.
+  artifact adds `time,key,key_size,value_size,client_id,operation,ttl`.
 - Access date: 2026-09-15.
 - Upstream license: Creative Commons Attribution 4.0 International.  Attribution
   and a license link are stored in `twitter-CC-BY-4.0.txt`.
 
 ## Interpretation in this artifact
 
-Each record is treated as an update to an object identifier (the CloudPhysics
-logical block number or the Twitter key).  The harness seals immutable log
+Each CloudPhysics record is treated as an update to its logical block number.
+The Twitter parser keeps mutating operations only and treats each retained
+record as an update to its key. The harness seals immutable log
 segments, alternates sealed segments across two tiers, and marks only the
 latest version of an object in each window as live.  This translation isolates
 migration and recovery accounting.  It does not reconstruct the original

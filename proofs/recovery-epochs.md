@@ -226,14 +226,17 @@ f_0 >= max(0,L_1-B_0),   f_1 >= max(0,L_0-B_1).
 
 For an integer total budget `R`, enumerating all `R+1` splits and applying the
 DP returns the best direction-sensitive allocation in
-`O(R n_0 n_1 (n_0+n_1))` time. For a write budget `C`, existence of a split
+`O((R+1)(n_0+1)(n_1+1)(n_0+n_1+1))` arithmetic operations,
+including zero budget and empty tiers. This is enumeration in the numeric
+budget, not polynomial time in its bit length. For a write budget `C`, existence of a split
 with total reserve at most `R` and cost at most `C` is monotone in `R`, so a
 bounded search yields exact inverse reserve.
 
 ## 9. Exact unit-exchange frontier
 
-Put `n` all-live unit segments in each tier, start with reserve `(r,r)` where
-`1<=r<=n`, and set `q>=2r`. Let `d=i-j`. Equation (1) becomes
+For positive integers `n,r` with `1<=r<=n`, put `n` all-live unit segments in
+each tier, start with reserve `(r,r)`, and set `q>=2r`.
+Let `d=i-j`. Equation (1) becomes
 
 ```text
 F_0=r+d,    F_1=r-d.                              (5)
@@ -291,8 +294,13 @@ events and crashes after each. Four negative controls violate distinct
 premises: publish before flush, reclaim before commit, omit one retained token
 from the persisted payload before an otherwise atomic pointer commit, and torn
 commit followed by reclaim. Detection means
-at least one crash prefix in each mutated run loses or misresolves a retained
-token. This is not a device model: it excludes torn sectors, controller caches,
+at least one crash prefix in each executed mutated run fails the recovery
+predicate: every selected extent must be durable, and the recovered tokens
+must equal the retained set without duplication. The three ordering mutations
+can therefore fail on all-dead schedules through an unresolved metadata pointer,
+not retained-token loss. Persisted-payload truncation is skipped on the eight
+all-dead schedules because no retained token exists to truncate. This is not a
+device model: it excludes torn sectors, controller caches,
 filesystem reorderings below the flush interface, checksums, allocator replay,
 and real power cuts.
 
@@ -300,8 +308,9 @@ and real power cuts.
 
 The retained campaign covers 254,016 ordered instances. The alternating DP and
 unrestricted DP agree on status and cost in every case. The linear scan agrees
-on feasibility in every case. A no-memo recursion agrees on 5,184 selected
-boundary instances. A backward viability computation marks 1,490,305 viable
+on feasibility in every case. A no-memo recursion agrees on all 5,184 patterns
+at the maximal reserve corner `(6,6)`, all with `OPT=LB`; this is not a
+minimal-reserve frontier check. A backward viability computation marks 1,490,305 viable
 states and audits 2,953,804 legal outgoing edges; none leaves viability. The
 unit-exchange formula agrees with the DP on 64 `(n,r)` points. These checks
 attack implementation mistakes and finite counterexamples; the general claims
