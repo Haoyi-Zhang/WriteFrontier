@@ -56,7 +56,7 @@ python run_unordered_boundary.py --all --out reproduced-boundary
 python verify_unordered_boundary.py results/unordered-boundary reproduced-boundary
 ```
 
-The unit suite contains 69 tests, including six exact gain/write scoring
+The preceding unit suite contains 69 tests, including six exact gain/write scoring
 regressions. Gain/write compares rational scores exactly; positive occupied
 gain at zero cost ranks first, with the documented tie rules unchanged.
 The core verifier checks 24 deterministic
@@ -72,6 +72,23 @@ evidence, not an independent research replication.
 Keep the reproduced outputs for inspection; the commands do not modify
 `results/`. Retained runtime records describe the historical host, not the
 timing or memory use of a new run.
+
+Both exact solvers now prepare occupied/live prefixes once for their state
+loops and compute the same free-space identity directly. Public `free_at`,
+independent replay and the raw-tuple oracle are unchanged. This removes repeated
+prefix scans, not layer sorting or transition enumeration, and makes no measured
+runtime/device claim. Frozen results remain tied to the preceding sources.
+Three new current-only standard-library regressions are included by the existing
+unit discovery and scientific CI (72 source methods in total):
+
+```sh
+python -B -m unittest discover -s tests -p test_prepared_prefixes.py -v
+```
+
+They use owned tiny integer tiers, an independent all-schedule recursive
+definition, all prefix states (including unreachable ones), rounding/dead
+payload controls and budget exhaustion. A current test success is not a fresh
+full-grid/recovery reproduction or a proof of the general theorems.
 
 The `scientific-checks.yml` workflow runs the same unit tests, reference-inventory
 check, complete core and arbitrary-selection campaigns, and result verifiers

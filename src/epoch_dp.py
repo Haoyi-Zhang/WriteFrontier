@@ -179,7 +179,7 @@ def solve_normal_form(instance: EpochInstance, max_states: int = 5_000_000) -> S
         return Solution("infeasible-final", None, (), 1, 0, lb)
     if n0 == 0 and n1 == 0:
         return Solution("feasible", 0, (), 1, 0, 0)
-    _, _, l0, l1 = _prefixes(instance)
+    o0, o1, l0, l1 = _prefixes(instance)
     # State is (processed0, processed1, last_source), with 2 meaning none.
     dist: dict[tuple[int, int, int], tuple[int, int]] = {(0, 0, 2): (0, 0)}
     parent: dict[tuple[int, int, int], tuple[tuple[int, int, int], Batch]] = {}
@@ -193,7 +193,8 @@ def solve_normal_form(instance: EpochInstance, max_states: int = 5_000_000) -> S
         for state in layer:
             i, j, last = state
             score = dist[state]
-            f0, f1 = instance.free_at(i, j)
+            f0 = instance.free[0] + o0[i] - l1[j]
+            f1 = instance.free[1] + o1[j] - l0[i]
             if min(f0, f1) < 0:
                 raise AssertionError("reachable DP state has negative free space")
             for source in (0, 1):
@@ -253,6 +254,7 @@ def solve_unrestricted(instance: EpochInstance, max_states: int = 5_000_000) -> 
     lb = lower_bound(instance)
     if not instance.final_fits():
         return Solution("infeasible-final", None, (), 1, 0, lb)
+    o0, o1, l0, l1 = _prefixes(instance)
     best: list[list[float]] = [[inf] * (n1 + 1) for _ in range(n0 + 1)]
     epochs: list[list[int]] = [[10**9] * (n1 + 1) for _ in range(n0 + 1)]
     predecessor: dict[tuple[int, int], tuple[tuple[int, int], Batch]] = {}
@@ -268,7 +270,8 @@ def solve_unrestricted(instance: EpochInstance, max_states: int = 5_000_000) -> 
             states += 1
             if states > max_states:
                 raise SearchBudgetExceeded("unrestricted state budget exceeded")
-            free = instance.free_at(i, j)
+            free = (instance.free[0] + o0[i] - l1[j],
+                    instance.free[1] + o1[j] - l0[i])
             for source, start, limit in ((0, i, n0), (1, j, n1)):
                 running_live = 0
                 for end in range(start + 1, limit + 1):
