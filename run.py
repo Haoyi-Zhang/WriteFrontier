@@ -364,6 +364,7 @@ def aggregate_grid(out: Path) -> dict:
             COMMIT,
         )
         audit = confluence_audit(instance)
+        # Sum nonterminal viable prefix-state instances, not terminal states.
         confluence_states += audit["viable_states"]
         confluence_edges += audit["legal_edges_from_viable_states"]
         confluence_violations += len(audit["violations"])
@@ -615,6 +616,7 @@ def aggregate_grid(out: Path) -> dict:
             for row in rows
         ),
         "confluence_audit": {
+            # Retain the legacy field name for the nonterminal instance count.
             "viable_states": confluence_states,
             "legal_edges_from_viable_states": confluence_edges,
             "violations": confluence_violations,
@@ -665,6 +667,7 @@ def run_trace(out: Path) -> dict:
         requests = dataset["reader"](dataset["path"])
         instances = make_trace_instances(
             requests,
+            dataset_id=dataset["name"],
             window_rows=64,
             target_bytes=int(dataset["target_bytes"]),
             allocation_unit=int(dataset["allocation_unit"]),

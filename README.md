@@ -79,7 +79,8 @@ independent replay and the raw-tuple oracle are unchanged. This removes repeated
 prefix scans, not layer sorting or transition enumeration, and makes no measured
 runtime/device claim. Frozen results remain tied to the preceding sources.
 Three new current-only standard-library regressions are included by the existing
-unit discovery and scientific CI (72 source methods in total):
+unit discovery and scientific CI (72 source methods before the metadata-semantics
+additions below):
 
 ```sh
 python -B -m unittest discover -s tests -p test_prepared_prefixes.py -v
@@ -181,12 +182,18 @@ Retained outcomes include:
 - zero solver disagreements and zero violations of four metamorphic relations
   in 20,000 fixed-seed cases searched by the separate raw-tuple oracle, using
   seed `20260916` and reserve components sampled in `[0,12]`;
-- zero violations among 2,953,804 legal edges from 1,490,305 viable states;
+- zero violations among 2,953,804 legal edges from 1,490,305 nonterminal viable
+  prefix-state instances;
 - zero disagreements at 64 closed-form unit-exchange points; and
 - a legal objective witness with costs 10 and 20 for the same instance.
 
 These are exhaustive counts in the declared small integer domain, not estimates
 of production workload frequency.
+
+The legacy JSON field `confluence_audit.viable_states` counts nonterminal viable
+prefix-state instances, summed across the declared grid. Terminal states are
+excluded because they have no outgoing edges. The field name and numerical
+results are unchanged.
 
 ## Recovery checks
 
@@ -217,6 +224,22 @@ rounded separately for each segment to the allocation unit.  Trace reserve is
 the asymmetric final-fit lower-bound vector plus the least common feasible
 slack; it is not an equal initial reserve.  The result CSV labels both byte
 fields and reports separate physical/raw and physical/allocation ratios.
+
+The trace constructor requires `dataset_id`; instance labels have the form
+`<dataset_id>-window-<index>-extra-<slack>`. Each stored certificate label uses
+its enclosing `dataset` identity, distinguishing both excerpts even at the same
+window and slack. The eight retained labels are aligned with this convention
+by a metadata-only correction; schedules, costs, other fields, input provenance,
+and historical runtime records are unchanged. This is not a fresh measurement
+or trace campaign.
+
+Seven current metadata regressions check tiny owned request windows under both
+dataset identities, identity-only schedule/cost invariance, the eight retained
+labels, and the nonterminal count convention:
+
+```sh
+python -B -m unittest discover -s tests -p test_metadata_semantics.py -v
+```
 
 The harness uses these excerpts only to check parsers, latest-version liveness,
 segment sealing, capacity conversion, planner/checker composition, and policy

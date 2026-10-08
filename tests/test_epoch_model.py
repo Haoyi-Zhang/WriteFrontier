@@ -253,6 +253,7 @@ class TraceTests(unittest.TestCase):
         requests = read_twitter(HERE / "inputs" / "twitter-cluster015-prefix.csv")
         items = make_trace_instances(
             requests,
+            dataset_id="twitter-cluster015-prefix",
             window_rows=64,
             target_bytes=2048,
             allocation_unit=64,

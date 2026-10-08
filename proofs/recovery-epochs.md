@@ -310,9 +310,11 @@ The retained campaign covers 254,016 ordered instances. The alternating DP and
 unrestricted DP agree on status and cost in every case. The linear scan agrees
 on feasibility in every case. A no-memo recursion agrees on all 5,184 patterns
 at the maximal reserve corner `(6,6)`, all with `OPT=LB`; this is not a
-minimal-reserve frontier check. A backward viability computation marks 1,490,305 viable
-states and audits 2,953,804 legal outgoing edges; none leaves viability. The
-unit-exchange formula agrees with the DP on 64 `(n,r)` points. These checks
+minimal-reserve frontier check. A backward viability computation counts 1,490,305
+nonterminal viable prefix-state instances and audits 2,953,804 legal outgoing
+edges; none leaves viability. Terminal states have no outgoing edges and are
+excluded from the count. The unit-exchange formula agrees with the DP on 64
+`(n,r)` points. These checks
 attack implementation mistakes and finite counterexamples; the general claims
 rest on the proofs above.
 

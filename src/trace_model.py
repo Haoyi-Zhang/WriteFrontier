@@ -169,7 +169,10 @@ def make_trace_instances(
     page_bytes: int = 4096,
     commit_bytes: int = 512,
     extra_slacks: Iterable[int] = (0, 8),
+    *,
+    dataset_id: str,
 ) -> list[dict]:
+    """Build episodes labeled by dataset identity, window, and extra slack."""
     if window_rows <= 0:
         raise ValueError("window_rows must be positive")
     if page_bytes % allocation_unit or commit_bytes % allocation_unit:
@@ -192,7 +195,7 @@ def make_trace_instances(
                 (base_instance.free[0] + extra, base_instance.free[1] + extra),
                 quantum,
                 commit_units,
-                label=f"cloudphysics-window-{window_index}-extra-{extra}",
+                label=f"{dataset_id}-window-{window_index}-extra-{extra}",
             )
             records.append(
                 {

@@ -474,7 +474,9 @@ def confluence_audit(instance: EpochInstance) -> dict:
 
     The general exchange proof is in ``proofs/recovery-epochs.md``.  This
     checker independently computes the full suffix-viability table and then
-    tests every legal edge out of every viable state.
+    tests every legal edge out of every nonterminal viable prefix state.
+    The legacy ``viable_states`` field counts nonterminal viable prefix-state
+    instances, excluding the terminal state even when final capacity fits.
     """
     n0, n1 = instance.lengths
     viable = [[False] * (n1 + 1) for _ in range(n0 + 1)]
@@ -505,6 +507,7 @@ def confluence_audit(instance: EpochInstance) -> dict:
     violations: list[dict] = []
     for i in range(n0 + 1):
         for j in range(n1 + 1):
+            # Terminal states have no outgoing edges and are not counted.
             if not viable[i][j] or (i, j) == (n0, n1):
                 continue
             viable_states += 1
@@ -530,7 +533,7 @@ def confluence_audit(instance: EpochInstance) -> dict:
                         )
     return {
         "initial_feasible": viable[0][0],
-        "viable_states": viable_states,
+        "viable_states": viable_states,  # Legacy key; nonterminal prefix-state count.
         "legal_edges_from_viable_states": legal_edges,
         "violations": violations,
     }
