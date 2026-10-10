@@ -29,6 +29,12 @@ core model, capacity, cost, replay, or solver modules.  A backward confluence
 audit, a 20,000-case metamorphic campaign, and a closed-form unit-exchange
 family provide additional independent failure surfaces.
 
+The abstract incremental feasibility loop takes linear arithmetic steps and
+constant working registers, excluding input and output certificate. The checked
+`scan_feasibility` routine additionally calls `final_free` and `replay` on
+successful completion. Their prefix arrays and per-epoch replay records use
+linear auxiliary validation space. Those checks are retained in the artifact.
+
 ## Requirements and resource contract
 
 - Linux with Python 3.10 or later; standard library only.

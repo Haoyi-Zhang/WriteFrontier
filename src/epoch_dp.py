@@ -56,7 +56,10 @@ def scan_feasibility(instance: EpochInstance) -> FeasibilityScan:
     Legal-step confluence proves that any deterministic legal choice is safe.
     This implementation prefers source 0 on ties, updates free space
     incrementally, and returns either a complete single-segment schedule or a
-    blocking-state certificate.  It does not call either optimizer.
+    blocking-state certificate.  It does not call either optimizer.  The
+    incremental decision loop uses constant working registers, excluding its
+    output schedule.  Successful-completion checks call final_free and replay,
+    whose prefix arrays and replay records use linear auxiliary space.
     """
 
     n0, n1 = instance.lengths

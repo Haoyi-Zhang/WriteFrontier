@@ -108,15 +108,20 @@ and adds non-negative live payload. The same holds symmetrically.
 one first unprocessed segment from any source whose live size fits in the other
 tier. If the process reaches `(n_0,n_1)`, the instance is feasible. If neither
 first segment fits at a nonterminal state, the instance is infeasible. The
-decision uses `O(n_0+n_1)` time and `O(1)` working space beyond the input and
-output certificate.
+abstract incremental decision uses `O(n_0+n_1)` arithmetic steps and `O(1)`
+working registers beyond the input and output certificate.
 
 **Proof.** Every selected segment is a legal prefix, so Theorem 3 preserves
 completion whenever one exists. If neither first segment fits, no non-empty
 prefix from either source can fit; Corollary 4 gives infeasibility. Each step
 consumes one segment. QED.
 
-`scan_feasibility` prefers source 0 on ties but does not call an optimizer. A
+`scan_feasibility` prefers source 0 on ties but does not call an optimizer.
+On successful completion it also calls `final_free` and `replay`, which
+materialize prefix arrays and per-epoch replay records. The current checked
+routine therefore uses `O(n_0+n_1)` auxiliary validation space beyond the input
+and output certificate; only the abstract decision loop has the constant-
+register bound. A
 positive certificate is its source-bit schedule; `replay` checks every guard
 and the terminal state. A negative certificate contains `(i,j)`, `(F_0,F_1)`,
 and the two next live sizes. For every non-exhausted source, the next live size
