@@ -379,10 +379,17 @@ def pareto_frontier(
     quantum: int = 4,
     commit_bytes: int = 1,
 ) -> list[dict]:
-    """Exact componentwise-minimal feasible free-space vectors in a box."""
+    """Exact minimal feasible vectors, evaluated only at capacity events."""
+    if len(max_free) != 2 or any(type(x) is not int or x < 0 for x in max_free):
+        raise ValueError("max_free must contain two non-negative integers")
+    thresholds = reserve_thresholds(tiers)
     feasible: list[dict] = []
-    for f0 in range(max_free[0] + 1):
-        for f1 in range(max_free[1] + 1):
+    for f0 in thresholds[0]:
+        if f0 > max_free[0]:
+            break
+        for f1 in thresholds[1]:
+            if f1 > max_free[1]:
+                break
             instance = EpochInstance(tiers, (f0, f1), quantum, commit_bytes)
             solution = solve_normal_form(instance)
             if solution.feasible:
@@ -416,10 +423,22 @@ def best_split_at_budget(
     quantum: int = 4,
     commit_bytes: int = 1,
 ) -> tuple[EpochInstance, Solution] | None:
-    """Minimum-cost feasible free-space split with f0 + f1 <= budget."""
+    """Minimum cost for f0 + f1 <= budget, with minimum-reserve tie breaking.
+
+    Only threshold corners are needed: rounding either coordinate down to its
+    preceding event preserves the entire legal graph and all its edge costs.
+    Work depends on segment counts, not the numeric magnitude of ``budget``.
+    """
+    if type(budget) is not int or budget < 0:
+        raise ValueError("budget must be a non-negative integer")
+    thresholds = reserve_thresholds(tiers)
     winner: tuple[tuple[int, int, int, int], EpochInstance, Solution] | None = None
-    for f0 in range(budget + 1):
-        for f1 in range(budget - f0 + 1):
+    for f0 in thresholds[0]:
+        if f0 > budget:
+            break
+        for f1 in thresholds[1]:
+            if f0 + f1 > budget:
+                break
             instance = EpochInstance(tiers, (f0, f1), quantum, commit_bytes)
             solution = solve_normal_form(instance)
             if not solution.feasible:
@@ -431,6 +450,20 @@ def best_split_at_budget(
     if winner is None:
         return None
     return winner[1], winner[2]
+
+
+def reserve_thresholds(tiers: tuple[tuple, tuple]) -> tuple[tuple[int, ...], tuple[int, ...]]:
+    """All nonnegative capacity events; includes final-fit events and zero.
+
+    Source-0 edge i->i' at j needs f1 >= L0(i')-B1(j); its start
+    cancels. Source-1 edges symmetrically need f0 >= L1(j')-B0(i).
+    Final-fit thresholds are included by using the terminal opposite prefix.
+    """
+    instance = EpochInstance(tiers, (0, 0))
+    b0, b1, l0, l1 = instance.prefix_arrays()
+    t0 = {0} | {max(0, live - occupied) for live in l1[1:] for occupied in b0}
+    t1 = {0} | {max(0, live - occupied) for live in l0[1:] for occupied in b1}
+    return tuple(sorted(t0)), tuple(sorted(t1))
 
 
 def final_fit_free_lower_bound(tiers: tuple[tuple, tuple]) -> tuple[int, int]:
@@ -454,22 +487,29 @@ def find_min_common_slack(
     common to both components.
     """
 
+    if max_slack is not None and (type(max_slack) is not int or max_slack < 0):
+        raise ValueError("max_slack must be a non-negative integer or None")
     base = final_fit_free_lower_bound(tiers)
-    occupied = [sum(seg.occupied for seg in tier) for tier in tiers]
-    live = [sum(seg.live for seg in tier) for tier in tiers]
-    if max_slack is None:
-        max_slack = max(live + occupied + [1]) + quantum
-    for slack in range(max_slack + 1):
-        instance = EpochInstance(
-            tiers,
-            (base[0] + slack, base[1] + slack),
-            quantum,
-            commit_bytes,
-        )
-        solution = solve_normal_form(instance)
-        if solution.feasible:
-            return slack, instance, solution
-    raise SearchBudgetExceeded("balanced-slack search did not find a feasible reserve")
+    EpochInstance(tiers, base, quantum, commit_bytes)  # Validate cost parameters.
+    thresholds = reserve_thresholds(tiers)
+    events = sorted({0} | {max(0, t - base[s]) for s in (0, 1) for t in thresholds[s]})
+    if max_slack is not None:
+        events = [s for s in events if s <= max_slack]
+    def at(slack: int) -> EpochInstance:
+        return EpochInstance(tiers, (base[0] + slack, base[1] + slack),
+                             quantum, commit_bytes)
+    if not scan_feasibility(at(events[-1])).feasible:
+        raise SearchBudgetExceeded("balanced-slack search did not find a feasible reserve")
+    lo, hi = 0, len(events) - 1
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if scan_feasibility(at(events[mid])).feasible:
+            hi = mid
+        else:
+            lo = mid + 1
+    slack = events[lo]
+    instance = at(slack)
+    return slack, instance, solve_normal_form(instance)
 
 
 def confluence_audit(instance: EpochInstance) -> dict:

@@ -1,0 +1,412 @@
+{
+  "comparisons": {
+    "length-16-32": 768,
+    "length-3-12": 1536,
+    "public-excerpt": 8,
+    "retained-frontier": 5184
+  },
+  "cost_models": {
+    "length-16-32": [
+      [
+        1,
+        0
+      ],
+      [
+        4096,
+        0
+      ],
+      [
+        1,
+        512
+      ],
+      [
+        4096,
+        512
+      ],
+      [
+        16384,
+        512
+      ],
+      [
+        4096,
+        1024
+      ]
+    ],
+    "length-3-12": [
+      [
+        1,
+        0
+      ],
+      [
+        4,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        4,
+        2
+      ]
+    ]
+  },
+  "destination_boundary": {
+    "shared_destination_witness": {
+      "completion": [
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "final_free": [
+        1,
+        0,
+        0
+      ],
+      "initial_feasible": true,
+      "legal_edges": 4,
+      "viable_nonterminal_states": 3,
+      "violations": [
+        {
+          "batch": [
+            0,
+            0,
+            1
+          ],
+          "free": [
+            0,
+            0,
+            1
+          ],
+          "state": [
+            0,
+            0,
+            0
+          ],
+          "successor": [
+            1,
+            0,
+            0
+          ],
+          "successor_free": [
+            1,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "three_cycle_cases": 1728,
+    "three_cycle_legal_edges": 11580,
+    "three_cycle_viable_states": 7724,
+    "three_cycle_violations": 0
+  },
+  "policies": [
+    {
+      "cases": 768,
+      "domain": "length-16-32",
+      "max": 1.4,
+      "max_exact": "7/5",
+      "median": 1.010204081632653,
+      "optimal_cases": 312,
+      "p95": 1.125,
+      "policy": "gain-per-write"
+    },
+    {
+      "cases": 768,
+      "domain": "length-16-32",
+      "max": 1.65,
+      "max_exact": "33/20",
+      "median": 1.0,
+      "optimal_cases": 436,
+      "p95": 1.1951219512195121,
+      "policy": "leveled-proxy"
+    },
+    {
+      "cases": 768,
+      "domain": "length-16-32",
+      "max": 13.5,
+      "max_exact": "27/2",
+      "median": 2.896232057416268,
+      "optimal_cases": 128,
+      "p95": 8.474747474747474,
+      "policy": "lru-tiered-proxy"
+    },
+    {
+      "cases": 768,
+      "domain": "length-16-32",
+      "max": 1.65,
+      "max_exact": "33/20",
+      "median": 1.0,
+      "optimal_cases": 395,
+      "p95": 1.2,
+      "policy": "maximum-prefix-start-0"
+    },
+    {
+      "cases": 768,
+      "domain": "length-16-32",
+      "max": 1.64,
+      "max_exact": "41/25",
+      "median": 1.0,
+      "optimal_cases": 390,
+      "p95": 1.1939393939393939,
+      "policy": "maximum-prefix-start-1"
+    },
+    {
+      "cases": 768,
+      "domain": "length-16-32",
+      "max": 8.32,
+      "max_exact": "208/25",
+      "median": 2.0078605406659706,
+      "optimal_cases": 128,
+      "p95": 5.634146341463414,
+      "policy": "size-tiered-proxy"
+    },
+    {
+      "cases": 768,
+      "domain": "length-16-32",
+      "max": 1.406926406926407,
+      "max_exact": "325/231",
+      "median": 1.0,
+      "optimal_cases": 500,
+      "p95": 1.1379310344827587,
+      "policy": "two-start-maximum-prefix"
+    },
+    {
+      "cases": 1536,
+      "domain": "length-3-12",
+      "max": 1.3725490196078431,
+      "max_exact": "70/51",
+      "median": 1.0112997957099081,
+      "optimal_cases": 599,
+      "p95": 1.1111111111111112,
+      "policy": "gain-per-write"
+    },
+    {
+      "cases": 1536,
+      "domain": "length-3-12",
+      "max": 1.2647058823529411,
+      "max_exact": "43/34",
+      "median": 1.0,
+      "optimal_cases": 1118,
+      "p95": 1.0555555555555556,
+      "policy": "leveled-proxy"
+    },
+    {
+      "cases": 1536,
+      "domain": "length-3-12",
+      "max": 2.18,
+      "max_exact": "109/50",
+      "median": 1.1524948182599464,
+      "optimal_cases": 258,
+      "p95": 1.5172413793103448,
+      "policy": "lru-tiered-proxy"
+    },
+    {
+      "cases": 1536,
+      "domain": "length-3-12",
+      "max": 1.2647058823529411,
+      "max_exact": "43/34",
+      "median": 1.0,
+      "optimal_cases": 1109,
+      "p95": 1.0533333333333332,
+      "policy": "maximum-prefix-start-0"
+    },
+    {
+      "cases": 1536,
+      "domain": "length-3-12",
+      "max": 1.186046511627907,
+      "max_exact": "51/43",
+      "median": 1.0,
+      "optimal_cases": 988,
+      "p95": 1.0676691729323309,
+      "policy": "maximum-prefix-start-1"
+    },
+    {
+      "cases": 1536,
+      "domain": "length-3-12",
+      "max": 1.7254901960784315,
+      "max_exact": "88/51",
+      "median": 1.0818641097020312,
+      "optimal_cases": 280,
+      "p95": 1.3297872340425532,
+      "policy": "size-tiered-proxy"
+    },
+    {
+      "cases": 1536,
+      "domain": "length-3-12",
+      "max": 1.186046511627907,
+      "max_exact": "51/43",
+      "median": 1.0,
+      "optimal_cases": 1315,
+      "p95": 1.0408163265306123,
+      "policy": "two-start-maximum-prefix"
+    },
+    {
+      "cases": 8,
+      "domain": "public-excerpt",
+      "max": 1.0163636363636364,
+      "max_exact": "559/550",
+      "median": 1.0,
+      "optimal_cases": 5,
+      "p95": 1.0163636363636364,
+      "policy": "gain-per-write"
+    },
+    {
+      "cases": 8,
+      "domain": "public-excerpt",
+      "max": 1.0,
+      "max_exact": "1",
+      "median": 1.0,
+      "optimal_cases": 8,
+      "p95": 1.0,
+      "policy": "leveled-proxy"
+    },
+    {
+      "cases": 8,
+      "domain": "public-excerpt",
+      "max": 2.0,
+      "max_exact": "2",
+      "median": 1.0194273293626344,
+      "optimal_cases": 1,
+      "p95": 2.0,
+      "policy": "lru-tiered-proxy"
+    },
+    {
+      "cases": 8,
+      "domain": "public-excerpt",
+      "max": 1.0,
+      "max_exact": "1",
+      "median": 1.0,
+      "optimal_cases": 8,
+      "p95": 1.0,
+      "policy": "maximum-prefix-start-0"
+    },
+    {
+      "cases": 8,
+      "domain": "public-excerpt",
+      "max": 1.0,
+      "max_exact": "1",
+      "median": 1.0,
+      "optimal_cases": 8,
+      "p95": 1.0,
+      "policy": "maximum-prefix-start-1"
+    },
+    {
+      "cases": 8,
+      "domain": "public-excerpt",
+      "max": 1.0163636363636364,
+      "max_exact": "559/550",
+      "median": 1.0,
+      "optimal_cases": 5,
+      "p95": 1.0163636363636364,
+      "policy": "size-tiered-proxy"
+    },
+    {
+      "cases": 8,
+      "domain": "public-excerpt",
+      "max": 1.0,
+      "max_exact": "1",
+      "median": 1.0,
+      "optimal_cases": 8,
+      "p95": 1.0,
+      "policy": "two-start-maximum-prefix"
+    },
+    {
+      "cases": 5184,
+      "domain": "retained-frontier",
+      "max": 1.3333333333333333,
+      "max_exact": "4/3",
+      "median": 1.0,
+      "optimal_cases": 4623,
+      "p95": 1.1,
+      "policy": "gain-per-write"
+    },
+    {
+      "cases": 5184,
+      "domain": "retained-frontier",
+      "max": 1.8333333333333333,
+      "max_exact": "11/6",
+      "median": 1.0,
+      "optimal_cases": 4931,
+      "p95": 1.0,
+      "policy": "leveled-proxy"
+    },
+    {
+      "cases": 5184,
+      "domain": "retained-frontier",
+      "max": 2.0,
+      "max_exact": "2",
+      "median": 1.1428571428571428,
+      "optimal_cases": 1667,
+      "p95": 2.0,
+      "policy": "lru-tiered-proxy"
+    },
+    {
+      "cases": 5184,
+      "domain": "retained-frontier",
+      "max": 1.8333333333333333,
+      "max_exact": "11/6",
+      "median": 1.0,
+      "optimal_cases": 4912,
+      "p95": 1.0666666666666667,
+      "policy": "maximum-prefix-start-0"
+    },
+    {
+      "cases": 5184,
+      "domain": "retained-frontier",
+      "max": 1.8333333333333333,
+      "max_exact": "11/6",
+      "median": 1.0,
+      "optimal_cases": 4922,
+      "p95": 1.0666666666666667,
+      "policy": "maximum-prefix-start-1"
+    },
+    {
+      "cases": 5184,
+      "domain": "retained-frontier",
+      "max": 2.0,
+      "max_exact": "2",
+      "median": 1.0,
+      "optimal_cases": 4022,
+      "p95": 1.5,
+      "policy": "size-tiered-proxy"
+    },
+    {
+      "cases": 5184,
+      "domain": "retained-frontier",
+      "max": 1.0,
+      "max_exact": "1",
+      "median": 1.0,
+      "optimal_cases": 5184,
+      "p95": 1.0,
+      "policy": "two-start-maximum-prefix"
+    }
+  ],
+  "replay_disagreements": 0,
+  "seed": 20261011,
+  "solver_disagreements": 0,
+  "threshold_corner_counts": {
+    "maximum": 239120
+  }
+}

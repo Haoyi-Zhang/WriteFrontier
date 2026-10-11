@@ -39,6 +39,7 @@ jobs:
           python -B verify_ordered_certificate.py scientific-output/frontier/ordered-blocking-certificate.json 2>&1 | tee scientific-output/ordered-certificate.log
           python -B run_unordered_boundary.py --all --out scientific-output/unordered-boundary 2>&1 | tee scientific-output/boundary.log
           python -B verify_unordered_boundary.py results/unordered-boundary scientific-output/unordered-boundary 2>&1 | tee scientific-output/boundary-verification.log
+          python -B run_policy_frontier.py --out scientific-output/policy-frontier 2>&1 | tee scientific-output/policy-frontier.log
           CHECKS
           ) 2>&1 | tee scientific-output/whole-run.log
       - name: Upload raw outputs and logs, including incomplete runs

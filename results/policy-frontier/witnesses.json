@@ -1,0 +1,658 @@
+[
+  {
+    "case_id": "3-q4-mu0",
+    "domain": "length-3-12",
+    "greedy_cost": 160,
+    "greedy_schedule": [
+      {
+        "end": 1,
+        "source": 1,
+        "start": 0
+      },
+      {
+        "end": 5,
+        "source": 0,
+        "start": 0
+      },
+      {
+        "end": 7,
+        "source": 1,
+        "start": 1
+      },
+      {
+        "end": 9,
+        "source": 0,
+        "start": 5
+      }
+    ],
+    "instance": {
+      "commit_bytes": 0,
+      "free": [
+        5,
+        5
+      ],
+      "label": "",
+      "quantum": 4,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 8,
+            "name": "",
+            "occupied": 19
+          },
+          {
+            "birth": 2,
+            "live": 0,
+            "name": "",
+            "occupied": 4
+          },
+          {
+            "birth": 4,
+            "live": 11,
+            "name": "",
+            "occupied": 20
+          },
+          {
+            "birth": 6,
+            "live": 2,
+            "name": "",
+            "occupied": 16
+          },
+          {
+            "birth": 8,
+            "live": 5,
+            "name": "",
+            "occupied": 7
+          },
+          {
+            "birth": 10,
+            "live": 16,
+            "name": "",
+            "occupied": 17
+          },
+          {
+            "birth": 12,
+            "live": 20,
+            "name": "",
+            "occupied": 30
+          },
+          {
+            "birth": 14,
+            "live": 24,
+            "name": "",
+            "occupied": 24
+          },
+          {
+            "birth": 16,
+            "live": 17,
+            "name": "",
+            "occupied": 24
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 5,
+            "name": "",
+            "occupied": 23
+          },
+          {
+            "birth": 3,
+            "live": 14,
+            "name": "",
+            "occupied": 20
+          },
+          {
+            "birth": 5,
+            "live": 4,
+            "name": "",
+            "occupied": 4
+          },
+          {
+            "birth": 7,
+            "live": 9,
+            "name": "",
+            "occupied": 14
+          },
+          {
+            "birth": 9,
+            "live": 9,
+            "name": "",
+            "occupied": 11
+          },
+          {
+            "birth": 11,
+            "live": 6,
+            "name": "",
+            "occupied": 25
+          },
+          {
+            "birth": 13,
+            "live": 0,
+            "name": "",
+            "occupied": 18
+          }
+        ]
+      ]
+    },
+    "opt_cost": 156,
+    "opt_schedule": [
+      {
+        "end": 1,
+        "source": 1,
+        "start": 0
+      },
+      {
+        "end": 3,
+        "source": 0,
+        "start": 0
+      },
+      {
+        "end": 7,
+        "source": 1,
+        "start": 1
+      },
+      {
+        "end": 9,
+        "source": 0,
+        "start": 3
+      }
+    ]
+  },
+  {
+    "case_id": "0-q4096-mu0",
+    "domain": "length-16-32",
+    "greedy_cost": 106496,
+    "greedy_schedule": [
+      {
+        "end": 3,
+        "source": 0,
+        "start": 0
+      },
+      {
+        "end": 3,
+        "source": 1,
+        "start": 0
+      },
+      {
+        "end": 5,
+        "source": 0,
+        "start": 3
+      },
+      {
+        "end": 6,
+        "source": 1,
+        "start": 3
+      },
+      {
+        "end": 7,
+        "source": 0,
+        "start": 5
+      },
+      {
+        "end": 8,
+        "source": 1,
+        "start": 6
+      },
+      {
+        "end": 10,
+        "source": 0,
+        "start": 7
+      },
+      {
+        "end": 9,
+        "source": 1,
+        "start": 8
+      },
+      {
+        "end": 11,
+        "source": 0,
+        "start": 10
+      },
+      {
+        "end": 12,
+        "source": 1,
+        "start": 9
+      },
+      {
+        "end": 14,
+        "source": 0,
+        "start": 11
+      },
+      {
+        "end": 14,
+        "source": 1,
+        "start": 12
+      },
+      {
+        "end": 17,
+        "source": 0,
+        "start": 14
+      },
+      {
+        "end": 18,
+        "source": 1,
+        "start": 14
+      },
+      {
+        "end": 20,
+        "source": 0,
+        "start": 17
+      },
+      {
+        "end": 20,
+        "source": 1,
+        "start": 18
+      },
+      {
+        "end": 22,
+        "source": 0,
+        "start": 20
+      },
+      {
+        "end": 21,
+        "source": 1,
+        "start": 20
+      },
+      {
+        "end": 24,
+        "source": 0,
+        "start": 22
+      }
+    ],
+    "instance": {
+      "commit_bytes": 0,
+      "free": [
+        875,
+        5492
+      ],
+      "label": "",
+      "quantum": 4096,
+      "tiers": [
+        [
+          {
+            "birth": 0,
+            "live": 2546,
+            "name": "",
+            "occupied": 2546
+          },
+          {
+            "birth": 2,
+            "live": 691,
+            "name": "",
+            "occupied": 691
+          },
+          {
+            "birth": 4,
+            "live": 1826,
+            "name": "",
+            "occupied": 1826
+          },
+          {
+            "birth": 6,
+            "live": 2557,
+            "name": "",
+            "occupied": 2557
+          },
+          {
+            "birth": 8,
+            "live": 1404,
+            "name": "",
+            "occupied": 1404
+          },
+          {
+            "birth": 10,
+            "live": 1233,
+            "name": "",
+            "occupied": 1233
+          },
+          {
+            "birth": 12,
+            "live": 2809,
+            "name": "",
+            "occupied": 2809
+          },
+          {
+            "birth": 14,
+            "live": 2317,
+            "name": "",
+            "occupied": 2317
+          },
+          {
+            "birth": 16,
+            "live": 581,
+            "name": "",
+            "occupied": 581
+          },
+          {
+            "birth": 18,
+            "live": 211,
+            "name": "",
+            "occupied": 211
+          },
+          {
+            "birth": 20,
+            "live": 3252,
+            "name": "",
+            "occupied": 3252
+          },
+          {
+            "birth": 22,
+            "live": 2619,
+            "name": "",
+            "occupied": 2619
+          },
+          {
+            "birth": 24,
+            "live": 668,
+            "name": "",
+            "occupied": 668
+          },
+          {
+            "birth": 26,
+            "live": 1176,
+            "name": "",
+            "occupied": 1176
+          },
+          {
+            "birth": 28,
+            "live": 1651,
+            "name": "",
+            "occupied": 1651
+          },
+          {
+            "birth": 30,
+            "live": 826,
+            "name": "",
+            "occupied": 826
+          },
+          {
+            "birth": 32,
+            "live": 1426,
+            "name": "",
+            "occupied": 1426
+          },
+          {
+            "birth": 34,
+            "live": 1483,
+            "name": "",
+            "occupied": 1483
+          },
+          {
+            "birth": 36,
+            "live": 1005,
+            "name": "",
+            "occupied": 1005
+          },
+          {
+            "birth": 38,
+            "live": 2645,
+            "name": "",
+            "occupied": 2645
+          },
+          {
+            "birth": 40,
+            "live": 3042,
+            "name": "",
+            "occupied": 3042
+          },
+          {
+            "birth": 42,
+            "live": 2612,
+            "name": "",
+            "occupied": 2612
+          },
+          {
+            "birth": 44,
+            "live": 2522,
+            "name": "",
+            "occupied": 2522
+          },
+          {
+            "birth": 46,
+            "live": 1272,
+            "name": "",
+            "occupied": 1272
+          }
+        ],
+        [
+          {
+            "birth": 1,
+            "live": 833,
+            "name": "",
+            "occupied": 833
+          },
+          {
+            "birth": 3,
+            "live": 1412,
+            "name": "",
+            "occupied": 1412
+          },
+          {
+            "birth": 5,
+            "live": 1682,
+            "name": "",
+            "occupied": 1682
+          },
+          {
+            "birth": 7,
+            "live": 3119,
+            "name": "",
+            "occupied": 3119
+          },
+          {
+            "birth": 9,
+            "live": 132,
+            "name": "",
+            "occupied": 132
+          },
+          {
+            "birth": 11,
+            "live": 2255,
+            "name": "",
+            "occupied": 2255
+          },
+          {
+            "birth": 13,
+            "live": 2222,
+            "name": "",
+            "occupied": 2222
+          },
+          {
+            "birth": 15,
+            "live": 1813,
+            "name": "",
+            "occupied": 1813
+          },
+          {
+            "birth": 17,
+            "live": 2142,
+            "name": "",
+            "occupied": 2142
+          },
+          {
+            "birth": 19,
+            "live": 2709,
+            "name": "",
+            "occupied": 2709
+          },
+          {
+            "birth": 21,
+            "live": 1044,
+            "name": "",
+            "occupied": 1044
+          },
+          {
+            "birth": 23,
+            "live": 145,
+            "name": "",
+            "occupied": 145
+          },
+          {
+            "birth": 25,
+            "live": 2561,
+            "name": "",
+            "occupied": 2561
+          },
+          {
+            "birth": 27,
+            "live": 949,
+            "name": "",
+            "occupied": 949
+          },
+          {
+            "birth": 29,
+            "live": 2626,
+            "name": "",
+            "occupied": 2626
+          },
+          {
+            "birth": 31,
+            "live": 90,
+            "name": "",
+            "occupied": 90
+          },
+          {
+            "birth": 33,
+            "live": 284,
+            "name": "",
+            "occupied": 284
+          },
+          {
+            "birth": 35,
+            "live": 2436,
+            "name": "",
+            "occupied": 2436
+          },
+          {
+            "birth": 37,
+            "live": 1352,
+            "name": "",
+            "occupied": 1352
+          },
+          {
+            "birth": 39,
+            "live": 3995,
+            "name": "",
+            "occupied": 3995
+          },
+          {
+            "birth": 41,
+            "live": 3956,
+            "name": "",
+            "occupied": 3956
+          }
+        ]
+      ]
+    },
+    "opt_cost": 98304,
+    "opt_schedule": [
+      {
+        "end": 2,
+        "source": 0,
+        "start": 0
+      },
+      {
+        "end": 3,
+        "source": 1,
+        "start": 0
+      },
+      {
+        "end": 5,
+        "source": 0,
+        "start": 2
+      },
+      {
+        "end": 6,
+        "source": 1,
+        "start": 3
+      },
+      {
+        "end": 7,
+        "source": 0,
+        "start": 5
+      },
+      {
+        "end": 7,
+        "source": 1,
+        "start": 6
+      },
+      {
+        "end": 8,
+        "source": 0,
+        "start": 7
+      },
+      {
+        "end": 9,
+        "source": 1,
+        "start": 7
+      },
+      {
+        "end": 11,
+        "source": 0,
+        "start": 8
+      },
+      {
+        "end": 10,
+        "source": 1,
+        "start": 9
+      },
+      {
+        "end": 12,
+        "source": 0,
+        "start": 11
+      },
+      {
+        "end": 13,
+        "source": 1,
+        "start": 10
+      },
+      {
+        "end": 15,
+        "source": 0,
+        "start": 12
+      },
+      {
+        "end": 16,
+        "source": 1,
+        "start": 13
+      },
+      {
+        "end": 18,
+        "source": 0,
+        "start": 15
+      },
+      {
+        "end": 19,
+        "source": 1,
+        "start": 16
+      },
+      {
+        "end": 20,
+        "source": 0,
+        "start": 18
+      },
+      {
+        "end": 20,
+        "source": 1,
+        "start": 19
+      },
+      {
+        "end": 22,
+        "source": 0,
+        "start": 20
+      },
+      {
+        "end": 21,
+        "source": 1,
+        "start": 20
+      },
+      {
+        "end": 24,
+        "source": 0,
+        "start": 22
+      }
+    ]
+  }
+]

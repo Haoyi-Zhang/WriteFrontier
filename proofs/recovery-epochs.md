@@ -93,10 +93,11 @@ back into the original epoch. The suffix is a legal completion after `E`. QED.
 that repeatedly chooses any legal prefix completes. A nonterminal state with
 no legal prefix is infeasible.
 
-The result depends on two ordered sources, opposite destinations, frozen
-retention, and copy--flush--commit--reclaim. It is not claimed for arbitrary
-run selection, three-tier cycles, early subextent reclamation, or changing live
-sets.
+The two-index optimizer depends on two ordered sources. The safety exchange
+extends to any finite number of FIFO sources with fixed injective destinations,
+frozen retention, and copy--flush--commit--reclaim. It is not claimed for
+arbitrary selection, competing destinations, early subextent reclamation, or
+changing live sets. See the destination-routing proof below.
 
 ## 4. Linear feasibility and blocking certificates
 
@@ -229,13 +230,35 @@ Final fit gives only
 f_0 >= max(0,L_1-B_0),   f_1 >= max(0,L_0-B_1).
 ```
 
-For an integer total budget `R`, enumerating all `R+1` splits and applying the
-DP returns the best direction-sensitive allocation in
-`O((R+1)(n_0+1)(n_1+1)(n_0+n_1+1))` arithmetic operations,
-including zero budget and empty tiers. This is enumeration in the numeric
-budget, not polynomial time in its bit length. For a write budget `C`, existence of a split
-with total reserve at most `R` and cost at most `C` is monotone in `R`, so a
-bounded search yields exact inverse reserve.
+Numeric enumeration of all `R+1` exact-total splits is a correct alternative,
+but the current planner uses capacity events. Define
+
+```text
+T0 = {0} union {max(0,L1(j')-B0(i)): 1<=j'<=n1, 0<=i<=n0},
+T1 = {0} union {max(0,L0(i')-B1(j)): 1<=i'<=n0, 0<=j<=n1}.
+```
+
+**Proposition (event-cell invariance).** Rounding each free coordinate down to
+its preceding event preserves legality, final fit, and minimum cost.
+
+**Proof.** A source-0 transition from `i` to `i'` at `j` tests
+`L0(i')-L0(i)<=f1+B1(j)-L0(i)`, equivalently
+`f1>=L0(i')-B1(j)`. The source-1 guard gives the other event set.
+Nonnegative-state and final-fit tests also occur among these events (or zero).
+Thus rounding changes no edge or admissible state. Costs depend on source
+prefixes only. Every schedule remains present with identical cost. QED.
+
+Every minimal feasible vector and every minimum-reserve tie winner therefore
+lies at an event corner. `best_split_at_budget` enumerates corners with sum
+at most `R` and orders winners by `(cost,total,f0,f1)`. With
+`M=(n0+1)(n1+1)`, there are at most `M` events per coordinate and `M^2`
+corners, giving `O(M^3(n0+n1+1))` arithmetic work plus sorting. This bound is
+independent of the numeric reserve budget; integer arithmetic still has bit
+cost. `pareto_frontier` filters the same corners to a box. For common slack
+above base `a`, the only events are zero and `max(0,t-a[s])` for `t in T_s`.
+Binary search with the feasibility scan locates the first feasible event,
+and the DP is invoked only there. Tests compare all three routines against
+numeric enumeration and check a `10^12`-unit case without unit iteration.
 
 ## 9. Exact unit-exchange frontier
 
@@ -335,3 +358,37 @@ The recovery-epoch results do not claim cache hit-rate improvement, request
 latency, SSD lifetime, device write amplification, production crash safety, or
 optimal online admission/eviction. Public trace excerpts validate parsers,
 version liveness, segmentation, and certificate replay only.
+
+## Destination-routing boundary
+
+Let each FIFO source `s` have one fixed destination `d(s)!=s`, and let
+`d` be injective. Moving an already legal source-`s` segment before a
+different-source segment `t` consumes only `d(s)`, distinct from `d(t)`,
+and releases occupied space at `s`. Therefore it does not reduce the delayed
+segment's destination reserve. The additive state updates commute. Refinement
+and the FIFO bubble argument from Theorem 3 apply to any finite tier count.
+Simple directed cycles are injective and consequently preserve confluence;
+this gives no two-index optimizer for the higher-dimensional state space.
+
+Injectivity cannot simply be dropped. Three singleton all-live unit queues,
+destinations `(2,2,1)`, and free vector `(0,0,1)` have the legal complete source
+order `1,2,0`. Its free vectors are `(0,0,1),(0,1,0),(0,0,1),(1,0,0)`.
+Source 0 is initially legal too, but taking it first leaves `(1,0,0)` with
+sources 1 and 2 unfinished and neither enabled. Their required destinations
+2 and 1 have zero free space. This is a FIFO legal-choice deadlock with final
+fit; its cause is the shared destination of sources 0 and 1. Injectivity is
+sufficient for the general safety result, not necessary for every instance.
+`src/destination_model.py` checks the example without using two-tier code.
+
+## Two-start maximal-prefix baseline
+
+Each candidate prefers a starting source, takes the largest legal remaining
+prefix, and next prefers the opposite source, falling back if necessary.
+The baseline evaluates both starting preferences with the same complete input
+as the DP, selecting minimum `(cost,epochs,start_preference)`. The feasibility
+corollary covers each candidate, including zero-live and empty-tier cases.
+The scan is linear per candidate because successful scans consume segments
+and unsuccessful scans inspect only the blocked head; at most one extra
+blocked-head check occurs per epoch. Full replay uses linear output space.
+There is no universal cost-optimality assertion. The separate campaign retains
+all schedules' costs, both starts, and longer-instance counterexamples.

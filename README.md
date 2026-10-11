@@ -35,6 +35,61 @@ constant working registers, excluding input and output certificate. The checked
 successful completion. Their prefix arrays and per-epoch replay records use
 linear auxiliary validation space. Those checks are retained in the artifact.
 
+## Capacity events and identical-information greedy comparison
+
+`reserve_thresholds` derives all nonnegative capacity events from the FIFO
+guards. A source-0 edge needs `f1 >= L0(end)-B1(j)` and a source-1 edge
+needs `f0 >= L1(end)-B0(i)`. The starting live prefix cancels. Rounding a
+reserve coordinate down to its preceding event preserves the entire legal
+graph and costs. Budget splits and Pareto frontiers now enumerate event
+corners, not every allocation unit. Common-slack search binary-searches its
+event list with the linear feasibility scan and runs the cost DP once.
+This removes numeric-capacity iteration, not polynomial dependence on queue
+lengths; the number of event corners can still be large.
+
+`maximum_prefix_start` greedily takes the largest legal prefix, alternating
+source preference and falling back if blocked or exhausted.
+`two_start_maximum_prefix` simulates both starting preferences and retains
+the cheaper complete schedule. Both see exactly the DP's frozen input.
+The historical four-proxy interface and its retained files are unchanged;
+the new baseline is compared in a separate campaign:
+
+```sh
+python -B -m unittest discover -s tests -p test_frontier_events.py -v
+python -B run_policy_frontier.py
+```
+
+The campaign retains `results/policy-frontier/instances.json.gz`,
+`policy-costs.csv.gz`, `summary.json`, and counterexample `witnesses.json`.
+It reruns all 5,184 retained frontier inputs, all eight public episodes, and
+adds 1,536 and 768 costed episodes with 3--12 and 16--32 segments per tier.
+These are 256 and 128 generated ordered patterns under six cost models,
+not 2,304 independent workloads. Large-queue cost models use scaled quanta
+and commit charges. All seven policy costs are retained with the exact
+minimum; both DPs and the separate raw-tuple oracle agree in all 7,496 cases.
+
+Two-start is optimal on all 5,184 small frontiers and eight public episodes.
+Those domains show no DP cost benefit over it. It is optimal on 1,315/1,536
+short generated cases and 500/768 long generated cases; maximum exact ratios
+are `51/43` and `325/231`. These are modeled-cost observations, not speed,
+cache hit-rate, production traffic, or an approximation guarantee.
+
+`src/destination_model.py` uses primitive tuples to check fixed multi-tier
+routes. A simple cycle has distinct destinations and the FIFO exchange proof
+still applies. The actual counterexample is shared-destination competition:
+three singleton live-unit queues, routes `(2,2,1)`, reserve `(0,0,1)`.
+Order `1,2,0` completes; the legal first action 0 strands sources 1 and 2.
+The campaign also checks 1,728 three-cycle instances, with zero violations
+among 11,580 legal edges from 7,724 viable nonterminal states.
+
+The storage-operation contract is stated in the paper: occupied and retained
+sizes must include allocation overhead; the allocator must realize aggregate
+reserve; flush must precede atomic recovery publication; committed outputs
+must remain; metadata capacity is separate. For `q=1`, allocation-unit traffic
+has an exact occupancy correspondence. For `q>1`, transfer rounding is valid
+only when output occupancy remains live size. Page-rounded output allocation
+would change the capacity guard. No concrete storage executor is implemented.
+
 ## Requirements and resource contract
 
 - Linux with Python 3.10 or later; standard library only.
@@ -62,7 +117,7 @@ python run_unordered_boundary.py --all --out reproduced-boundary
 python verify_unordered_boundary.py results/unordered-boundary reproduced-boundary
 ```
 
-The preceding unit suite contains 69 tests, including six exact gain/write scoring
+The historical unit suite contained 69 tests, including six exact gain/write scoring
 regressions. Gain/write compares rational scores exactly; positive occupied
 gain at zero cost ranks first, with the documented tie rules unchanged.
 The core verifier checks 24 deterministic

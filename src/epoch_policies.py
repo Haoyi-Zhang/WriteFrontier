@@ -161,6 +161,67 @@ def gain_per_write(instance: EpochInstance) -> PolicyResult:
     return _run_policy(instance, "gain-per-write")
 
 
+def maximum_prefix_start(instance: EpochInstance, first_source: int) -> PolicyResult:
+    """Alternate maximal feasible prefixes, preferring the declared start.
+
+    If the preferred source is blocked or exhausted, try the other source.
+    Each segment is examined at most once successfully and once as a blocked
+    head per epoch. No optimizer, future requests, or extra retention data are
+    consulted. Capacity is maintained incrementally and the result is replayed.
+    """
+    if type(first_source) is not int or first_source not in (0, 1):
+        raise ValueError("first_source must be 0 or 1")
+    indices = [0, 0]
+    free = list(instance.free)
+    preferred = first_source
+    schedule: list[Batch] = []
+    while tuple(indices) != instance.lengths:
+        selected = None
+        for source in (preferred, 1 - preferred):
+            start = indices[source]
+            end = start
+            occupied = live = 0
+            tier = instance.tiers[source]
+            while end < len(tier) and live + tier[end].live <= free[1 - source]:
+                occupied += tier[end].occupied
+                live += tier[end].live
+                end += 1
+            if end > start:
+                selected = source, start, end, occupied, live
+                break
+        if selected is None:
+            return PolicyResult("maximum-prefix-start-" + str(first_source), "blocked",
+                                tuple(schedule), None, lower_bound(instance),
+                                "no source has a legal non-empty prefix")
+        source, start, end, occupied, live = selected
+        schedule.append(Batch(source, start, end))
+        indices[source] = end
+        free[source] += occupied
+        free[1 - source] -= live
+        preferred = 1 - source
+    checked = replay(instance, schedule)
+    return PolicyResult("maximum-prefix-start-" + str(first_source), "complete",
+                        tuple(schedule), checked["cost"], lower_bound(instance))
+
+
+def two_start_maximum_prefix(instance: EpochInstance) -> PolicyResult:
+    """Run both start preferences under the same frozen input and retain cheaper.
+
+    Cost, then epoch count, then source-0 preference break ties. This is an
+    offline two-candidate baseline, not a claim of cost optimality.
+    """
+    candidates = [maximum_prefix_start(instance, source) for source in (0, 1)]
+    complete = [(r, source) for source, r in enumerate(candidates)
+                if r.status == "complete"]
+    if not complete:
+        r = candidates[0]
+        return PolicyResult("two-start-maximum-prefix", r.status, r.schedule,
+                            r.cost, r.lower_bound, r.reason)
+    r, _ = min(complete, key=lambda item: (item[0].cost, len(item[0].schedule), item[1]))
+    return PolicyResult("two-start-maximum-prefix", "complete", r.schedule,
+                        r.cost, r.lower_bound)
+
+
 def all_policies(instance: EpochInstance) -> tuple[PolicyResult, ...]:
     return (
         lru_tiered_proxy(instance),

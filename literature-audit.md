@@ -31,7 +31,7 @@ Similarity of terminology is not treated as novelty.
 | F4 | SepBIT, FAST'22 | Introduction; invalidation inference; placement; implementation; evaluation | Infer block invalidation time and separate data to reduce future GC copying | Multiple workloads/traces and devices; WA and prediction figures | Lifetime prediction changes placement and future recopying; frozen recovery epochs do not subsume it |
 | F5 | MiDAS, FAST'24 | Introduction; WA definition; grouping model; adaptive configuration; evaluation | Adapt age-group number and size rather than use a fixed grouping | Broad workload study and system comparison | Application/user writes are the relevant denominator for system WAF; modeled migration traffic must be labeled separately |
 | F6 | DOGI, FAST'26 | Introduction; oracle analysis; design; evaluation | Use an oracle to expose placement structure, then derive a practical approximation | Trace corpus, oracle gap, implementation and comparisons | Establishes an oracle-to-online evaluation pattern and points to broader SSD-management theory |
-| F7 | MINOS, FAST'27 prepublication | Formal model; OP-minimized oracle; online approximation; implementation; evaluation | Optimize invalidation-time separation under limited streams, then approximate online | Reported 170 workloads and 500 TiB; theory-to-system narrative | Prevents a broad “theoretical WAF=1” or separation novelty claim; the present theorem concerns reserve/transaction fragmentation instead |
+| F7 | MINOS, FAST'27 prepublication | Formal model; OP-minimized oracle; online approximation; implementation; evaluation | Optimize invalidation-time separation under limited streams, then approximate online | Reported 170 workloads and 500 TiB; theory-to-system narrative | Prevents a broad ��theoretical WAF=1�� or separation novelty claim; the present theorem concerns reserve/transaction fragmentation instead |
 | F8 | F2FS, FAST'15 | Motivation; on-disk layout; cleaning; recovery; evaluation | Make a log-structured file system explicitly flash-aware | Full file system and flash benchmark suite | Supplies standard cleaning/recovery vocabulary and concrete-system evidence expectations |
 | F9 | ARC, FAST'03 | Policy definition; adaptation; complexity; trace evaluation | Adapt between recency and frequency without workload-specific tuning | 23 traces and hit-ratio comparisons | A replacement-policy claim requires hit/miss traces and policy semantics; local batching proxies are not ARC alternatives |
 | F10 | RIPQ, FAST'15 | Workload; framework; policy mappings; implementation; evaluation | Aggregate flash-cache writes while supporting priority-based replacement | Facebook photo trace, hit ratio, throughput and device concerns | Closest cache-policy/flash-write system; the paper's frozen retention excludes its policy tradeoff |
@@ -44,7 +44,7 @@ Similarity of terminology is not treated as novelty.
 | C5 | Monkey, SIGMOD'17 | Cost model; optimal allocation; implementation; evaluation | Derive an analytical optimum for Bloom-filter allocation, then validate in a KV store | Theory plus system benchmarks | Closest model-to-optimizer story; motivates a structural theorem beyond a generic shortest path |
 | A1 | Flashield, NSDI'19 | Workload; admission model; architecture; implementation; evaluation | Admit objects predicted to be reused to control flash write rate | Production-derived traces and system prototype | Admission creates a variable retained set, an explicit mechanism excluded from this paper |
 | A2 | Kangaroo, SOSP'21 | Workload constraints; two-part architecture; analysis; implementation; evaluation | Combine a small log and set-associative flash cache for tiny objects | Trace-driven/device evaluation and design tradeoffs | Closest tiered tiny-object cache; includes hit/DRAM/write tradeoffs absent from the model |
-| A3 | SIEVE, NSDI'24 | Algorithm; analysis; library integrations; trace and throughput evaluation | Use a simple scan/reinsertion-style eviction primitive with low synchronization cost | 1,559 traces from seven sources and five production libraries | Demonstrates the evidence needed to call something an eviction policy; local “LRU-tiered” is therefore labeled a proxy |
+| A3 | SIEVE, NSDI'24 | Algorithm; analysis; library integrations; trace and throughput evaluation | Use a simple scan/reinsertion-style eviction primitive with low synchronization cost | 1,559 traces from seven sources and five production libraries | Demonstrates the evidence needed to call something an eviction policy; local ��LRU-tiered�� is therefore labeled a proxy |
 | A4 | SILK, ATC'19 | Tail-latency diagnosis; scheduling design; implementation; evaluation | Schedule LSM compaction to protect foreground performance | RocksDB implementation, workload and latency evidence | Real compaction scheduling optimizes time and interference, not only frozen byte traffic |
 | A5 | PebblesDB, SOSP'17 | Fragmented LSM structure; implementation; tradeoff analysis; evaluation | Use fragmented guard ranges to reduce write amplification | KV-store prototype and read/write/space tradeoff study | Closest compaction-layout alternative; the present model fixes layout and destination |
 
@@ -77,7 +77,13 @@ cache policies.
 
 *Cost-Oblivious Storage Reallocation* already models coexistence of old and new
 copies across checkpointed mapping updates and analyzes additional workspace.
-Therefore, “copy before reclaim needs temporary space” is not a novelty claim.
+The supplied [PODS'14 primary text](https://people.cs.georgetown.edu/~jfineman/papers/cost-obliv.pdf)
+states Theorem 1's online footprint factor `1+epsilon` and amortized movement
+factor `O((1/epsilon) log(1/epsilon))` for unknown monotone subadditive object
+costs. Sections 3.1--3.2 keep copies until system-initiated checkpoints, use
+additive largest-object workspace `Delta`, and bound checkpoints per flush.
+These are not comparisons to a minimum-cost frozen two-arena batch schedule.
+Therefore, ��copy before reclaim needs temporary space�� is not a novelty claim.
 The present delta is the ordered two-source exchange structure, legal-step
 confluence, separation of linear feasibility from transaction-fragmentation
 cost, and the exact reserve/cost family under a declared recovery epoch.
@@ -167,7 +173,7 @@ review or proof-assistant checking. The principal external-review risk is
 significance: a reviewer may judge the two-tier frozen episode too narrow for a
 FAST long paper without a system prototype or broader model. That is not hidden
 by the exhaustive small-domain evidence. A second risk is assumption
-sensitivity: arbitrary selection, more than two cyclic tiers, changing
+sensitivity: arbitrary selection, shared-destination competition, changing
 retention, early subextent reclaim, or non-atomic metadata can invalidate the
 safety theorem. The paper states those exclusions explicitly.
 
