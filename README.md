@@ -37,6 +37,11 @@ linear auxiliary validation space. Those checks are retained in the artifact.
 
 ## Capacity events and identical-information greedy comparison
 
+The separate offline coalesced portfolio and its full retained-input comparison
+are documented in [Coalesced same-input portfolio](README-coalesced-portfolio.md).
+That usage guide explains the new rows, conditioned epoch metric, residual
+gaps and reproduction commands; original raw policy results remain unchanged.
+
 `reserve_thresholds` derives all nonnegative capacity events from the FIFO
 guards. A source-0 edge needs `f1 >= L0(end)-B1(j)` and a source-1 edge
 needs `f0 >= L1(end)-B0(i)`. The starting live prefix cancels. Rounding a

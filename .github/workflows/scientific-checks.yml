@@ -33,6 +33,7 @@ jobs:
             ulimit -t 2700
             taskset -c "$cpu" timeout --kill-after=30s 45m bash -euo pipefail <<'CHECKS'
           python -B -m unittest discover -s tests -v 2>&1 | tee scientific-output/unit-tests.log
+          python -B run_coalesced_portfolio.py --check-existing 2>&1 | tee scientific-output/coalesced-portfolio.log
           python -B validate_reference_audit.py 2>&1 | tee scientific-output/reference-inventory.log
           python -B run.py --all --out scientific-output/frontier 2>&1 | tee scientific-output/core.log
           python -B verify_results.py results/frontier scientific-output/frontier 2>&1 | tee scientific-output/core-verification.log

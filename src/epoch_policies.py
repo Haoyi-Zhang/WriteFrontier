@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from fractions import Fraction
+from typing import Iterable
 
 from epoch_model import Batch, EpochInstance, batch_cost, batch_totals, lower_bound, replay
 
@@ -229,3 +230,82 @@ def all_policies(instance: EpochInstance) -> tuple[PolicyResult, ...]:
         size_tiered_proxy(instance),
         gain_per_write(instance),
     )
+
+
+def coalesce_adjacent_same_source(schedule: Iterable[Batch]) -> tuple[Batch, ...]:
+    """Purely coalesce contiguous adjacent epochs from the same source.
+
+    The caller must replay the input and output against its instance. For a
+    legal schedule, no opposite-source reclaim lies between these epochs, so
+    their combined live payload already fit before the first epoch. This does
+    not preserve a proxy's original fan-in limit; it defines a separate variant.
+    """
+    merged: list[Batch] = []
+    for batch in schedule:
+        if not isinstance(batch, Batch):
+            raise TypeError("schedule must contain Batch objects")
+        if merged and merged[-1].source == batch.source:
+            previous = merged.pop()
+            if previous.end != batch.start:
+                raise ValueError("adjacent same-source intervals must be contiguous")
+            merged.append(Batch(batch.source, previous.start, batch.end))
+        else:
+            merged.append(batch)
+    return tuple(merged)
+
+
+def coalesced_policy_candidates(instance: EpochInstance) -> tuple[PolicyResult, ...]:
+    """Replayed coalesced variants of the four proxies and two-start baseline.
+
+    Original policy functions, their schedules and all_policies remain unchanged.
+    Only the frozen instance is consulted; no solver or optimum is imported.
+    """
+    candidates: list[PolicyResult] = []
+    for raw in (*all_policies(instance), two_start_maximum_prefix(instance)):
+        complete = raw.status == "complete"
+        before = replay(instance, raw.schedule, require_complete=complete)
+        schedule = coalesce_adjacent_same_source(raw.schedule)
+        after = replay(instance, schedule, require_complete=complete)
+        if after["free"] != before["free"] or after["cost"] > before["cost"]:
+            raise AssertionError("coalescing changed capacity or increased cost")
+        candidates.append(PolicyResult(
+            "coalesced-" + raw.policy, raw.status, schedule,
+            after["cost"] if complete else None, lower_bound(instance), raw.reason,
+        ))
+    return tuple(candidates)
+
+
+def select_replayed_portfolio(
+    instance: EpochInstance,
+    candidates: Iterable[PolicyResult],
+    *,
+    name: str = "coalesced-portfolio",
+) -> PolicyResult:
+    """Select by replayed (cost, epoch count, name), never a claimed optimum.
+
+    Candidate cost/lower-bound fields are not selection inputs. Complete
+    candidates must replay completely; malformed schedules raise. A complete
+    result's reason records the selected candidate name.
+    """
+    winner: tuple[int, int, str, tuple[Batch, ...]] | None = None
+    for candidate in candidates:
+        if candidate.status != "complete":
+            continue
+        checked = replay(instance, candidate.schedule)
+        score = (checked["cost"], len(candidate.schedule), candidate.policy)
+        if winner is None or score < winner[:3]:
+            winner = (*score, candidate.schedule)
+    if winner is None:
+        return PolicyResult(name, "blocked", (), None, lower_bound(instance),
+                            "no candidate completed")
+    return PolicyResult(name, "complete", winner[3], winner[0],
+                        lower_bound(instance), winner[2])
+
+
+def coalesced_portfolio(instance: EpochInstance) -> PolicyResult:
+    """Offline fixed-input portfolio with no optimizer truth in selection.
+
+    It may inspect the whole frozen queue and simulate multiple candidates.
+    This is not a causal/online policy or a no-lookahead claim.
+    """
+    return select_replayed_portfolio(instance, coalesced_policy_candidates(instance))

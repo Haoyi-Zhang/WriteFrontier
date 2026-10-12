@@ -1,7 +1,9 @@
 """Crash-prefix checker for recovery-epoch commit ordering.
 
-The checker models durable payload extents and checksummed atomic commit
-records.  It does not emulate sectors, controllers, filesystems, or power loss.
+The checker models durable payload extents and abstract atomic pointer-set
+commits. A torn-commit control uses an explicit invalid-record marker and the
+precommit mapping; no checksum bytes are computed. It does not emulate sectors,
+controllers, filesystems, or power loss.
 """
 from __future__ import annotations
 
@@ -9,6 +11,14 @@ from dataclasses import dataclass
 from typing import Iterable
 
 from epoch_model import Batch, EpochInstance, batch_totals, replay
+
+
+SUPPORTED_MUTATIONS = (
+    "publish-before-flush",
+    "reclaim-before-commit",
+    "truncate-persisted-payload",
+    "torn-commit-reclaim",
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -71,7 +81,15 @@ def check_schedule(
     schedule: Iterable[Batch],
     mutation: str | None = None,
 ) -> dict:
-    """Inspect every modeled crash boundary of one complete legal schedule."""
+    """Inspect every modeled crash boundary of one complete legal schedule.
+
+    Reject invalid selectors before consuming the schedule or simulating events.
+    """
+    if mutation is not None:
+        if type(mutation) is not str:
+            raise TypeError("mutation must be None or a supported string")
+        if mutation not in SUPPORTED_MUTATIONS:
+            raise ValueError(f"unknown recovery mutation: {mutation!r}")
     schedule = tuple(schedule)
     replay(instance, schedule)
     token_map = _tokens(instance)
@@ -124,7 +142,7 @@ def check_schedule(
                 durable.pop(precommit[key], None)
             checkpoint(f"epoch {epoch}: premature reclaim")
         if mutation == "torn-commit-reclaim":
-            # A checksum failure makes recovery ignore the new mapping.
+            # The abstract invalid-record marker selects the precommit mapping.
             for key in keys:
                 pointers[key] = new_extents[key]
             checkpoint(f"epoch {epoch}: torn commit", commit_valid=False, precommit=precommit)
@@ -157,12 +175,7 @@ def check_corpus(corpus: Iterable[tuple[EpochInstance, tuple[Batch, ...]]]) -> R
     normal_boundaries = normal_failures = 0
     mutation_runs = mutation_boundaries = mutation_runs_detected = mutation_failures = 0
     all_dead_schedules = 0
-    mutations = (
-        "publish-before-flush",
-        "reclaim-before-commit",
-        "truncate-persisted-payload",
-        "torn-commit-reclaim",
-    )
+    mutations = SUPPORTED_MUTATIONS
     mutation_classes = {
         mutation: {
             "runs": 0,
