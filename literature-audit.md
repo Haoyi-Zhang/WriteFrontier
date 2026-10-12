@@ -177,8 +177,5 @@ sensitivity: arbitrary selection, shared-destination competition, changing
 retention, early subextent reclaim, or non-atomic metadata can invalidate the
 safety theorem. The paper states those exclusions explicitly.
 
-Before submission, human authors should independently read the closest papers,
-validate theorem proofs and code, decide whether the scoped contribution meets
-the venue's significance bar, and satisfy current originality, authorship,
-AI-use, anonymization, and resubmission policies. This audit is research support,
-not an independent reviewer report or acceptance prediction.
+This literature record supports the stated model comparison and source-level
+positioning of the two-log scheduling results.
