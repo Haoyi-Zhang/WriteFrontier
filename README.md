@@ -6,10 +6,26 @@ ordered two-tier recovery-epoch model, exact optimizer, linear feasibility
 certificate, deterministic policy proxies, crash-prefix checker, complete
 bounded campaign, and a retained arbitrary-selection boundary model.
 
-The artifact is standard-library Python. It requires no network, package
-installation, GPU, model API, hidden cache, or parent project. It models byte
+The core experiments use standard-library Python. They require no network, package
+installation, GPU, model API, hidden cache, or parent project. The model concerns byte
 capacity and persistence order; it is not a production cache, filesystem, FTL,
 or SSD benchmark.
+
+## Statistical figures
+
+The optional `plots/draw_frontiers.py` helper renders the retained reserve/epoch
+and slack curves from `results/frontier/unit-exchange-frontier.csv` and
+`results/frontier/slack-curve.csv`. It uses Matplotlib and XeLaTeX with Linux
+Libertine text and Libertinus Math; these are figure-authoring dependencies,
+not dependencies of the core experiments or tests. No font files are bundled.
+
+From this repository, run `python plots/draw_frontiers.py --output-dir figures`.
+It writes `unit-frontier.pdf` and `slack-curve.pdf` as vector graphics, without
+rerunning the campaigns. The first curve plots minimum recovery epochs for
+128 unit-live segments per tier. The second plots the percentage of the 5,184
+retained patterns reaching the lower bound within an additional total-reserve
+budget. Plotting preserves the recorded points; it does not estimate runtime
+performance.
 
 ## Main result encoded by the artifact
 
