@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-10-14T19:36:07.341044+00:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.28000-SP0",
+  "cpu": {
+    "Name": "12th Gen Intel(R) Core(TM) i7-12700KF",
+    "NumberOfCores": 12,
+    "NumberOfLogicalProcessors": 20
+  },
+  "filesystem": "NTFS",
+  "filesystem_allocation_bytes": 4096,
+  "disk": "Micron_3400_MTFDKBA1T0TFH",
+  "physical_devices": 1,
+  "unit_bytes": 512,
+  "q": 1,
+  "mu": 1,
+  "repeats": 5,
+  "cache": "normal buffered OS files, unbuffered Python handles; no OS cache purge",
+  "method_order": "rotate three methods by repetition; each case always includes all three",
+  "whole_system_cpu_busy_fraction": 0.6932056969413962,
+  "resource_scope": "four participating measurement slots; ordinary OS load remains",
+  "metric_scope": "successful file-API payload/descriptor writes and returned fsync",
+  "source_inputs": {
+    "run_file_io_calibration.py": {
+      "normalization": "UTF-8/LF",
+      "digest": "2b136aeed3b42e85cb20f55132491a484b5fc26a6e2930b512a28826855e1c64"
+    },
+    "src/file_io_replay.py": {
+      "normalization": "UTF-8/LF",
+      "digest": "bab61d9a660516c5ec84790a673f53c289ab8e85fa466423794adba1a054e494"
+    },
+    "src/epoch_model.py": {
+      "normalization": "UTF-8/LF",
+      "digest": "36ea465252d1be3e6525a88edb46a72f087d3a259c184653b539da3590ead6ce"
+    },
+    "src/epoch_dp.py": {
+      "normalization": "UTF-8/LF",
+      "digest": "e7f044c70afeaa0ad9f6ee1e77deec38fbdb207f9f76802614ba39ade80560ea"
+    },
+    "src/epoch_policies.py": {
+      "normalization": "UTF-8/LF",
+      "digest": "00b9272c726fbe70c80cc908a69fa833f8710fdd0da20fffaa5b33c7fae64cb5"
+    },
+    "src/independent_audit.py": {
+      "normalization": "UTF-8/LF",
+      "digest": "f4e797451b61933d382b3e24d788590c73d1e7ee3866614a7f3c6022395b1d82"
+    },
+    "results/policy-frontier/instances.json.gz": {
+      "normalization": "binary",
+      "digest": "1605260f4bb7204f8537023863a44147c453962fb808e8b469b6790919d4db27"
+    }
+  },
+  "test_scope": "nine methods at measurement; eleven file-I/O methods tested afterward"
+}

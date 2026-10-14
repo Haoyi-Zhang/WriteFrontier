@@ -109,7 +109,47 @@ reserve; flush must precede atomic recovery publication; committed outputs
 must remain; metadata capacity is separate. For `q=1`, allocation-unit traffic
 has an exact occupancy correspondence. For `q>1`, transfer rounding is valid
 only when output occupancy remains live size. Page-rounded output allocation
-would change the capacity guard. No concrete storage executor is implemented.
+would change the capacity guard. The optional file executor below implements
+the exact-unit application-write slice of this operation.
+
+## File-API replay
+
+The standard-library executor reserves disjoint 512-byte destination units,
+copies retained payload, returns from payload sync before writing and syncing
+one fixed 512-byte descriptor, then logically releases the old source prefix.
+A frozen manifest and committed descriptors reconstruct record locations.
+The descriptor area is reserved separately. This is a file-API contract;
+filesystem/controller writes and physical power-loss behavior require
+lower-layer validation.
+
+`results/file-io-calibration/` contains 300 actual trials: the first 16 retained
+longer-queue inputs with `q=1, mu=1`, three reserve controls, and one all-dead
+control; three planners; five fresh repetitions with rotating order. Every
+reopened payload verifies and measured successful episode writes equal the
+declared cost. Two-start, coalesced portfolio and DP tie on write bytes in all
+20 inputs. The 16-unit all-live controls use 17, 5 and 2 epochs at reserve
+1, 4 and 16, writing 25,088, 18,944 and 17,408 bytes respectively.
+Initialization, planning and reopen verification remain separately recorded.
+
+The saved host is CPython 3.12.14 on Windows 11 Pro 10.0.28000, an i7-12700KF,
+and NTFS on a Micron 3400 NVMe device. Both arenas share this device. Ordinary
+OS caching and approximately 69% observed system CPU activity prevent small
+timing differences from establishing a policy ranking. No dependency install
+is needed. Executed source/input bindings use documented UTF-8/LF normalization
+for text so that public checkout line endings do not invalidate the record.
+
+```sh
+python -B -m unittest discover -s tests -p 'test_file_io*.py' -v
+python -B verify_file_io_measurements.py
+python -B run_file_io_calibration.py --out file-io-observations
+```
+
+The first two commands check the adapter and saved observations, without
+retiming. The last command measures a new, previously absent output directory
+on the invoking machine; it does not reproduce the old host's elapsed times.
+Eleven adapter tests include twelve actual child-process exit/reopen boundaries;
+four additional methods check the saved packet, missing/duplicate trials,
+false reopened results, modified byte counts, and modified summaries.
 
 ## Requirements and resource contract
 

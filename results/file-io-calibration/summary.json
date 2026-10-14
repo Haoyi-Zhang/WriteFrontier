@@ -1,0 +1,842 @@
+{
+  "all_reopened_reads_verified": true,
+  "calibration": {
+    "commit_sync_ms_median": 0.34435,
+    "payload_sync_ms_median_nonempty": 0.36515,
+    "scope": "successful unbuffered file writes and returned fsync, not device bytes; no cold-cache control"
+  },
+  "cases": 20,
+  "file_cost_disagreements": 0,
+  "per_case": [
+    {
+      "case_id": "0-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 7,
+          "execute_ms_max": 7.7937,
+          "execute_ms_median": 6.1354,
+          "execute_ms_min": 4.8869,
+          "file_write_bytes": 96256,
+          "model_cost_units": 188,
+          "plan_execute_ms_median": 6.946,
+          "recovery_ms_median": 0.6284,
+          "setup_ms_median": 3.9936
+        },
+        "optimal": {
+          "epochs": 7,
+          "execute_ms_max": 6.0631,
+          "execute_ms_median": 5.6923,
+          "execute_ms_min": 4.8939,
+          "file_write_bytes": 96256,
+          "model_cost_units": 188,
+          "plan_execute_ms_median": 5.7697,
+          "recovery_ms_median": 0.4744,
+          "setup_ms_median": 3.1128
+        },
+        "two-start": {
+          "epochs": 7,
+          "execute_ms_max": 6.3744,
+          "execute_ms_median": 5.6841,
+          "execute_ms_min": 4.8179,
+          "file_write_bytes": 96256,
+          "model_cost_units": 188,
+          "plan_execute_ms_median": 5.7983,
+          "recovery_ms_median": 0.5158,
+          "setup_ms_median": 3.8158
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "1-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 3,
+          "execute_ms_max": 3.2557,
+          "execute_ms_median": 2.6479,
+          "execute_ms_min": 2.1223,
+          "file_write_bytes": 46080,
+          "model_cost_units": 90,
+          "plan_execute_ms_median": 3.3039,
+          "recovery_ms_median": 0.575,
+          "setup_ms_median": 3.1274
+        },
+        "optimal": {
+          "epochs": 3,
+          "execute_ms_max": 2.9807,
+          "execute_ms_median": 2.7999,
+          "execute_ms_min": 2.5161,
+          "file_write_bytes": 46080,
+          "model_cost_units": 90,
+          "plan_execute_ms_median": 3.5283,
+          "recovery_ms_median": 0.3582,
+          "setup_ms_median": 3.5944
+        },
+        "two-start": {
+          "epochs": 3,
+          "execute_ms_max": 2.7834,
+          "execute_ms_median": 2.4062,
+          "execute_ms_min": 2.1884,
+          "file_write_bytes": 46080,
+          "model_cost_units": 90,
+          "plan_execute_ms_median": 2.4933,
+          "recovery_ms_median": 0.7219,
+          "setup_ms_median": 2.8315
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "2-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 3,
+          "execute_ms_max": 3.1863,
+          "execute_ms_median": 3.1221,
+          "execute_ms_min": 2.6789,
+          "file_write_bytes": 61440,
+          "model_cost_units": 120,
+          "plan_execute_ms_median": 3.6694,
+          "recovery_ms_median": 0.5966,
+          "setup_ms_median": 3.4035
+        },
+        "optimal": {
+          "epochs": 3,
+          "execute_ms_max": 3.2401,
+          "execute_ms_median": 2.8536,
+          "execute_ms_min": 2.6597,
+          "file_write_bytes": 61440,
+          "model_cost_units": 120,
+          "plan_execute_ms_median": 3.6463,
+          "recovery_ms_median": 0.3944,
+          "setup_ms_median": 3.5522
+        },
+        "two-start": {
+          "epochs": 3,
+          "execute_ms_max": 3.2731,
+          "execute_ms_median": 2.8872,
+          "execute_ms_min": 2.7241,
+          "file_write_bytes": 61440,
+          "model_cost_units": 120,
+          "plan_execute_ms_median": 2.939,
+          "recovery_ms_median": 0.6209,
+          "setup_ms_median": 3.4084
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "3-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 4,
+          "execute_ms_max": 3.8186,
+          "execute_ms_median": 3.6442,
+          "execute_ms_min": 3.3996,
+          "file_write_bytes": 78848,
+          "model_cost_units": 154,
+          "plan_execute_ms_median": 4.531,
+          "recovery_ms_median": 0.6812,
+          "setup_ms_median": 3.5563
+        },
+        "optimal": {
+          "epochs": 4,
+          "execute_ms_max": 4.0682,
+          "execute_ms_median": 3.6227,
+          "execute_ms_min": 3.5834,
+          "file_write_bytes": 78848,
+          "model_cost_units": 154,
+          "plan_execute_ms_median": 4.0236,
+          "recovery_ms_median": 0.7123,
+          "setup_ms_median": 3.6374
+        },
+        "two-start": {
+          "epochs": 4,
+          "execute_ms_max": 3.9729,
+          "execute_ms_median": 3.6731,
+          "execute_ms_min": 2.9092,
+          "file_write_bytes": 78848,
+          "model_cost_units": 154,
+          "plan_execute_ms_median": 3.7598,
+          "recovery_ms_median": 0.6772,
+          "setup_ms_median": 3.5842
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "4-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 8,
+          "execute_ms_max": 7.1487,
+          "execute_ms_median": 6.7988,
+          "execute_ms_min": 6.3716,
+          "file_write_bytes": 132096,
+          "model_cost_units": 258,
+          "plan_execute_ms_median": 7.9241,
+          "recovery_ms_median": 0.9173,
+          "setup_ms_median": 4.132
+        },
+        "optimal": {
+          "epochs": 8,
+          "execute_ms_max": 7.2837,
+          "execute_ms_median": 6.9103,
+          "execute_ms_min": 6.6467,
+          "file_write_bytes": 132096,
+          "model_cost_units": 258,
+          "plan_execute_ms_median": 7.0465,
+          "recovery_ms_median": 0.936,
+          "setup_ms_median": 3.7633
+        },
+        "two-start": {
+          "epochs": 8,
+          "execute_ms_max": 7.8828,
+          "execute_ms_median": 7.2321,
+          "execute_ms_min": 7.0354,
+          "file_write_bytes": 132096,
+          "model_cost_units": 258,
+          "plan_execute_ms_median": 7.3094,
+          "recovery_ms_median": 0.9379,
+          "setup_ms_median": 3.8421
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "5-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 5,
+          "execute_ms_max": 4.2182,
+          "execute_ms_median": 4.0915,
+          "execute_ms_min": 3.5509,
+          "file_write_bytes": 78336,
+          "model_cost_units": 153,
+          "plan_execute_ms_median": 4.9803,
+          "recovery_ms_median": 0.7131,
+          "setup_ms_median": 3.4876
+        },
+        "optimal": {
+          "epochs": 5,
+          "execute_ms_max": 4.2838,
+          "execute_ms_median": 4.2437,
+          "execute_ms_min": 4.024,
+          "file_write_bytes": 78336,
+          "model_cost_units": 153,
+          "plan_execute_ms_median": 4.6046,
+          "recovery_ms_median": 0.6999,
+          "setup_ms_median": 3.6039
+        },
+        "two-start": {
+          "epochs": 5,
+          "execute_ms_max": 4.2905,
+          "execute_ms_median": 4.055,
+          "execute_ms_min": 3.8869,
+          "file_write_bytes": 78336,
+          "model_cost_units": 153,
+          "plan_execute_ms_median": 4.1477,
+          "recovery_ms_median": 0.6926,
+          "setup_ms_median": 3.5829
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "6-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 3,
+          "execute_ms_max": 3.0142,
+          "execute_ms_median": 2.769,
+          "execute_ms_min": 2.4807,
+          "file_write_bytes": 95744,
+          "model_cost_units": 187,
+          "plan_execute_ms_median": 3.453,
+          "recovery_ms_median": 0.8589,
+          "setup_ms_median": 3.4424
+        },
+        "optimal": {
+          "epochs": 3,
+          "execute_ms_max": 3.4066,
+          "execute_ms_median": 3.2568,
+          "execute_ms_min": 2.5483,
+          "file_write_bytes": 95744,
+          "model_cost_units": 187,
+          "plan_execute_ms_median": 3.7127,
+          "recovery_ms_median": 0.498,
+          "setup_ms_median": 3.3349
+        },
+        "two-start": {
+          "epochs": 3,
+          "execute_ms_max": 3.7905,
+          "execute_ms_median": 3.1635,
+          "execute_ms_min": 2.8018,
+          "file_write_bytes": 95744,
+          "model_cost_units": 187,
+          "plan_execute_ms_median": 3.2245,
+          "recovery_ms_median": 0.4578,
+          "setup_ms_median": 3.8842
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "7-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 3,
+          "execute_ms_max": 3.4359,
+          "execute_ms_median": 3.2649,
+          "execute_ms_min": 2.9591,
+          "file_write_bytes": 75264,
+          "model_cost_units": 147,
+          "plan_execute_ms_median": 3.9641,
+          "recovery_ms_median": 0.8048,
+          "setup_ms_median": 3.6449
+        },
+        "optimal": {
+          "epochs": 3,
+          "execute_ms_max": 3.2243,
+          "execute_ms_median": 2.7409,
+          "execute_ms_min": 2.7202,
+          "file_write_bytes": 75264,
+          "model_cost_units": 147,
+          "plan_execute_ms_median": 3.0344,
+          "recovery_ms_median": 0.6505,
+          "setup_ms_median": 3.4645
+        },
+        "two-start": {
+          "epochs": 3,
+          "execute_ms_max": 3.1799,
+          "execute_ms_median": 2.819,
+          "execute_ms_min": 2.6895,
+          "file_write_bytes": 75264,
+          "model_cost_units": 147,
+          "plan_execute_ms_median": 2.8769,
+          "recovery_ms_median": 0.6275,
+          "setup_ms_median": 3.4288
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "8-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 7,
+          "execute_ms_max": 6.1712,
+          "execute_ms_median": 5.5357,
+          "execute_ms_min": 4.7955,
+          "file_write_bytes": 174080,
+          "model_cost_units": 340,
+          "plan_execute_ms_median": 6.2974,
+          "recovery_ms_median": 1.1004,
+          "setup_ms_median": 3.3074
+        },
+        "optimal": {
+          "epochs": 7,
+          "execute_ms_max": 6.6499,
+          "execute_ms_median": 5.7786,
+          "execute_ms_min": 5.0154,
+          "file_write_bytes": 174080,
+          "model_cost_units": 340,
+          "plan_execute_ms_median": 6.1565,
+          "recovery_ms_median": 0.66,
+          "setup_ms_median": 3.6096
+        },
+        "two-start": {
+          "epochs": 7,
+          "execute_ms_max": 6.2045,
+          "execute_ms_median": 5.8318,
+          "execute_ms_min": 5.1494,
+          "file_write_bytes": 174080,
+          "model_cost_units": 340,
+          "plan_execute_ms_median": 5.9392,
+          "recovery_ms_median": 0.8038,
+          "setup_ms_median": 3.5371
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "9-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 5,
+          "execute_ms_max": 4.0466,
+          "execute_ms_median": 3.4787,
+          "execute_ms_min": 3.221,
+          "file_write_bytes": 58368,
+          "model_cost_units": 114,
+          "plan_execute_ms_median": 4.1047,
+          "recovery_ms_median": 0.3944,
+          "setup_ms_median": 2.9716
+        },
+        "optimal": {
+          "epochs": 5,
+          "execute_ms_max": 4.4256,
+          "execute_ms_median": 3.3213,
+          "execute_ms_min": 3.142,
+          "file_write_bytes": 58368,
+          "model_cost_units": 114,
+          "plan_execute_ms_median": 3.4916,
+          "recovery_ms_median": 0.3729,
+          "setup_ms_median": 2.896
+        },
+        "two-start": {
+          "epochs": 5,
+          "execute_ms_max": 4.0887,
+          "execute_ms_median": 3.718,
+          "execute_ms_min": 3.436,
+          "file_write_bytes": 58368,
+          "model_cost_units": 114,
+          "plan_execute_ms_median": 3.7772,
+          "recovery_ms_median": 0.376,
+          "setup_ms_median": 3.1417
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "10-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 3,
+          "execute_ms_max": 2.8992,
+          "execute_ms_median": 2.739,
+          "execute_ms_min": 2.4987,
+          "file_write_bytes": 101376,
+          "model_cost_units": 198,
+          "plan_execute_ms_median": 3.3362,
+          "recovery_ms_median": 0.4943,
+          "setup_ms_median": 3.1463
+        },
+        "optimal": {
+          "epochs": 3,
+          "execute_ms_max": 3.3034,
+          "execute_ms_median": 2.9881,
+          "execute_ms_min": 2.5567,
+          "file_write_bytes": 101376,
+          "model_cost_units": 198,
+          "plan_execute_ms_median": 3.4971,
+          "recovery_ms_median": 0.8838,
+          "setup_ms_median": 3.423
+        },
+        "two-start": {
+          "epochs": 3,
+          "execute_ms_max": 3.131,
+          "execute_ms_median": 2.5892,
+          "execute_ms_min": 2.4444,
+          "file_write_bytes": 101376,
+          "model_cost_units": 198,
+          "plan_execute_ms_median": 2.6516,
+          "recovery_ms_median": 0.5847,
+          "setup_ms_median": 3.1447
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "11-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 3,
+          "execute_ms_max": 3.1592,
+          "execute_ms_median": 3.0193,
+          "execute_ms_min": 2.6175,
+          "file_write_bytes": 64000,
+          "model_cost_units": 125,
+          "plan_execute_ms_median": 3.718,
+          "recovery_ms_median": 0.6826,
+          "setup_ms_median": 3.4729
+        },
+        "optimal": {
+          "epochs": 3,
+          "execute_ms_max": 3.0278,
+          "execute_ms_median": 2.745,
+          "execute_ms_min": 2.1258,
+          "file_write_bytes": 64000,
+          "model_cost_units": 125,
+          "plan_execute_ms_median": 3.0177,
+          "recovery_ms_median": 0.8323,
+          "setup_ms_median": 3.2497
+        },
+        "two-start": {
+          "epochs": 3,
+          "execute_ms_max": 3.2874,
+          "execute_ms_median": 2.9151,
+          "execute_ms_min": 2.4987,
+          "file_write_bytes": 64000,
+          "model_cost_units": 125,
+          "plan_execute_ms_median": 2.9927,
+          "recovery_ms_median": 0.729,
+          "setup_ms_median": 3.4952
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "12-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 3,
+          "execute_ms_max": 2.936,
+          "execute_ms_median": 2.8547,
+          "execute_ms_min": 2.5596,
+          "file_write_bytes": 125440,
+          "model_cost_units": 245,
+          "plan_execute_ms_median": 3.2503,
+          "recovery_ms_median": 0.852,
+          "setup_ms_median": 3.6433
+        },
+        "optimal": {
+          "epochs": 3,
+          "execute_ms_max": 3.4422,
+          "execute_ms_median": 2.9894,
+          "execute_ms_min": 2.5442,
+          "file_write_bytes": 125440,
+          "model_cost_units": 245,
+          "plan_execute_ms_median": 3.2258,
+          "recovery_ms_median": 0.8309,
+          "setup_ms_median": 3.7528
+        },
+        "two-start": {
+          "epochs": 3,
+          "execute_ms_max": 3.1945,
+          "execute_ms_median": 2.93,
+          "execute_ms_min": 2.607,
+          "file_write_bytes": 125440,
+          "model_cost_units": 245,
+          "plan_execute_ms_median": 2.9787,
+          "recovery_ms_median": 0.4707,
+          "setup_ms_median": 3.7863
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "13-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 2,
+          "execute_ms_max": 2.1852,
+          "execute_ms_median": 1.8848,
+          "execute_ms_min": 1.6723,
+          "file_write_bytes": 14848,
+          "model_cost_units": 29,
+          "plan_execute_ms_median": 2.7018,
+          "recovery_ms_median": 0.2624,
+          "setup_ms_median": 3.5898
+        },
+        "optimal": {
+          "epochs": 2,
+          "execute_ms_max": 2.3734,
+          "execute_ms_median": 2.0204,
+          "execute_ms_min": 1.8091,
+          "file_write_bytes": 14848,
+          "model_cost_units": 29,
+          "plan_execute_ms_median": 2.2871,
+          "recovery_ms_median": 0.3725,
+          "setup_ms_median": 3.5962
+        },
+        "two-start": {
+          "epochs": 2,
+          "execute_ms_max": 2.1656,
+          "execute_ms_median": 2.0505,
+          "execute_ms_min": 1.8623,
+          "file_write_bytes": 14848,
+          "model_cost_units": 29,
+          "plan_execute_ms_median": 2.1194,
+          "recovery_ms_median": 0.4298,
+          "setup_ms_median": 3.6805
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "14-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 4,
+          "execute_ms_max": 4.1954,
+          "execute_ms_median": 3.8828,
+          "execute_ms_min": 3.5601,
+          "file_write_bytes": 101376,
+          "model_cost_units": 198,
+          "plan_execute_ms_median": 4.8956,
+          "recovery_ms_median": 0.8386,
+          "setup_ms_median": 3.7973
+        },
+        "optimal": {
+          "epochs": 4,
+          "execute_ms_max": 4.6409,
+          "execute_ms_median": 3.8282,
+          "execute_ms_min": 3.752,
+          "file_write_bytes": 101376,
+          "model_cost_units": 198,
+          "plan_execute_ms_median": 5.262,
+          "recovery_ms_median": 0.8902,
+          "setup_ms_median": 3.7748
+        },
+        "two-start": {
+          "epochs": 4,
+          "execute_ms_max": 4.0,
+          "execute_ms_median": 3.7394,
+          "execute_ms_min": 3.5851,
+          "file_write_bytes": 101376,
+          "model_cost_units": 198,
+          "plan_execute_ms_median": 3.8368,
+          "recovery_ms_median": 0.8203,
+          "setup_ms_median": 3.7173
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "15-q1-mu1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 5,
+          "execute_ms_max": 6.8997,
+          "execute_ms_median": 4.3711,
+          "execute_ms_min": 4.3188,
+          "file_write_bytes": 52224,
+          "model_cost_units": 102,
+          "plan_execute_ms_median": 5.4149,
+          "recovery_ms_median": 0.6355,
+          "setup_ms_median": 3.74
+        },
+        "optimal": {
+          "epochs": 5,
+          "execute_ms_max": 5.0265,
+          "execute_ms_median": 4.4033,
+          "execute_ms_min": 4.2531,
+          "file_write_bytes": 52224,
+          "model_cost_units": 102,
+          "plan_execute_ms_median": 4.7162,
+          "recovery_ms_median": 0.6421,
+          "setup_ms_median": 3.4454
+        },
+        "two-start": {
+          "epochs": 5,
+          "execute_ms_max": 4.9165,
+          "execute_ms_median": 4.6949,
+          "execute_ms_min": 4.4958,
+          "file_write_bytes": 52224,
+          "model_cost_units": 102,
+          "plan_execute_ms_median": 4.7869,
+          "recovery_ms_median": 0.6562,
+          "setup_ms_median": 3.8918
+        }
+      },
+      "selection": "first-retained-patterns"
+    },
+    {
+      "case_id": "unit-16-r1",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 17,
+          "execute_ms_max": 14.6119,
+          "execute_ms_median": 13.7731,
+          "execute_ms_min": 12.4621,
+          "file_write_bytes": 25088,
+          "model_cost_units": 49,
+          "plan_execute_ms_median": 15.3956,
+          "recovery_ms_median": 0.5756,
+          "setup_ms_median": 3.6763
+        },
+        "optimal": {
+          "epochs": 17,
+          "execute_ms_max": 22.9227,
+          "execute_ms_median": 13.8057,
+          "execute_ms_min": 13.3442,
+          "file_write_bytes": 25088,
+          "model_cost_units": 49,
+          "plan_execute_ms_median": 14.057,
+          "recovery_ms_median": 0.7848,
+          "setup_ms_median": 3.9594
+        },
+        "two-start": {
+          "epochs": 17,
+          "execute_ms_max": 15.7158,
+          "execute_ms_median": 14.3773,
+          "execute_ms_min": 13.1889,
+          "file_write_bytes": 25088,
+          "model_cost_units": 49,
+          "plan_execute_ms_median": 14.5727,
+          "recovery_ms_median": 0.6274,
+          "setup_ms_median": 3.5204
+        }
+      },
+      "selection": "reserve-control"
+    },
+    {
+      "case_id": "unit-16-r4",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 5,
+          "execute_ms_max": 5.1449,
+          "execute_ms_median": 4.5414,
+          "execute_ms_min": 4.0459,
+          "file_write_bytes": 18944,
+          "model_cost_units": 37,
+          "plan_execute_ms_median": 5.4557,
+          "recovery_ms_median": 0.4392,
+          "setup_ms_median": 3.4425
+        },
+        "optimal": {
+          "epochs": 5,
+          "execute_ms_max": 5.0181,
+          "execute_ms_median": 4.4217,
+          "execute_ms_min": 4.1815,
+          "file_write_bytes": 18944,
+          "model_cost_units": 37,
+          "plan_execute_ms_median": 5.4725,
+          "recovery_ms_median": 0.4716,
+          "setup_ms_median": 3.3325
+        },
+        "two-start": {
+          "epochs": 5,
+          "execute_ms_max": 4.4468,
+          "execute_ms_median": 4.3955,
+          "execute_ms_min": 3.8836,
+          "file_write_bytes": 18944,
+          "model_cost_units": 37,
+          "plan_execute_ms_median": 4.4645,
+          "recovery_ms_median": 0.4594,
+          "setup_ms_median": 3.1493
+        }
+      },
+      "selection": "reserve-control"
+    },
+    {
+      "case_id": "unit-16-r16",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 2,
+          "execute_ms_max": 2.2082,
+          "execute_ms_median": 1.8666,
+          "execute_ms_min": 1.6505,
+          "file_write_bytes": 17408,
+          "model_cost_units": 34,
+          "plan_execute_ms_median": 2.6778,
+          "recovery_ms_median": 0.3269,
+          "setup_ms_median": 2.84
+        },
+        "optimal": {
+          "epochs": 2,
+          "execute_ms_max": 2.2131,
+          "execute_ms_median": 1.8372,
+          "execute_ms_min": 1.7282,
+          "file_write_bytes": 17408,
+          "model_cost_units": 34,
+          "plan_execute_ms_median": 6.0658,
+          "recovery_ms_median": 0.3321,
+          "setup_ms_median": 2.8189
+        },
+        "two-start": {
+          "epochs": 2,
+          "execute_ms_max": 2.2522,
+          "execute_ms_median": 1.9091,
+          "execute_ms_min": 1.5717,
+          "file_write_bytes": 17408,
+          "model_cost_units": 34,
+          "plan_execute_ms_median": 1.9631,
+          "recovery_ms_median": 0.357,
+          "setup_ms_median": 3.0837
+        }
+      },
+      "selection": "reserve-control"
+    },
+    {
+      "case_id": "all-dead",
+      "greedy_to_opt_file_bytes": 1.0,
+      "policies": {
+        "coalesced-portfolio": {
+          "epochs": 2,
+          "execute_ms_max": 1.0594,
+          "execute_ms_median": 0.8928,
+          "execute_ms_min": 0.8547,
+          "file_write_bytes": 1024,
+          "model_cost_units": 2,
+          "plan_execute_ms_median": 1.1442,
+          "recovery_ms_median": 0.1792,
+          "setup_ms_median": 2.8374
+        },
+        "optimal": {
+          "epochs": 2,
+          "execute_ms_max": 1.1591,
+          "execute_ms_median": 1.0308,
+          "execute_ms_min": 0.9877,
+          "file_write_bytes": 1024,
+          "model_cost_units": 2,
+          "plan_execute_ms_median": 1.0836,
+          "recovery_ms_median": 0.2506,
+          "setup_ms_median": 2.9939
+        },
+        "two-start": {
+          "epochs": 2,
+          "execute_ms_max": 1.0614,
+          "execute_ms_median": 1.0127,
+          "execute_ms_min": 0.8815,
+          "file_write_bytes": 1024,
+          "model_cost_units": 2,
+          "plan_execute_ms_median": 1.058,
+          "recovery_ms_median": 0.1881,
+          "setup_ms_median": 2.5592
+        }
+      },
+      "selection": "dead-control"
+    }
+  ],
+  "process_cpu_s": 2.203125,
+  "resources_after": {
+    "memory": {
+      "PageFaultCount": 34130,
+      "PagefileUsage": 30498816,
+      "PeakPagefileUsage": 52912128,
+      "PeakWorkingSetSize": 61784064,
+      "QuotaNonPagedPoolUsage": 17256,
+      "QuotaPagedPoolUsage": 183904,
+      "QuotaPeakNonPagedPoolUsage": 17992,
+      "QuotaPeakPagedPoolUsage": 190760,
+      "WorkingSetSize": 42373120
+    },
+    "process_cpu_s": 2.484375,
+    "process_io": {
+      "OtherOperationCount": 46890,
+      "OtherTransferCount": 1236308,
+      "ReadOperationCount": 13192,
+      "ReadTransferCount": 47728625,
+      "WriteOperationCount": 11744,
+      "WriteTransferCount": 64569786
+    },
+    "system_cpu_100ns": {
+      "idle": 5161658125000,
+      "kernel_including_idle": 5359750625000,
+      "user": 241085312500
+    }
+  },
+  "trials": 300,
+  "wall_s": 3.309013500002038
+}
