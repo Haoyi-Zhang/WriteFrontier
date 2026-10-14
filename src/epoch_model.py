@@ -72,12 +72,15 @@ class EpochInstance:
             raise ValueError("exactly two tiers are required")
         normalized: list[tuple[Segment, ...]] = []
         for tier in self.tiers:
-            normalized.append(tuple(tier))
-            if any(not isinstance(seg, Segment) for seg in tier):
+            owned_tier = tuple(tier)
+            if any(not isinstance(seg, Segment) for seg in owned_tier):
                 raise TypeError("tiers must contain Segment objects")
+            normalized.append(owned_tier)
         object.__setattr__(self, "tiers", (normalized[0], normalized[1]))
-        if len(self.free) != 2 or any(type(x) is not int or x < 0 for x in self.free):
+        owned_free = tuple(self.free)
+        if len(owned_free) != 2 or any(type(x) is not int or x < 0 for x in owned_free):
             raise ValueError("free must contain two non-negative integers")
+        object.__setattr__(self, "free", owned_free)
         if type(self.quantum) is not int or self.quantum <= 0:
             raise ValueError("quantum must be a positive integer")
         if type(self.commit_bytes) is not int or self.commit_bytes < 0:

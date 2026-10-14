@@ -34,6 +34,26 @@ from trace_model import (
 
 
 class ValidationTests(unittest.TestCase):
+    def test_instance_owns_tier_and_reserve_inputs(self):
+        tier0 = [Segment(1, 1)]
+        tier1 = [Segment(1, 1)]
+        free = [1, 1]
+        instance = EpochInstance((tier0, tier1), free)
+        before = solve_normal_form(instance)
+        tier0.clear()
+        tier1.append(Segment(2, 0))
+        free[:] = [0, 0]
+        self.assertEqual(instance.tiers, ((Segment(1, 1),), (Segment(1, 1),)))
+        self.assertEqual(instance.free, (1, 1))
+        self.assertEqual(solve_normal_form(instance), before)
+
+    def test_instance_validates_materialized_tier_iterator(self):
+        with self.assertRaisesRegex(TypeError, "Segment"):
+            EpochInstance((iter([object()]), ()), (1, 1))
+        instance = EpochInstance((iter([Segment(2, 0)]), ()), (0, 0))
+        self.assertEqual(instance.tiers, ((Segment(2, 0),), ()))
+        self.assertEqual(solve_normal_form(instance).cost, 1)
+
     def test_segment_validation(self):
         Segment(1, 0)
         Segment(1, 1)
