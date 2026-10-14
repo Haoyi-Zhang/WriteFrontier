@@ -18,6 +18,30 @@ from validate_reference_audit import (  # noqa: E402
 
 
 class ReferenceAuditTests(unittest.TestCase):
+    def test_slimdb_rechecked_publication_metadata(self):
+        audit = load_audit(ROOT / "reference-audit.csv")
+        self.assertEqual(audit["slimdb"]["checked_date"], "2026-10-14")
+        self.assertEqual(audit["slimdb"]["canonical_locator"],
+                         "https://doi.org/10.14778/3151106.3151108")
+        self.assertEqual(audit["lsm"]["checked_date"], "2026-09-16")
+
+    def test_unexpected_recheck_dates_remain_rejected(self):
+        source = ROOT / "reference-audit.csv"
+        for key, date in (("slimdb", "2026-09-16"), ("slimdb", "2026-10-15"),
+                          ("lsm", "2026-10-14"), ("lsm", "not-a-date")):
+            with self.subTest(key=key, date=date):
+                with source.open(newline="", encoding="utf-8") as handle:
+                    rows = list(csv.DictReader(handle))
+                next(row for row in rows if row["key"] == key)["checked_date"] = date
+                with tempfile.TemporaryDirectory() as directory:
+                    altered = Path(directory) / "audit.csv"
+                    with altered.open("w", newline="", encoding="utf-8") as handle:
+                        writer = csv.DictWriter(handle, fieldnames=REQUIRED_COLUMNS)
+                        writer.writeheader()
+                        writer.writerows(rows)
+                    with self.assertRaisesRegex(ValueError, "unexpected checked date"):
+                        load_audit(altered)
+
     def test_standalone_inventory(self):
         audit = load_audit(ROOT / "reference-audit.csv")
         self.assertEqual(len(audit), 71)

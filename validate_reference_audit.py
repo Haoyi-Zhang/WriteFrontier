@@ -19,6 +19,7 @@ from typing import Iterable
 
 EXPECTED_COUNT = 71
 CHECKED_DATE = "2026-09-16"
+RECHECKED_DATES = {"slimdb": "2026-10-14"}
 REQUIRED_COLUMNS = (
     "key",
     "entry_type",
@@ -259,7 +260,7 @@ def load_audit(path: Path) -> dict[str, dict[str, str]]:
             raise ValueError(f"{key}: audit contains an uncited bibliography item")
         if row["verification_basis"].strip() not in ALLOWED_BASES:
             raise ValueError(f"{key}: unsupported verification basis")
-        if row["checked_date"].strip() != CHECKED_DATE:
+        if row["checked_date"].strip() != RECHECKED_DATES.get(key, CHECKED_DATE):
             raise ValueError(f"{key}: stale or unexpected checked date")
         by_key[key] = {name: value.strip() for name, value in row.items()}
     return by_key
