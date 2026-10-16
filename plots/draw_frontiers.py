@@ -1,7 +1,7 @@
 """Render the retained reserve/epoch and finite slack curves as native-font vector PDFs.
 
 Inputs are existing results/frontier CSVs. This optional figure authoring step
-uses Matplotlib and XeLaTeX; it does not run the scientific campaigns.
+uses direct Matplotlib PDF rendering; it does not run the scientific campaigns.
 """
 
 from __future__ import annotations
@@ -10,14 +10,12 @@ import argparse
 import csv
 from decimal import Decimal
 from pathlib import Path
-import shutil
 
 
 N, QUANTUM, COMMIT, PATTERNS = 128, 32, 1, 5184
 COLUMN_WIDTH_TEX_PT = 430.00462  # Current single-column manuscript log.
 HEIGHT_IN = 2.45
 TEX_PT_TO_BP = 72.0 / 72.27
-MATH_SCALE = "1.037989621392094"  # Native math scale in current main.log.
 
 
 def reviewed_points(data_dir):
@@ -47,8 +45,6 @@ def reviewed_points(data_dir):
 def render(column_width_tex_pt, data_dir, output):
     if column_width_tex_pt <= 0:
         raise ValueError("Column width must be positive")
-    if shutil.which("xelatex") is None:
-        raise RuntimeError("XeLaTeX must be available on PATH")
 
     # Check Matplotlib availability before creating authoring directories.
     import importlib.util
@@ -60,30 +56,17 @@ def render(column_width_tex_pt, data_dir, output):
     names = ("unit-frontier.pdf", "slack-curve.pdf")
 
     import matplotlib as mpl
-    mpl.use("pgf")
+    mpl.use("Agg")
     import matplotlib.pyplot as plt
 
-    # Native XeLaTeX labels; no Times/DejaVu or mathtext font substitution.
-    # PGF text sizes below are emitted as TeX pt. Line/marker sizes are bp.
-    preamble = "\n".join((
-        r"\usepackage{fontspec}",
-        r"\setmainfont{LinLibertine_R.otf}["
-        r"BoldFont=LinLibertine_RB.otf,ItalicFont=LinLibertine_RI.otf,"
-        r"BoldItalicFont=LinLibertine_RBI.otf,"
-        r"Numbers={Monospaced,Lining},Ligatures=TeX]",
-        r"\usepackage{unicode-math}",
-        rf"\setmathfont[Scale={MATH_SCALE}]{{LibertinusMath-Regular.otf}}",
-        # Match the manuscript's inline, rather than PGF's default display math.
-        r"\everymath={\textstyle}",
-    ))
+    # Embedded STIX text and math; TeX is not called by this plotting path.
     rc = {
-        "pgf.texsystem": "xelatex",
-        "pgf.rcfonts": False,
-        "pgf.preamble": preamble,
-        "font.family": "serif",
-        "font.serif": [],
+        "font.family": "STIXGeneral",
+        "mathtext.fontset": "stix",
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42,
         "font.size": 9.0,
-        "text.usetex": True,
+        "text.usetex": False,
         "axes.labelsize": 8.0,  # small in current 9pt amsart base.
         "xtick.labelsize": 8.5,
         "ytick.labelsize": 8.5,
@@ -149,8 +132,8 @@ def render(column_width_tex_pt, data_dir, output):
         ax.set_ylabel("minimum recovery epochs", labelpad=6 * TEX_PT_TO_BP)
         ax.legend(loc="upper right", bbox_to_anchor=(0.98, 0.98),
                   frameon=False, borderaxespad=0, handlelength=2)
-        fig.savefig(output / names[0], format="pdf", backend="pgf",
-                    bbox_inches=None)
+        fig.savefig(output / names[0], format="pdf", bbox_inches=None,
+                    metadata={"Creator":"Python Matplotlib","CreationDate":None,"ModDate":None})
         plt.close(fig)
 
         fig, ax = base_axes()
@@ -166,8 +149,8 @@ def render(column_width_tex_pt, data_dir, output):
                       labelpad=6 * TEX_PT_TO_BP)
         ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.04),
                   frameon=False, borderaxespad=0, handlelength=2)
-        fig.savefig(output / names[1], format="pdf", backend="pgf",
-                    bbox_inches=None)
+        fig.savefig(output / names[1], format="pdf", bbox_inches=None,
+                    metadata={"Creator":"Python Matplotlib","CreationDate":None,"ModDate":None})
         plt.close(fig)
 
     print(f"Vector PDFs written to {output}")

@@ -15,9 +15,10 @@ or SSD benchmark.
 
 The optional `plots/draw_frontiers.py` helper renders the retained reserve/epoch
 and slack curves from `results/frontier/unit-exchange-frontier.csv` and
-`results/frontier/slack-curve.csv`. It uses Matplotlib and XeLaTeX with Linux
-Libertine text and Libertinus Math; these are figure-authoring dependencies,
-not dependencies of the core experiments or tests. No font files are bundled.
+`results/frontier/slack-curve.csv`. It writes PDFs directly with Matplotlib,
+embedding STIX text and math without invoking TeX. Install
+`requirements-figures.txt` for figure authoring; core experiments and tests
+remain standard-library only. No font files are bundled.
 
 From this repository, run `python plots/draw_frontiers.py --output-dir figures`.
 It writes `unit-frontier.pdf` and `slack-curve.pdf` as vector graphics, without
@@ -26,6 +27,9 @@ rerunning the campaigns. The first curve plots minimum recovery epochs for
 retained patterns reaching the lower bound within an additional total-reserve
 budget. Plotting preserves the recorded points; it does not estimate runtime
 performance.
+
+`python figures/draw_schematics.py --out figures` directly redraws the symbolic
+recovery protocol and exact cost witness as vector PDFs.
 
 ## Main result encoded by the artifact
 
