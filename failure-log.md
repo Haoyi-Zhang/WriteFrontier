@@ -20,11 +20,9 @@ hiding them behind the final positive result.
    selected copies.  Repair: represent the batch commit as one atomic pointer
    set and assert token uniqueness.  Unit tests and all crash-prefix results
    were regenerated.
-4. **Single-process campaign exceeded the interactive tool window.**  No
-   scientific run exceeded the project's 45-minute bound, but a combined
-   invocation crossed the shell-tool response window after its first partition.
-   Repair: deterministic four-part grid execution with explicit part IDs and a
-   separate aggregation step.  Part files are independently resumable.
+4. **Resumable campaign execution.** The grid supports four deterministic
+   partitions with explicit part IDs and a separate aggregation step. Part files
+   are independently resumable; the scientific execution bound remains unchanged.
 5. **Public samples are too small for workload claims.**  Repository APIs made
    small exact excerpts available, not the full multi-terabyte corpora.  Repair:
    use them only as parser/mechanism tests and make that limitation explicit in
@@ -60,4 +58,3 @@ hiding them behind the final positive result.
    Repair: retain and verify both byte fields, generate asymmetric free vectors
    from the final-fit base plus common slack, and generate per-mutation counts
    directly from the recovery result.
-
