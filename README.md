@@ -33,6 +33,21 @@ recovery protocol and exact cost witness as vector PDFs.
 
 ## Main result encoded by the artifact
 
+`analyze_planning_cost.py` validates the retained 20-case, 300-trial file
+campaign, including its seven executed source/input bindings, then reports
+planning median/P95 and per-trial plan-plus-execute medians. It does not run
+timers or change the measured data. All three policies have identical file
+write bytes on those 20 cases; modeled residual savings over the coalesced
+portfolio come from the separate longer-queue domain, not these timings.
+
+```sh
+python -B analyze_planning_cost.py
+python -B -m unittest discover -s tests -p test_planning_cost.py -v
+```
+
+In the full project, `python -B analyze_planning_cost.py --tex
+../paper/tables/planning-cost.tex --check` verifies the actual paper table.
+
 A state records how many oldest segments have committed from each tier. A legal
 recovery epoch copies a nonempty remaining oldest prefix to the opposite tier,
 flushes its retained payload, atomically commits one pointer set, and reclaims

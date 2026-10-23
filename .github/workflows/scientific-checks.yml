@@ -36,6 +36,7 @@ jobs:
           python -B verify_file_io_measurements.py 2>&1 | tee scientific-output/file-io-measurements.log
           python -B run_coalesced_portfolio.py --check-existing 2>&1 | tee scientific-output/coalesced-portfolio.log
           python -B validate_reference_audit.py 2>&1 | tee scientific-output/reference-inventory.log
+          python -B analyze_planning_cost.py 2>&1 | tee scientific-output/planning-cost.log
           python -B run.py --all --out scientific-output/frontier 2>&1 | tee scientific-output/core.log
           python -B verify_results.py results/frontier scientific-output/frontier 2>&1 | tee scientific-output/core-verification.log
           python -B verify_ordered_certificate.py scientific-output/frontier/ordered-blocking-certificate.json 2>&1 | tee scientific-output/ordered-certificate.log
